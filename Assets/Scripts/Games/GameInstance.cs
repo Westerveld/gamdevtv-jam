@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameInstance : MonoBehaviour
 {
 
-    public static GameInstance instance; 
-    
+    public static GameInstance instance;
+
+    private List<bool> completedGames = new List<bool>();
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -14,6 +16,10 @@ public class GameInstance : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
+            for (int i = 0; i < ((int)GameType.TwinStick + 1); i++)
+            {
+                completedGames[i] = false;
+            }
         }
         else
         {
@@ -21,8 +27,8 @@ public class GameInstance : MonoBehaviour
         }
     }
 
-    public void SetGameComplete(GameManager gameType)
+    public void SetGameComplete(GameType gameType)
     {
-        
+        completedGames[(int)gameType] = true;
     }
 }

@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public string gameScene = "";
+    public int firstScene = 1, lastScene = 7;
 
+    /// <summary>
+    /// Loads random game scene 
+    /// </summary>
     public void PlayGame()
     {
-        SceneManager.LoadScene(gameScene);
+        SceneManager.LoadScene(Random.Range(firstScene, lastScene + 1));
     }
 
     public void QuitGame()
