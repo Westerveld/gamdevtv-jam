@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MazeManager : MonoBehaviour
 {
+    public GameObject[] doors;
     // Start is called before the first frame update
     void Start()
     {
