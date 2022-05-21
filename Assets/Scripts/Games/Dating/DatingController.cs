@@ -2,31 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DatingController : MonoBehaviour
+namespace Dating
 {
-    public Animator anim;
-
-    private int animID_attempt = Animator.StringToHash("Attempt");
-    private int animID_success = Animator.StringToHash("Success");
-    private int animID_failure = Animator.StringToHash("Failure");
-
-    void Awake()
+    public class DatingController : MonoBehaviour
     {
-        anim = GetComponent<Animator>();
-    }
+        public Animator anim;
 
-    public void Success()
-    {
-        anim.SetTrigger(animID_success);
-    }
+        private int animID_attempt = Animator.StringToHash("Attempt");
+        private int animID_success = Animator.StringToHash("Success");
+        private int animID_failure = Animator.StringToHash("Failure");
 
-    public void Attempt()
-    {
-        anim.SetTrigger(animID_attempt);
-    }
+        void Awake()
+        {
+            anim = GetComponent<Animator>();
+        }
 
-    public void Failure()
-    {
-        anim.SetTrigger(animID_failure);
+        public void Success()
+        {
+            anim.SetTrigger(animID_success);
+        }
+
+        public void Attempt()
+        {
+            anim.SetTrigger(animID_attempt);
+        }
+
+        public void Failure()
+        {
+            anim.SetTrigger(animID_failure);
+        }
     }
 }
