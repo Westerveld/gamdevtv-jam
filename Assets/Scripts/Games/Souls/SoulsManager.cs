@@ -2,27 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoulsManager : GameManager
+namespace Souls
 {
-    public Transform cameraRoot;
-
-    public Transform opponent;
-
-    public Transform player;
-    // Start is called before the first frame update
-    void Start()
+    public class SoulsManager : GameManager
     {
-        
-    }
+        public Transform cameraRoot;
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        LookAt();
-    }
+        public Transform opponent;
 
-    void LookAt()
-    {
-        player.LookAt(opponent, Vector3.up);
+        public Transform player;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void LateUpdate()
+        {
+            LookAt();
+        }
+
+        void LookAt()
+        {
+            player.LookAt(opponent, Vector3.up);
+        }
     }
 }

@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Runner;
 using UnityEngine;
 
-public class RunnerManager : GameManager
+namespace Runner
 {
-    // Start is called before the first frame update
-    void Start()
+    public class RunnerManager : GameManager
     {
-        
-    }
+        public RunController player;
+        public ConveyorBelt belt;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static RunnerManager instance;
+
+        void Awake()
+        {
+            instance = this;
+        }
+        // Start is called before the first frame update
+        void Start()
+        {
+            player.Setup();
+            belt.Setup();
+        }
+
+        public void WonGame()
+        {
+            GameInstance.instance.SetGameComplete(gameType);
+        }
+
+        public void LostGame()
+        {
+            GameInstance.instance.GameEnd();
+        }
     }
 }

@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Games/CookingGame.unity
     guid: 37d2dc51ab5bd7d4a8549bde77250020
   - enabled: 1
-    path: Assets/Scenes/Games/DatingGame 1.unity
+    path: Assets/Scenes/Games/DatingGame.unity
     guid: 07579ba9fe0052140bc24b1ad6fcb625
   - enabled: 1
     path: Assets/Scenes/Games/FiniteRunner.unity
