@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SoulsManager : GameManager
 {
+    public Transform cameraRoot;
+
+    public Transform opponent;
+
+    public Transform player;
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +16,13 @@ public class SoulsManager : GameManager
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        LookAt();
+    }
+
+    void LookAt()
+    {
+        player.LookAt(opponent, Vector3.up);
     }
 }

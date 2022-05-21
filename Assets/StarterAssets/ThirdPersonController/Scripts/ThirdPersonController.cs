@@ -60,26 +60,6 @@ namespace StarterAssets
         [Tooltip("What layers the character uses as ground")]
         public LayerMask GroundLayers;
 
-        [Header("Cinemachine")]
-        [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
-        public GameObject CinemachineCameraTarget;
-
-        [Tooltip("How far in degrees can you move the camera up")]
-        public float TopClamp = 70.0f;
-
-        [Tooltip("How far in degrees can you move the camera down")]
-        public float BottomClamp = -30.0f;
-
-        [Tooltip("Additional degress to override the camera. Useful for fine tuning camera position when locked")]
-        public float CameraAngleOverride = 0.0f;
-
-        [Tooltip("For locking the camera position on all axis")]
-        public bool LockCameraPosition = false;
-
-        // cinemachine
-        private float _cinemachineTargetYaw;
-        private float _cinemachineTargetPitch;
-
         // player
         private float _speed;
         private float _animationBlend;
@@ -98,6 +78,9 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private int animIDDodge;
+
+        public bool dodging { get; private set; }
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -115,7 +98,7 @@ namespace StarterAssets
         {
             get
             {
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+#if ENABLE_INPUT_SYSTEM 
                 return _playerInput.currentControlScheme == "KeyboardMouse";
 #else
 				return false;
@@ -135,7 +118,6 @@ namespace StarterAssets
 
         private void Start()
         {
-            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
@@ -157,14 +139,10 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
+            Dodge();
             JumpAndGravity();
             GroundedCheck();
             Move();
-        }
-
-        private void LateUpdate()
-        {
-            CameraRotation();
         }
 
         private void AssignAnimationIDs()
@@ -174,6 +152,7 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            animIDDodge = Animator.StringToHash("Dodge");
         }
 
         private void GroundedCheck()
@@ -191,27 +170,6 @@ namespace StarterAssets
             }
         }
 
-        private void CameraRotation()
-        {
-            // if there is an input and camera position is not fixed
-            if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
-            {
-                //Don't multiply mouse input by Time.deltaTime;
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
-            }
-
-            // clamp our rotations so our values are limited 360 degrees
-            _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
-
-            // Cinemachine will follow this target
-            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
-                _cinemachineTargetYaw, 0.0f);
-        }
-
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
@@ -221,7 +179,7 @@ namespace StarterAssets
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (_input.move == Vector2.zero && !dodging) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -262,7 +220,7 @@ namespace StarterAssets
                     RotationSmoothTime);
 
                 // rotate to face input direction relative to camera position
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                //transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
 
@@ -349,6 +307,17 @@ namespace StarterAssets
             }
         }
 
+        private void Dodge()
+        {
+            if (_input.dodge)
+            {
+                //Reset input
+                _input.dodge = false;
+                dodging = true;
+                _animator.SetTrigger(animIDDodge);
+            }
+        }
+
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
@@ -388,6 +357,16 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        private void InvunOn()
+        {
+            
+        }
+
+        private void InvunOff()
+        {
+            dodging = false;
         }
     }
 }
