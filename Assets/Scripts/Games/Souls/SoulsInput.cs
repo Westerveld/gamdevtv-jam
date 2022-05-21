@@ -9,6 +9,7 @@ public class SoulsInput : MonoBehaviour
     public bool jump; 
     public bool dodge;
     public bool attack;
+    public bool sprint;
 
 
     public void OnMove(InputValue value)
@@ -29,5 +30,10 @@ public class SoulsInput : MonoBehaviour
     public void OnAttack(InputValue value)
     {
         attack = value.isPressed;
+    }
+
+    public void OnSprint(InputValue value)
+    {
+        sprint = value.isPressed;
     }
 }
