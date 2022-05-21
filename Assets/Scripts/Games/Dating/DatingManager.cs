@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 public class DatingManager : GameManager
 {
     public float currentCharm = 0f;
-    public float charmDeduction = 10f;
     public float charmAddition = 15f;
+    
 
     public int displayedOptions = 4;
 
@@ -96,9 +96,15 @@ public class DatingManager : GameManager
     {
         player.Success();
         currentCharm += charmAddition;
+        
         currentQ++;
         yield return new WaitForSeconds(6f);
-
+        
+        if (currentCharm >= 100)
+        {
+            GameInstance.instance.SetGameComplete(gameType);
+        }
+        
         if (currentQ >= currentQuestions.Length)
         {
             currentQuestions = questions.OrderBy(x => rand.Next()).ToArray();
