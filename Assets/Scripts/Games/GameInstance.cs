@@ -139,8 +139,11 @@ public class PersistantData
     public float currentCharm = 0f;
     //Souls
     public float currentBossHealth = 0f;
-
+    
+    
     //TwinStick
     public int killedEnemies;
 
+    //Cooking
+    public int ordersFilled;
 }
