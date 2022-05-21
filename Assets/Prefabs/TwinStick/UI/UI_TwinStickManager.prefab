@@ -367,7 +367,8 @@ MonoBehaviour:
   m_AmmoCount: {fileID: 347135219119365644}
   m_ReloadImage: {fileID: 1275238467179479651}
   m_FadeSpeed: 0
-  m_EnemyHealthPrefab: {fileID: 0}
+  m_EnemyHealthPrefab: {fileID: 8808936915140588269, guid: 26564686cc019c742851917a0eab6e5d,
+    type: 3}
   m_DoorKillCount: {fileID: 0}
   m_EnemyHealthBarPool: {fileID: 0}
 --- !u!1 &6302654081886212805
