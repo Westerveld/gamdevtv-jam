@@ -24,6 +24,7 @@ public class DatingManager : GameManager
     private Question selectedQuestion;
     
     private int correctOption = 0;
+    private int currentQ = 0;
 
     private System.Random rand = new System.Random();
 
@@ -32,12 +33,14 @@ public class DatingManager : GameManager
     public override void StartGame(float value1 = 0f, float value2 = 0f)
     {
         currentCharm = value1;
+
+        currentQuestions = questions.OrderBy(x => rand.Next()).ToArray();
         StartTurn();
     }
 
     void StartTurn()
     {
-        selectedQuestion = currentQuestions[Random.Range(0, currentQuestions.Length)];
+        selectedQuestion = currentQuestions[currentQ];
         correctOption = Random.Range(1, displayedOptions);
         questionText.text = selectedQuestion.questionText;
         answerText[correctOption].text = selectedQuestion.correctAnswer;
@@ -58,22 +61,22 @@ public class DatingManager : GameManager
 
     public void UI_Option1()
     {
-        ShowResult(correctOption == 1);
+        ShowResult(correctOption == 0);
     }
 
     public void UI_Option2()
     {
-        ShowResult(correctOption == 2);
+        ShowResult(correctOption == 1);
     }
 
     public void UI_Option3()
     {
-        ShowResult(correctOption == 3);
+        ShowResult(correctOption == 2);
     }
 
     public void UI_Option4()
     {
-        ShowResult(correctOption == 4);
+        ShowResult(correctOption == 3);
     }
 
     void ShowResult(bool correct)
@@ -93,16 +96,23 @@ public class DatingManager : GameManager
     {
         player.Success();
         currentCharm += charmAddition;
-        yield return new WaitForSeconds(2f);
-        
+        currentQ++;
+        yield return new WaitForSeconds(6f);
+
+        if (currentQ >= currentQuestions.Length)
+        {
+            currentQuestions = questions.OrderBy(x => rand.Next()).ToArray();
+            currentQ = 0;
+        }
+        StartTurn();
     }
 
     IEnumerator ResultThenDeduction()
     {
         player.Failure();
         GameInstance.instance.SetPersistantData(gameType, currentCharm);
-        yield return new WaitForSeconds(2f);
-        
+        yield return new WaitForSeconds(6f);
+        GameInstance.instance.GameEnd();
     }
 }
 

@@ -51,6 +51,10 @@ public class GameInstance : MonoBehaviour
 
             volume.profile.TryGet(out ca);
             volume.profile.TryGet(out lens);
+            if (currentGame != null)
+            {
+                currentGame.StartGame();
+            }
         }
         else
         {
