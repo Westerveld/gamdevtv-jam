@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,10 @@ public class GameInstance : MonoBehaviour
     public ChromaticAberration ca;
     public LensDistortion lens;
     public float effectSpeed;
-    
+
+    public GameManager currentGame;
+
+    public PersistantData data;
 
     private List<bool> completedGames = new List<bool>();
 
@@ -94,5 +98,45 @@ public class GameInstance : MonoBehaviour
         {
             nextScenes = availableScenes.OrderBy(x => rand.Next()).ToList();
         }
+
+        yield return new WaitForSeconds(1f);
+        currentGame = FindObjectOfType<GameManager>();
+        currentGame.StartGame();
     }
+
+    public void SetPersistantData(GameType type, float val1 = 0f, float val2 = 0f)
+    {
+        switch (type)
+        {
+            case GameType.Cooking:
+                break;
+            case GameType.Dating:
+                data.currentCharm = val1;
+                break;
+            case GameType.Runner:
+                break;
+            case GameType.Maze:
+                break;
+            case GameType.Souls:
+                break;
+            case GameType.TurnBased:
+                break;
+            case GameType.TwinStick:
+                break;
+        }
+    }
+}
+
+
+[Serializable]
+public class PersistantData
+{
+    //Dating
+    public float currentCharm = 0f;
+    //Souls
+    public float currentBossHealth = 0f;
+
+    //TwinStick
+    public int killedEnemies;
+
 }

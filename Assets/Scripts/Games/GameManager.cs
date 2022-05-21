@@ -6,17 +6,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameType gameType;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void StartGame(float value1 = 0f, float value2 = 0f)
     {
         
     }
+    
 }
 
 public enum GameType
