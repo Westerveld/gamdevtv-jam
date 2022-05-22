@@ -10,12 +10,11 @@ namespace Cooking
     /// </summary>
     public class Mixer : InteractArea
     {
-        private float mixPercentage = 0;
-
         private float timeToComplete = 10f;
         private float defaultIncrement = 2.5f;
         
-        private float timerIncrement = 0.25f;
+        public float timerIncrement = 0.25f;
+        public float mixSpeed = 5f;
         public GameObject mixedFoodPrefab;
         private bool canPlay = false;
 
@@ -41,12 +40,12 @@ namespace Cooking
 
             if (currentMix.ingredients.Count > 1)
             {
-                currentMix.cookCompleteTime = currentMix.mixTime += defaultIncrement;
+                currentMix.cookCompleteTime = currentMix.mixCompleteTime += defaultIncrement;
                 currentMix.cooked = currentMix.mixed = false;
             }
             else
             {
-                currentMix.cookCompleteTime =  currentMix.mixCompleteTime = timeToComplete;
+                currentMix.cookCompleteTime = currentMix.mixCompleteTime = timeToComplete;
             }
         }
         
@@ -78,8 +77,8 @@ namespace Cooking
                 {
                     currentMix.mixed = true;
                 }
+                mixingLocation.Rotate(new Vector3( 1,1,0), mixSpeed);
             }
-            mixingLocation.Rotate(new Vector3( 1,1,0), 1f);
         }
 
         public override bool PlaceItem(GameObject item)
@@ -89,7 +88,9 @@ namespace Cooking
                 AddIngredient(item.GetComponent<Ingredient>().type);
                 player.currentObject = null;
                 item.transform.parent = mixingLocation;
-                item.transform.localPosition = Vector3.zero;
+                item.transform.localPosition = Random.insideUnitSphere * 0.5f;
+                item.GetComponent<Ingredient>().rigid.isKinematic = true;
+                item.GetComponent<Ingredient>().col.enabled = false;
                 activeIngredients.Add(item);
                 return true;
             }
@@ -117,7 +118,7 @@ namespace Cooking
             currentMix = mix.mixData;
             mix.enabled = false;
             mixedIngredients.transform.parent = mixingLocation;
-            mixedIngredients.transform.localPosition = Vector3.zero;
+            mixedIngredients.transform.localPosition = Random.insideUnitSphere * 0.5f;
             activeIngredients.Add(mixedIngredients);
         }
     }

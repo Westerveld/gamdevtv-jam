@@ -8,12 +8,21 @@ namespace Cooking
     {
         public MixData mixData;
         public Collider triggerCol;
+        public Collider col;
+        private Rigidbody rigid;
+
+        private void Awake()
+        {
+            rigid = GetComponent<Rigidbody>();
+        }
 
         public void DropItem()
         {
             transform.parent = null;
             triggerCol.enabled = true;
             player.hasObject = false;
+            rigid.constraints = RigidbodyConstraints.None;
+            rigid.isKinematic = false;
         }
 
         public override GameObject GetItem(Transform parent)
@@ -22,6 +31,9 @@ namespace Cooking
             transform.parent = parent;
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
+            rigid.constraints = RigidbodyConstraints.FreezePosition;
+            rigid.isKinematic = true;
+            
             return gameObject;
         }
     }

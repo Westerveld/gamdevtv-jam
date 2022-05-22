@@ -143,19 +143,22 @@ namespace Cooking
 
         private void EnableLayer()
         {
-            StartCoroutine(BlendLayer(true));
             if (currentArea != null)
             {
-                currentObject = currentArea.GetItem(holdLocation);
-                hasObject = true;
+                if (currentArea.allowPickup)
+                {
+                    currentObject = currentArea.GetItem(holdLocation);
+                    hasObject = true;
+                    StartCoroutine(BlendLayer(true));
+                }
             }
         }
 
         private void DisableLayer()
         {
-            StartCoroutine(BlendLayer(false));
             if (currentObject == null)
                 return;
+            StartCoroutine(BlendLayer(false));
             if (currentArea != null)
             {
                 hasObject = !currentArea.PlaceItem(currentObject);

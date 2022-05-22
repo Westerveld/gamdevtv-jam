@@ -306,8 +306,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2538c9adc73efdb49bd7d47c24e94389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowPickup: 1
   type: 3
   triggerCol: {fileID: 2311236294476817961}
+  rigid: {fileID: 8268203518338410425}
+  col: {fileID: 6630341226399616405}
 --- !u!65 &2311236294476817961
 BoxCollider:
   m_ObjectHideFlags: 0

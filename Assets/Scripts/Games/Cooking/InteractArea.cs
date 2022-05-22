@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace Cooking
     public class InteractArea : MonoBehaviour
     {
         protected CookingController player;
+        public bool allowPickup = true;
         public virtual void Setup(CookingController p)
         {
             player = p;
@@ -20,6 +22,11 @@ namespace Cooking
                 player.canInteractWithArea = true;
                 player.currentArea = this;
             }
+        }
+
+        protected void OnTriggerStay(Collider other)
+        {
+            OnTriggerEnter(other);
         }
 
         protected virtual void OnTriggerExit(Collider other)

@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8c5d113b1845c584f583f97ad24d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowPickup: 1
   mixData:
     cooked: 0
     cookTime: 0

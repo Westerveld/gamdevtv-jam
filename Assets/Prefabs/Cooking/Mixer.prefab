@@ -124,10 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569a8e3bc73d0c94992a68a15c041ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentIngredients: 
+  allowPickup: 1
   mixedFoodPrefab: {fileID: 1086029432632820504, guid: ebe5ab8b5b8c17f4b99eed4272dd1ae9,
     type: 3}
   mixingLocation: {fileID: 6499555628098497286}
+  activeIngredients: []
 --- !u!1 &1916085395639534777
 GameObject:
   m_ObjectHideFlags: 0

@@ -123,6 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2076b268dcd26b54f9c162e604a05831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowPickup: 0
+  scaleMultiplier: 1.1
+  lerpSpeed: 1
+  cookedPrefab: {fileID: 6478562567456837333, guid: 6e817664d653817408cd93a46c5f71d7,
+    type: 3}
 --- !u!1 &7808009590256703136
 GameObject:
   m_ObjectHideFlags: 0

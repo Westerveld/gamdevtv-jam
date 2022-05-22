@@ -928,6 +928,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CookingStation (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
+        type: 3}
+      propertyPath: lerpSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
+        type: 3}
+      propertyPath: scaleMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7aa24b0f8c79874faecc50b229e9f4f, type: 3}
 --- !u!1 &1029958161
@@ -1189,6 +1199,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1761424555}
     m_Modifications:
+    - target: {fileID: 131098836542030514, guid: 6146faf17894bac45a98a03c90029492,
+        type: 3}
+      propertyPath: timerIncrement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 331196379129207375, guid: 6146faf17894bac45a98a03c90029492,
         type: 3}
       propertyPath: m_Name
@@ -1534,6 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23362d68b44cf58449f26048cb97d823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowPickup: 1
 --- !u!1 &1854530287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1808,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.09
-  m_Height: 2
+  m_Height: 3.05
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!136 &2121333620
@@ -1866,7 +1882,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121333618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.877, y: -0.12, z: 4.363}
+  m_LocalPosition: {x: 1.877, y: 0.438, z: 4.363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1029958162}
@@ -2034,6 +2050,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1761424555}
     m_Modifications:
+    - target: {fileID: 131098836542030514, guid: 6146faf17894bac45a98a03c90029492,
+        type: 3}
+      propertyPath: timerIncrement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 331196379129207375, guid: 6146faf17894bac45a98a03c90029492,
         type: 3}
       propertyPath: m_Name
@@ -2242,6 +2263,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CookingStation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
+        type: 3}
+      propertyPath: lerpSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
+        type: 3}
+      propertyPath: scaleMultiplier
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7aa24b0f8c79874faecc50b229e9f4f, type: 3}

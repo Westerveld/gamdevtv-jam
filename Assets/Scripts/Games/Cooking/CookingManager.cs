@@ -31,7 +31,7 @@ namespace Cooking
             player.Setup();
             for (int i = 0; i < ovens.Length; ++i)
             {
-                ovens[i].Setup();
+                ovens[i].Setup(player);
             }
 
             for (int i = 0; i < mixers.Length; ++i)
