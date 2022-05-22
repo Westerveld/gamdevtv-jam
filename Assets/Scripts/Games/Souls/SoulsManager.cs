@@ -6,16 +6,15 @@ namespace Souls
 {
     public class SoulsManager : GameManager
     {
-        public Transform cameraRoot;
 
-        public Transform opponent;
+        public SoulsController player;
+        public SoulsBoss boss;
 
-        public Transform player;
 
-        // Start is called before the first frame update
-        void Start()
+        public override void StartGame(float value1 = 0, float value2 = 0)
         {
-
+            boss.Setup(value1);
+            player.SetupPlayer(100f,100f,0.5f,0.5f);
         }
 
         // Update is called once per frame
@@ -26,7 +25,19 @@ namespace Souls
 
         void LookAt()
         {
-            player.LookAt(opponent, Vector3.up);
+            //player.LookAt(opponent, Vector3.up);
+        }
+
+        public void PlayerDied()
+        {
+            GameInstance.instance.SetPersistantData(gameType, boss.health.currentValue);
+            GameInstance.instance.GameEnd();
+        }
+
+        [ContextMenu("Test")]
+        void Test()
+        {
+            StartGame();
         }
     }
 }
