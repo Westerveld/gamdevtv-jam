@@ -14,6 +14,9 @@ namespace Cooking
 
         public Oven[] ovens;
         public Mixer[] mixers;
+        public IngredientStore[] ingredients;
+
+        public CookingController player;
 
 
         private bool canPlay;
@@ -25,6 +28,7 @@ namespace Cooking
         
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
+            player.Setup();
             for (int i = 0; i < ovens.Length; ++i)
             {
                 ovens[i].Setup();
@@ -33,6 +37,11 @@ namespace Cooking
             for (int i = 0; i < mixers.Length; ++i)
             {
                 mixers[i].Setup();
+            }
+
+            for (int i = 0; i < ingredients.Length; ++i)
+            {
+                ingredients[i].Setup(player);
             }
 
             customerTimer = 1f;
@@ -80,6 +89,12 @@ namespace Cooking
             {
                 //ToDo: go to next game
             }
+        }
+        
+        [ContextMenu("Test")]
+        void Test()
+        {
+            StartGame();
         }
     }
 

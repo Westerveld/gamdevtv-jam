@@ -102,8 +102,15 @@ public class GameInstance : MonoBehaviour
         {
             nextScenes = availableScenes.OrderBy(x => rand.Next()).ToList();
         }
-
-        yield return new WaitForSeconds(1f);
+        
+        while (lens.intensity.value > 0)
+        {
+            lens.intensity.value -= Time.fixedDeltaTime * effectSpeed;
+            ca.intensity.value -= Time.fixedDeltaTime * effectSpeed;
+            yield return null;
+        }
+        //yield return new WaitForSeconds(1f);
+        
         currentGame = FindObjectOfType<GameManager>();
         currentGame.StartGame();
     }
