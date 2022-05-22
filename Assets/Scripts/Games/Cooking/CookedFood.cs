@@ -36,5 +36,12 @@ namespace Cooking
             rigid.isKinematic = true;
             return gameObject;
         }
+
+        public void Launch(Vector3 velocity)
+        {
+            rigid.isKinematic = false;
+            rigid.AddForce(velocity, ForceMode.Impulse);
+            rigid.constraints = RigidbodyConstraints.None;
+        }
     }
 }

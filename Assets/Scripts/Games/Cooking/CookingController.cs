@@ -148,8 +148,11 @@ namespace Cooking
                 if (currentArea.allowPickup)
                 {
                     currentObject = currentArea.GetItem(holdLocation);
-                    hasObject = true;
-                    StartCoroutine(BlendLayer(true));
+                    if (currentObject != null)
+                    {
+                        hasObject = true;
+                        StartCoroutine(BlendLayer(true));
+                    }
                 }
             }
         }
