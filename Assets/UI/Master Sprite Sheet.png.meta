@@ -1,0 +1,732 @@
+fileFormatVersion: 2
+guid: 1a696c6ad7daee54d892cd1c687acd5e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8348831573218998372
+    second: Top Down_Gun Background
+  - first:
+      213: -522057726970573018
+    second: Top Down_Kills Background
+  - first:
+      213: 7454649489778318003
+    second: Top Down_Health Background
+  - first:
+      213: 4017649508001290467
+    second: Top Down_Kills Icon
+  - first:
+      213: -4548776389058751886
+    second: Top Down_Guns Icon
+  - first:
+      213: -6479129164177406135
+    second: Top Down_Health Bar
+  - first:
+      213: -8478983414389046006
+    second: Top Down_Ammo Bar
+  - first:
+      213: -577600612611042736
+    second: Dating Sim_Bar Background
+  - first:
+      213: -4910258608258865067
+    second: Dating Sim_Bar Tube Background
+  - first:
+      213: 7672741757763266402
+    second: Dating Sim_Bar
+  - first:
+      213: -6173154706045967026
+    second: Dating Sim_Happy Emote
+  - first:
+      213: 8264209521589755474
+    second: Dating Sim_Middle Emote
+  - first:
+      213: -8238408458273519719
+    second: Dating Sim_Sad Emote
+  - first:
+      213: -1570952458433662314
+    second: Dating Sim_Questions Background
+  - first:
+      213: 7171086460724086709
+    second: Dating Sim_Questions Button
+  - first:
+      213: 7709450093948869631
+    second: Dating Sim_Questions Button Pressed
+  - first:
+      213: -5621289725792965584
+    second: Running Game_Runner Icon
+  - first:
+      213: 8971523929145220069
+    second: Running Game_Bar Background
+  - first:
+      213: 6934443000470499294
+    second: Souls Game_Health Bar Background
+  - first:
+      213: -6291980840855742087
+    second: Souls Game_Stamina Bar Background
+  - first:
+      213: 638369164456530233
+    second: Souls Game_Health Bar
+  - first:
+      213: 9009256973467104246
+    second: Souls Game_Bar Background
+  - first:
+      213: -4102362274299435882
+    second: Souls Game_Stamina Bar
+  - first:
+      213: 2812570687024852777
+    second: Souls Game_Boss Black Bar
+  - first:
+      213: 7504687921381189431
+    second: Souls Game_Boss Bar
+  - first:
+      213: 7037512836608461312
+    second: Souls Game_Boss Bar Background
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Top Down_Gun Background
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 3608
+        width: 238
+        height: 482
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 468b843f4120dd370800000000000000
+      internalID: 8348831573218998372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Top Down_Kills Background
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 3794
+        width: 144
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62fcba7634741c8f0800000000000000
+      internalID: -522057726970573018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Top Down_Health Background
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 4003
+        width: 666
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ba984be63c347760800000000000000
+      internalID: 7454649489778318003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Top Down_Kills Icon
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 3913
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8907ce0fe81c730800000000000000
+      internalID: 4017649508001290467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Top Down_Guns Icon
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 3921
+        width: 117
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 272187f79ff7fd0c0800000000000000
+      internalID: -4548776389058751886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Top Down_Health Bar
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 3855
+        width: 348
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94705536a528516a0800000000000000
+      internalID: -6479129164177406135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Top Down_Ammo Bar
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 3193
+        width: 24
+        height: 381
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0589e81289945a80800000000000000
+      internalID: -8478983414389046006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Bar Background
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 3003
+        width: 140
+        height: 979
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05255479d43fbf7f0800000000000000
+      internalID: -577600612611042736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Bar Tube Background
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 3050
+        width: 36
+        height: 882
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5582d6bbfc14bdbb0800000000000000
+      internalID: -4910258608258865067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Bar
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 3054
+        width: 28
+        height: 874
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26729cc0afd0b7a60800000000000000
+      internalID: 7672741757763266402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Happy Emote
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 3393
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e45699a608c845aa0800000000000000
+      internalID: -6173154706045967026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Middle Emote
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 3280
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25e12c336ce50b270800000000000000
+      internalID: 8264209521589755474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Sad Emote
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 3167
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 997880af72b4bad80800000000000000
+      internalID: -8238408458273519719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Questions Background
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 2995
+        width: 620
+        height: 1061
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 692f804ff0bd23ae0800000000000000
+      internalID: -1570952458433662314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Questions Button
+      rect:
+        serializedVersion: 2
+        x: 2198
+        y: 3969
+        width: 418
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b782195421d48360800000000000000
+      internalID: 7171086460724086709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dating Sim_Questions Button Pressed
+      rect:
+        serializedVersion: 2
+        x: 2198
+        y: 3848
+        width: 418
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb9c6793087dfa60800000000000000
+      internalID: 7709450093948869631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Running Game_Runner Icon
+      rect:
+        serializedVersion: 2
+        x: 2656
+        y: 3996
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03cae8af6ca2df1b0800000000000000
+      internalID: -5621289725792965584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Running Game_Bar Background
+      rect:
+        serializedVersion: 2
+        x: 2813
+        y: 3975
+        width: 1132
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eb1e9afa71418c70800000000000000
+      internalID: 8971523929145220069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Souls Game_Health Bar Background
+      rect:
+        serializedVersion: 2
+        x: 2711
+        y: 3891
+        width: 292
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edfec3e2b271c3060800000000000000
+      internalID: 6934443000470499294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Souls Game_Stamina Bar Background
+      rect:
+        serializedVersion: 2
+        x: 2711
+        y: 3846
+        width: 292
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979da37f2c46ea8a0800000000000000
+      internalID: -6291980840855742087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Souls Game_Health Bar
+      rect:
+        serializedVersion: 2
+        x: 3038
+        y: 3893
+        width: 255
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9319ef27f51fbd800800000000000000
+      internalID: 638369164456530233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Souls Game_Bar Background
+      rect:
+        serializedVersion: 2
+        x: 3038
+        y: 3871
+        width: 255
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f3b7b9fb7f470d70800000000000000
+      internalID: 9009256973467104246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Souls Game_Stamina Bar
+      rect:
+        serializedVersion: 2
+        x: 3038
+        y: 3849
+        width: 255
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6942b6c2f3b7117c0800000000000000
+      internalID: -4102362274299435882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Souls Game_Boss Black Bar
+      rect:
+        serializedVersion: 2
+        x: 2742
+        y: 3804
+        width: 1210
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92feac16322480720800000000000000
+      internalID: 2812570687024852777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Souls Game_Boss Bar
+      rect:
+        serializedVersion: 2
+        x: 2742
+        y: 3776
+        width: 1210
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 737271827e1062860800000000000000
+      internalID: 7504687921381189431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Souls Game_Boss Bar Background
+      rect:
+        serializedVersion: 2
+        x: 2686
+        y: 3703
+        width: 1271
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00a8c4873a44aa160800000000000000
+      internalID: 7037512836608461312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
