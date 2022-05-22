@@ -63,4 +63,20 @@ public class UITwinStickManager : MonoBehaviour
         m_ReloadImage.color = Color.white;
         yield return null;
     }
+
+    public void AssignEnemyHealthBar(Transform Enemy)
+    {
+        for(int i = 0; i < m_EnemyHealthBarPool.childCount; i++)
+        {
+            if(!m_EnemyHealthBarPool.GetChild(i).gameObject.activeSelf)
+            {
+                //put health stuff here? or set health bar to enemy to handle health
+                m_EnemyHealthBarPool.GetChild(i).GetComponent<UIEnemyHealthBar>().SetMonsterTransform(Enemy);
+                m_EnemyHealthBarPool.GetChild(i).gameObject.SetActive(true);
+                return;
+            }
+        }
+        GameObject go = GameObject.Instantiate(m_EnemyHealthPrefab, m_EnemyHealthBarPool);
+        go.GetComponent<UIEnemyHealthBar>().SetMonsterTransform(Enemy);
+    }
 }
