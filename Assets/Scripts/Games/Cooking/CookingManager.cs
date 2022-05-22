@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Cooking
 {
     public class CookingManager : GameManager
     {
-        public Recipe chocolateCake;
-        public Recipe vanillaCake;
+        public Recipe[] recipes;
 
         public List<Recipe> activeOrders;
 
@@ -18,17 +18,23 @@ namespace Cooking
 
         public CookingController player;
 
+        public CustomerArea customerArea;
 
         private bool canPlay;
         
-        public float timeBetweenCustomers = 15f;
+        public float timeBetweenCustomers = 35f;
         public float customerTimer = 0f;
+        public int neededOrders = 5;
+        public int ordersFilled;
 
         public GameObject customerPrefab;
         
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
+            ordersFilled = (int)value1;
+            activeOrders = new List<Recipe>();
             player.Setup();
+            customerArea.Setup(player, this);
             for (int i = 0; i < ovens.Length; ++i)
             {
                 ovens[i].Setup(player);
@@ -44,11 +50,11 @@ namespace Cooking
                 ingredients[i].Setup(player);
             }
 
-            customerTimer = 1f;
+            customerTimer = 5f;
             canPlay = true;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (!canPlay) return;
             customerTimer -= Time.fixedDeltaTime;
@@ -56,40 +62,39 @@ namespace Cooking
             {
                 SpawnCustomer();
             }
+
+            for (int i = 0; i < activeOrders.Count; ++i)
+            {
+                activeOrders[i].timer += Time.fixedDeltaTime;
+                if (activeOrders[i].timer > activeOrders[i].timeAllowed)
+                {
+                    
+                    GameInstance.instance?.SetPersistantData(gameType, ordersFilled);
+                    GameInstance.instance?.GameEnd();
+                }
+            }
         }
 
 
         void SpawnCustomer()
         {
-            //ToDo: spawn customer and reset timer. setup a new recipe needed
+            Recipe recipe = new Recipe();
+            recipe.Copy(recipes[Random.Range(0, recipes.Length)]);
+            customerArea.SetRecipe(recipe);
+            customerTimer = timeBetweenCustomers;
         }
 
-        public void SendOrder(MixData foodData)
+        public void SuccessfulOrder(int id)
         {
-            bool success = true;
-            for (int i = 0; i < activeOrders.Count; ++i)
+            activeOrders.RemoveAt(id);
+            ordersFilled++;
+            if (ordersFilled >= neededOrders)
             {
-                foreach (IngredientType type in activeOrders[i].ingredientsNeeded)
-                {
-                    if (foodData.ingredients.Contains(type))
-                        continue;
-                    else
-                    {
-                        success = false;
-                        break;
-                    }
-                }
-            }
-
-            if (success)
-            {
-                //Continue playing
-            }
-            else
-            {
-                //ToDo: go to next game
+                GameInstance.instance.SetPersistantData(gameType, ordersFilled);
+                GameInstance.instance.SetGameComplete(gameType);
             }
         }
+
         
         [ContextMenu("Test")]
         void Test()
@@ -101,8 +106,19 @@ namespace Cooking
     [Serializable]
     public class Recipe
     {
+        public string name;
         public IngredientType[] ingredientsNeeded;
-        
+        public float timeAllowed = 30f;
+        public float timer = 0f;
+
+
+        public void Copy(Recipe copy)
+        {
+            name = copy.name;
+            ingredientsNeeded = copy.ingredientsNeeded;
+            timeAllowed = copy.timeAllowed;
+            timer = 0f;
+        }
     }
     
 }

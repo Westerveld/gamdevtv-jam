@@ -28,6 +28,7 @@ namespace Cooking
         Flour,
         Eggs,
         Milk,
-        Chocolate
+        Chocolate,
+        Butter
     }
 }
