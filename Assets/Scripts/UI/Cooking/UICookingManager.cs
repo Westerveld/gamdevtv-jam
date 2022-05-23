@@ -8,6 +8,12 @@ public class UICookingManager : MonoBehaviour
 {
 
     //need to do timers for machines
+    #region Machines
+    public UIMixerObjects[] m_MixerObjects;
+    
+
+    #endregion
+
 
     //need to do customer orders + timers
     #region Customer Orders + Timers
@@ -27,17 +33,6 @@ public class UICookingManager : MonoBehaviour
 
     public UIOrderObject[] m_OrderObjects;
     #endregion
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SetNextOrder(Cooking.Recipe recipe)
     {
