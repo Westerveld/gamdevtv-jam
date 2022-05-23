@@ -10,6 +10,9 @@ public class UICookingManager : MonoBehaviour
     //need to do timers for machines
 
     //need to do customer orders + timers
+    #region Customer Orders + Timers
+    public UICustomerObject[] m_UICustomerObjects;
+    #endregion
 
     #region Recipes + Orders
     [System.Serializable]
@@ -38,6 +41,7 @@ public class UICookingManager : MonoBehaviour
 
     public void SetNextOrder(Cooking.Recipe recipe)
     {
+        UICustomerObject selectedCustomerObj = null;
         UIOrderObject selectedOrderObj = null;
         UIRecipe selectedRecipe = null;
         for(int i = 0; i < m_OrderObjects.Length; i++)
@@ -45,6 +49,7 @@ public class UICookingManager : MonoBehaviour
             if (!m_OrderObjects[i].gameObject.activeSelf)
             {
                 selectedOrderObj = m_OrderObjects[i];
+                selectedCustomerObj = m_UICustomerObjects[i];
                 break;
             }
         }
@@ -58,8 +63,8 @@ public class UICookingManager : MonoBehaviour
         }
         if(selectedOrderObj != null && selectedRecipe != null)
         {
-
             selectedOrderObj.SetImages(selectedRecipe);
+            selectedCustomerObj.SetCustomerAsk(0, selectedRecipe.m_RecipeProduct, 100.ToString());
         }
     }
 }
