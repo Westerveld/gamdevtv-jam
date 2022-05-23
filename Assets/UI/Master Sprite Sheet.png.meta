@@ -80,6 +80,48 @@ TextureImporter:
   - first:
       213: 7037512836608461312
     second: Souls Game_Boss Bar Background
+  - first:
+      213: -6232366257925350826
+    second: Baking - Recipe - Pancake
+  - first:
+      213: 1117045133096820787
+    second: Baking - Recipe - Cake
+  - first:
+      213: -3117492594439043146
+    second: Baking - Recipe - Choc Pancake
+  - first:
+      213: -4228582815771841582
+    second: Baking - Recipe - Choc Cake
+  - first:
+      213: 3060993639599173937
+    second: Baking - Tab
+  - first:
+      213: -5303478930615513161
+    second: Baking - Ingredient - Flour
+  - first:
+      213: -6133543385320643442
+    second: Baking - Ingredient - Milk
+  - first:
+      213: 7826126377260587037
+    second: Baking - Ingredient - Egg
+  - first:
+      213: -6500625744829389916
+    second: Baking - Ingredient - Butter
+  - first:
+      213: 3712763519095667580
+    second: Baking - Ingredient - Chocolate
+  - first:
+      213: 8335349867835665036
+    second: Baking - Timer Smol
+  - first:
+      213: -8300350436559951000
+    second: Baking - Timer Big
+  - first:
+      213: 4644711799803054355
+    second: Baking - Board
+  - first:
+      213: -9149252066770553269
+    second: Baking - Bubble
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -710,6 +752,300 @@ TextureImporter:
       bones: []
       spriteID: 00a8c4873a44aa160800000000000000
       internalID: 7037512836608461312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Recipe - Pancake
+      rect:
+        serializedVersion: 2
+        x: 2211
+        y: 3454
+        width: 151
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a9a3ea8ef2289a0800000000000000
+      internalID: -6232366257925350826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Recipe - Cake
+      rect:
+        serializedVersion: 2
+        x: 2217
+        y: 3307
+        width: 151
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 330a05451aa808f00800000000000000
+      internalID: 1117045133096820787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Recipe - Choc Pancake
+      rect:
+        serializedVersion: 2
+        x: 2404
+        y: 3454
+        width: 151
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b7cc86a0017cb4d0800000000000000
+      internalID: -3117492594439043146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Recipe - Choc Cake
+      rect:
+        serializedVersion: 2
+        x: 2414
+        y: 3307
+        width: 151
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db2992455e0155c0800000000000000
+      internalID: -4228582815771841582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Tab
+      rect:
+        serializedVersion: 2
+        x: 2217
+        y: 3175
+        width: 65
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 131f9045f75da7a20800000000000000
+      internalID: 3060993639599173937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Ingredient - Flour
+      rect:
+        serializedVersion: 2
+        x: 2318
+        y: 3196
+        width: 50
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bfc4eaf2024666b0800000000000000
+      internalID: -5303478930615513161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Ingredient - Milk
+      rect:
+        serializedVersion: 2
+        x: 2455
+        y: 3197
+        width: 50
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e842487b9c641eaa0800000000000000
+      internalID: -6133543385320643442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Ingredient - Egg
+      rect:
+        serializedVersion: 2
+        x: 2386
+        y: 3198
+        width: 50
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d189eebb97cfb9c60800000000000000
+      internalID: 7826126377260587037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Ingredient - Butter
+      rect:
+        serializedVersion: 2
+        x: 2524
+        y: 3195
+        width: 50
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a36fada35329c5a0800000000000000
+      internalID: -6500625744829389916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Ingredient - Chocolate
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 3197
+        width: 50
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7bf9b2efb2668330800000000000000
+      internalID: 3712763519095667580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Timer Smol
+      rect:
+        serializedVersion: 2
+        x: 2599
+        y: 3267
+        width: 104
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8aa1feca8c1da370800000000000000
+      internalID: 8335349867835665036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Timer Big
+      rect:
+        serializedVersion: 2
+        x: 2599
+        y: 3396
+        width: 150
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86be59d414b3fcc80800000000000000
+      internalID: -8300350436559951000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Board
+      rect:
+        serializedVersion: 2
+        x: 2820
+        y: 3316
+        width: 345
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319835fe5c4557040800000000000000
+      internalID: 4644711799803054355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baking - Bubble
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 3109
+        width: 184
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b46f1a758b3570180800000000000000
+      internalID: -9149252066770553269
       vertices: []
       indices: 
       edges: []
