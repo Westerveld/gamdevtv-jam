@@ -490,7 +490,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7320144023293182956
+--- !u!114 &4415443681179478842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7320144023293182957
+--- !u!114 &6470085766250442564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Product: {fileID: 4976590273558681389}
   m_Ingredients: []
---- !u!114 &7320144023293182958
+--- !u!114 &5152457033650216197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1912,21 +1912,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UIRecipes:
   - m_Key: Pancake
-    m_RecipeProduct: {fileID: 0}
-    m_RecipeList: []
+    m_RecipeProduct: {fileID: -6232366257925350826, guid: 1a696c6ad7daee54d892cd1c687acd5e,
+      type: 3}
+    m_RecipeList:
+    - {fileID: 7826126377260587037, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -5303478930615513161, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -6133543385320643442, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
   - m_Key: Chocolate Pancake
-    m_RecipeProduct: {fileID: 0}
-    m_RecipeList: []
+    m_RecipeProduct: {fileID: -3117492594439043146, guid: 1a696c6ad7daee54d892cd1c687acd5e,
+      type: 3}
+    m_RecipeList:
+    - {fileID: 7826126377260587037, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -5303478930615513161, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -6133543385320643442, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: 3712763519095667580, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
   - m_Key: Vanilla Cake
-    m_RecipeProduct: {fileID: 0}
-    m_RecipeList: []
+    m_RecipeProduct: {fileID: 1117045133096820787, guid: 1a696c6ad7daee54d892cd1c687acd5e,
+      type: 3}
+    m_RecipeList:
+    - {fileID: 7826126377260587037, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -5303478930615513161, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -6133543385320643442, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -6500625744829389916, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
   - m_Key: Chocolate Cake
-    m_RecipeProduct: {fileID: 0}
-    m_RecipeList: []
+    m_RecipeProduct: {fileID: -4228582815771841582, guid: 1a696c6ad7daee54d892cd1c687acd5e,
+      type: 3}
+    m_RecipeList:
+    - {fileID: -6133543385320643442, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -5303478930615513161, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: 7826126377260587037, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: 3712763519095667580, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
+    - {fileID: -6500625744829389916, guid: 1a696c6ad7daee54d892cd1c687acd5e, type: 3}
   m_OrderObjects:
-  - {fileID: 7320144023293182958}
-  - {fileID: 7320144023293182957}
-  - {fileID: 7320144023293182956}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &5958731533838248500
 GameObject:
   m_ObjectHideFlags: 0
