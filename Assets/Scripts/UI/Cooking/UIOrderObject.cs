@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIOrderObject : MonoBehaviour
 {
     public Image m_Product;
-    public Image[] m_Ingrients;
+    public Image[] m_Ingredients;
 
 
     public void SetImages(UICookingManager.UIRecipe recipeImages)
@@ -16,12 +16,12 @@ public class UIOrderObject : MonoBehaviour
         {
             if (i < recipeImages.m_RecipeList.Length)
             {
-                m_Ingrients[i].transform.parent.gameObject.SetActive(true);
-                m_Ingrients[i].sprite = recipeImages.m_RecipeList[i];
+                m_Ingredients[i].transform.parent.gameObject.SetActive(true);
+                m_Ingredients[i].sprite = recipeImages.m_RecipeList[i];
             }
             else
             {
-                m_Ingrients[i].transform.parent.gameObject.SetActive(false);
+                m_Ingredients[i].transform.parent.gameObject.SetActive(false);
             }
         }
         gameObject.SetActive(true);

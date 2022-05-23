@@ -39,7 +39,7 @@ public class UICookingManager : MonoBehaviour
     public void SetNextOrder(Cooking.Recipe recipe)
     {
         UIOrderObject selectedOrderObj = null;
-        UIRecipe selectedRecipe = null
+        UIRecipe selectedRecipe = null;
         for(int i = 0; i < m_OrderObjects.Length; i++)
         {
             if (!m_OrderObjects[i].gameObject.activeSelf)
