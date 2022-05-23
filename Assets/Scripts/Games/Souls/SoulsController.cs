@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Souls
 {
-    public class SoulsController : MonoBehaviour
+    public class SoulsController : MonoBehaviour, IDamagable
     {
         public SoulsInput input;
         private Vector2 moveInput;
@@ -53,12 +53,15 @@ namespace Souls
 
         public bool canPlay = false;
 
+        public Weapon weapon;
+
         public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed)
         {
             health = new SoulStat(maxHealth, healthRegenSpeed);
             stamina = new SoulStat(maxStamina, staminaRegenSpeed);
 
             canPlay = true;
+            weapon.Setup(attackDamage);
         }
 
         // Update is called once per frame
@@ -211,10 +214,12 @@ namespace Souls
         void AttackOn()
         {
             //ToDo: Turn on weapon collision
+            weapon.AttackOn();
         }
 
         void AttackOff()
         {
+            weapon.AttackOff();
             if (input.attack || queuedAttack)
             {
                 anim.SetBool(animID_Attack, true);
@@ -266,7 +271,7 @@ namespace Souls
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(rotateVector), 1);
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, Vector3 hitPoint)
         {
             health.RemoveStat(damage, 0.25f);
             if (health.currentValue <= 0)

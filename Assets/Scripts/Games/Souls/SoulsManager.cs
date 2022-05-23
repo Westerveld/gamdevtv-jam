@@ -20,12 +20,7 @@ namespace Souls
         // Update is called once per frame
         void LateUpdate()
         {
-            LookAt();
-        }
-
-        void LookAt()
-        {
-            //player.LookAt(opponent, Vector3.up);
+            
         }
 
         public void PlayerDied()
