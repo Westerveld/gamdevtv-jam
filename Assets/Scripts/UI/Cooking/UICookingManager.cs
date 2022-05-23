@@ -64,7 +64,7 @@ public class UICookingManager : MonoBehaviour
         if(selectedOrderObj != null && selectedRecipe != null)
         {
             selectedOrderObj.SetImages(selectedRecipe);
-            selectedCustomerObj.SetCustomerAsk(0, selectedRecipe.m_RecipeProduct, 100.ToString());
+            selectedCustomerObj.SetCustomerAsk(selectedRecipe.m_RecipeProduct, 100.ToString());
         }
     }
 }

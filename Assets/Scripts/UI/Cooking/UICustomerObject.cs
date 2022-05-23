@@ -11,13 +11,10 @@ public class UICustomerObject : MonoBehaviour
     public GameObject m_TimerObject;
     public TMP_Text m_TimerCount;
 
-    public int m_CustomerIndex;
-
-    public void SetCustomerAsk(int index, Sprite product, string time)
+    public void SetCustomerAsk(Sprite product, string time)
     {
         m_TimerCount.text = time;
         m_ProductImage.sprite = product;
-        m_CustomerIndex = index;
         m_ProductImage.transform.parent.gameObject.SetActive(true);
         m_TimerObject.SetActive(true);
     }
