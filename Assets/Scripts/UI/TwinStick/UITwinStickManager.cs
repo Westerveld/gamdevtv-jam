@@ -15,6 +15,7 @@ public class UITwinStickManager : MonoBehaviour
 
     #region Ammo
     public TMP_Text m_AmmoCount;
+    public Image m_AmmoImage;
     public Image m_ReloadImage;
     [Range(1,10)]
     public float m_FadeSpeed = 1.0f;
@@ -36,6 +37,12 @@ public class UITwinStickManager : MonoBehaviour
     {
         m_PlayerHealth = health;
         SetPlayerHealthUI();
+    }
+
+    public void SetAmmoCount(int amount, int max = 50)
+    {
+        m_AmmoCount.text = amount.ToString();
+        m_AmmoImage.fillAmount = amount > 0 ? (float)amount / max : 0f;
     }
 
     private void SetPlayerHealthUI()

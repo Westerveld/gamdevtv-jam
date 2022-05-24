@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace TwinStick
         public Vector2 move;
         public Vector2 rotate;
         public bool shoot;
-
+        
         public void OnMove(InputValue value)
         {
             move = value.Get<Vector2>();
@@ -23,7 +24,8 @@ namespace TwinStick
 
         public void OnShoot(InputValue value)
         {
-            shoot = value.isPressed;
+            Debug.Log(value.Get<float>());
+            shoot = (value.Get<float>() > 0.5f);
         }
     }
 }

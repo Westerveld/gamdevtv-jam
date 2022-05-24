@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Souls
+namespace Generic
 {
     [Serializable]
-    public class SoulStat
+    public class Stat
     {
         public float currentValue;
         public readonly float maxValue;
         public readonly float regenSpeed;
         public float regenTimer;
-        public SoulStat(float mValue, float regenSpeed, float cValue = 0f)
+        public Stat(float mValue, float regenSpeed, float cValue = 0f)
         {
             currentValue = maxValue = mValue;
             if (cValue > 0)

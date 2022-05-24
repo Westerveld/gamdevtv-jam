@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Generic;
 using UnityEngine;
 
 namespace TwinStick
@@ -41,8 +42,12 @@ namespace TwinStick
 
         void OnCollisionEnter(Collision col)
         {
-            if (col.gameObject.layer != LayerMask.NameToLayer("Player"))
+            if (col.gameObject.layer == LayerMask.NameToLayer("Boss"))
+            {
+                IDamagable damagable = col.gameObject.GetComponent<IDamagable>();
+                damagable.TakeDamage(damage, (-col.contacts[0].normal * 0.05f));
                 gameObject.SetActive(false);
+            }
         }
     }
 }

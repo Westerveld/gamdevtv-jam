@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,16 +32,24 @@ namespace TwinStick
 
         private bool canPlay = false;
 
+        private int ammo, maxAmmo;
+        public float recoilAmount = 0.25f;
+
+        public UITwinStickManager ui;
+
+        public float reloadSpeed = 0.1f;
+
         private void Start()
         {
             rigid = GetComponent<Rigidbody>();
         }
 
-        public void SetupPlayer(float damageModifier = 1f, float speedModifier = 1f)
+        public void SetupPlayer(float damageModifier = 1f, float speedModifier = 1f, int ammoAmount = 50)
         {
             bulletDamage = baseDamage * damageModifier;
             bulletSpeed = baseSpeed * speedModifier;
             canPlay = true;
+            ammo = maxAmmo = ammoAmount;
         }
 
         void Update()
@@ -87,16 +97,37 @@ namespace TwinStick
 
         void Shoot()
         {
-            if (input.shoot)
-            {
-                input.shoot = false;
-                if (shotTimer <= 0)
+             if (input.shoot)
+             {
+                 //input.shoot = false;
+                if (shotTimer <= 0 && ammo > 0)
                 {
                     shotTimer = shotInterval;
                     bulletPool.FireBullet(bulletSpawnPoint.transform.forward, bulletSpawnPoint.position,
                         bulletSpawnPoint.rotation, bulletSpeed, bulletDamage);
+                    transform.position -= (bulletSpawnPoint.transform.forward * recoilAmount);
+                    ammo--;
+                    ui.SetAmmoCount(ammo, maxAmmo);
+                    if (ammo <= 0 )
+                    {
+                        StartCoroutine(Reloading());
+                    }
                 }
-            }
+             }
         }
+        
+        IEnumerator Reloading()
+        {
+            float timer = 1f;
+            while (timer > 0f)
+            {
+                ui.SetReloadTimerState(1-timer);
+                timer -= Time.fixedDeltaTime * reloadSpeed;
+                yield return null;
+            }
+            ammo = maxAmmo;
+            ui.SetAmmoCount(ammo, maxAmmo);
+        }
+
     }
 }

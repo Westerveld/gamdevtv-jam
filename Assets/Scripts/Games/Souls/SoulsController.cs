@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -48,8 +49,8 @@ namespace Souls
         private Vector3 dodgeDirection = Vector3.zero;
 
         public SoulsManager soulsManager;
-        public SoulStat health;
-        public SoulStat stamina;
+        public Stat health;
+        public Stat stamina;
 
         public float attackStaminaUsage = 20f;
         public float attackDamage = 5f;
@@ -62,8 +63,8 @@ namespace Souls
 
         public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed)
         {
-            health = new SoulStat(maxHealth, healthRegenSpeed);
-            stamina = new SoulStat(maxStamina, staminaRegenSpeed);
+            health = new Stat(maxHealth, healthRegenSpeed);
+            stamina = new Stat(maxStamina, staminaRegenSpeed);
 
             canPlay = true;
             weapon.Setup(attackDamage);

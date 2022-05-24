@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +9,7 @@ namespace Souls
 {
     public class SoulsBoss : MonoBehaviour, IDamagable
     {
-        public SoulStat health;
+        public Stat health;
         public float maxHealth = 300f;
 
         public Animator anim;
@@ -76,7 +77,7 @@ namespace Souls
         public void Setup(float healthValue, SoulsManager m)
         {
             manager = m;
-            health = new SoulStat(maxHealth, 0f, healthValue);
+            health = new Stat(maxHealth, 0f, healthValue);
             anim.GetBehaviour<IdleState>().boss = this;
             player = m.player.transform;
             PickNextPhase();
