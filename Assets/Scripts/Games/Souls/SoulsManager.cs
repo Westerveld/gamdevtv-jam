@@ -13,7 +13,7 @@ namespace Souls
 
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
-            boss.Setup(value1);
+            boss.Setup(value1, this);
             player.SetupPlayer(100f,100f,0.5f,0.5f);
         }
 
@@ -25,8 +25,16 @@ namespace Souls
 
         public void PlayerDied()
         {
+            if (GameInstance.instance == null)
+                return;
             GameInstance.instance.SetPersistantData(gameType, boss.health.currentValue);
             GameInstance.instance.GameEnd();
+        }
+
+        public void BossDied()
+        {
+            if(GameInstance.instance != null)
+                GameInstance.instance.SetGameComplete(gameType);
         }
 
         [ContextMenu("Test")]

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace Souls
 {
@@ -28,9 +29,12 @@ namespace Souls
         private int animID_DodgeBack = Animator.StringToHash("DodgeBack");
         private int animID_DodgeLeft = Animator.StringToHash("DodgeLeft");
         private int animID_DodgeRight = Animator.StringToHash("DodgeRight");
+        private int animID_Hit1 = Animator.StringToHash("Hit1");
+        private int animID_Hit2 = Animator.StringToHash("Hit2");
+        
 
         private bool queuedAttack = false;
-        private bool queuedDodge = false;
+        //private bool queuedDodge = false;
         
         public float moveSpeed = 2.0f;
         public float sprintSpeed = 5.335f;
@@ -47,8 +51,9 @@ namespace Souls
         public SoulStat health;
         public SoulStat stamina;
 
-        public float attackStaminaUsage = 10f;
+        public float attackStaminaUsage = 20f;
         public float attackDamage = 5f;
+        public float dodgeStaminaUsage = 15f;
 
 
         public bool canPlay = false;
@@ -73,6 +78,11 @@ namespace Souls
             Jump();
             Attack();
             Dodge();
+        }
+
+        private void FixedUpdate()
+        {
+            if (!canPlay) return;
             if (isDodging)
             {
                 Vector3 targetDirection = (dodgeDirection.x * transform.right) + (dodgeDirection.z * transform.forward);
@@ -80,11 +90,6 @@ namespace Souls
                 controller.Move(targetDirection * (dodgeSpeed * Time.deltaTime));
             }
             anim.SetBool("Sprint", input.sprint);
-        }
-
-        private void FixedUpdate()
-        {
-            
             //Regen
             health.RegenStat(Time.fixedDeltaTime);
             stamina.RegenStat(Time.fixedDeltaTime);
@@ -159,14 +164,29 @@ namespace Souls
 
         void Attack()
         {
+            if (!isAttacking && queuedAttack)
+            {
+                if (stamina.currentValue >= attackStaminaUsage)
+                {
+                    stamina.RemoveStat(attackStaminaUsage);
+                    anim.SetBool(animID_Attack, true);
+                    isAttacking = true;
+                    queuedAttack = false;
+                    input.attack = false;
+                    return;
+                }
+            }
             if (input.attack)
             {
                 input.attack = false;
                 if (!isAttacking)
                 {
-                    anim.SetBool(animID_Attack, true);
-                    stamina.RemoveStat(15f);
-                    isAttacking = true;
+                    if (stamina.currentValue >= attackStaminaUsage)
+                    {
+                        anim.SetBool(animID_Attack, true);
+                        stamina.RemoveStat(attackStaminaUsage);
+                        isAttacking = true;
+                    }
                 }
                 else
                 {
@@ -180,8 +200,9 @@ namespace Souls
             if (input.dodge)
             {
                 input.dodge = false;
-                if (!isDodging)
+                if (!isDodging && stamina.currentValue > dodgeStaminaUsage)
                 {
+                    stamina.RemoveStat(dodgeStaminaUsage);
                     isDodging = true;
                     if (input.move.y > deadzone)
                     {
@@ -204,23 +225,20 @@ namespace Souls
                         dodgeDirection = Vector3.back;
                     }
                 }
-                else
-                {
-                    queuedDodge = true;
-                }
             }
         }
 
         void AttackOn()
         {
             //ToDo: Turn on weapon collision
+            isDodging = false;
             weapon.AttackOn();
         }
 
         void AttackOff()
         {
             weapon.AttackOff();
-            if (input.attack || queuedAttack)
+            /*if (input.attack || queuedAttack)
             {
                 anim.SetBool(animID_Attack, true);
                 input.attack = false;
@@ -230,37 +248,15 @@ namespace Souls
             {
                 anim.SetBool(animID_Attack, false);
                 isAttacking = false;
-            }
+            }*/
+            anim.SetBool(animID_Attack, false);
+            isAttacking = false;
+            Attack();
         }
 
         void DodgeOff()
         {
-            if (input.dodge || queuedDodge)
-            {
-                if (input.move.y > deadzone)
-                {
-                    anim.SetTrigger(animID_Dodge);
-                }
-                else if (input.move.x < 0)
-                {
-                    anim.SetTrigger(animID_DodgeLeft);
-                }
-                else if (input.move.x > 0)
-                {
-                    anim.SetTrigger(animID_DodgeRight);
-                }
-                else
-                {
-                    anim.SetTrigger(animID_DodgeBack);
-                }
-
-                input.dodge = false;
-                queuedDodge = false;
-            }
-            else
-            {
-                isDodging = false;
-            }
+            isDodging = false;
         }
 
         void LookAtBoss()
@@ -273,7 +269,14 @@ namespace Souls
 
         public void TakeDamage(float damage, Vector3 hitPoint)
         {
-            health.RemoveStat(damage, 0.25f);
+            if (isDodging)
+            {
+                //ToDo: vfx for dodging?
+                return;
+            }
+            
+            anim.SetTrigger(Random.value > 0.5f ? animID_Hit1 : animID_Hit2);
+            health.RemoveStat(damage, 0.5f);
             if (health.currentValue <= 0)
             {
                 soulsManager.PlayerDied();

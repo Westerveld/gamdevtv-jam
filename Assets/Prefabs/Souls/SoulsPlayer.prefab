@@ -286,20 +286,6 @@ MonoBehaviour:
   dodge: 0
   attack: 0
   sprint: 0
---- !u!114 &4681935703950194032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555721835397137882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7591c0a9d87aeaf4aae86f082d398dbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trail: {fileID: 1847680990}
-  collider: {fileID: 1910743572}
 --- !u!54 &1910743573
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -324,11 +310,26 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7555721835397137882}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.3221911, y: 1.3828427, z: 0.15498}
   m_Center: {x: -0.0000000017467949, y: 0.7265157, z: 0.0000026038174}
+--- !u!114 &4681935703950194032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7555721835397137882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7591c0a9d87aeaf4aae86f082d398dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trail: {fileID: 1847680990}
+  collider: {fileID: 1910743572}
+  enemyLayer: Boss
 --- !u!1001 &7213140613532711051
 PrefabInstance:
   m_ObjectHideFlags: 0

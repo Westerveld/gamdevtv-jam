@@ -30,12 +30,12 @@ namespace Souls
                 trail.emitting = false;
         }
 
-        void OnCollisionEnter(Collision col)
+        void OnTriggerEnter(Collider col)
         {
             if (col.gameObject.layer == LayerMask.NameToLayer(enemyLayer))
             {
                 IDamagable opp = col.gameObject.GetComponent<IDamagable>();
-                opp.TakeDamage(damage, col.contacts[0].normal);
+                opp.TakeDamage(damage, Vector3.zero);
             }
         }
     }

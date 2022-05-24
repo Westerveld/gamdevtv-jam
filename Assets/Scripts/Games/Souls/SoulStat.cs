@@ -27,7 +27,7 @@ namespace Souls
             regenTimer -= deltaTime;
             if (regenTimer <= 0f)
             {
-                currentValue = Mathf.Max(currentValue + (regenSpeed * deltaTime), maxValue);
+                currentValue = Mathf.Min(currentValue + (regenSpeed * deltaTime), maxValue);
             }
         }
 

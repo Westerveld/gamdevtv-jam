@@ -14,21 +14,32 @@ namespace Souls
         public Animator anim;
         public CharacterController controller;
 
-        private int animID_Roar = Animator.StringToHash("Roar");
-        private int animID_Walk = Animator.StringToHash("Walk");
-        private int animID_Run = Animator.StringToHash("Run");
-        private int animID_HeavyAttack_Left = Animator.StringToHash("HeavyAttack_Left");
-        private int animID_HeavyAttack_Right = Animator.StringToHash("HeavyAttack_Right");
-        private int animID_Jump = Animator.StringToHash("Jump");
-        private int animID_JumpAttack = Animator.StringToHash("JumpAttack");
-        private int animID_Combo = Animator.StringToHash("Combo");
-        private int animID_Dead = Animator.StringToHash("Dead");
+        public Transform player;
 
-        private int animID_Hit1 = Animator.StringToHash("Hit1");
-        private int animID_Hit2 = Animator.StringToHash("Hit2");
+        private readonly int animID_Roar = Animator.StringToHash("Roar");
+        private readonly int animID_Walk = Animator.StringToHash("Walk");
+        private readonly int animID_Run = Animator.StringToHash("Run");
+        private readonly int animID_HeavyAttack_Left = Animator.StringToHash("HeavyAttack_Left");
+        private readonly int animID_HeavyAttack_Right = Animator.StringToHash("HeavyAttack_Right");
+        private readonly int animID_Jump = Animator.StringToHash("Jump");
+        private readonly int animID_JumpAttack = Animator.StringToHash("JumpAttack");
+        private readonly int animID_Combo = Animator.StringToHash("Combo");
+        private readonly int animID_Dead = Animator.StringToHash("Dead");
+        private readonly int animID_MotionSpeed = Animator.StringToHash("MotionSpeed");
+
+        private readonly int animID_Hit1 = Animator.StringToHash("Hit1");
+        private readonly int animID_Hit2 = Animator.StringToHash("Hit2");
+        private readonly int animID_SmallLeft = Animator.StringToHash("SmallLeft");
+        private readonly int animID_SmallRight = Animator.StringToHash("SmallRight");
+        private readonly int animID_LargeRight = Animator.StringToHash("LargeRight");
+        private readonly int animID_LargeLeft = Animator.StringToHash("LargeLeft");
+
+        public GameObject smashAttackParticles;
+        public GameObject jumpAttackParticles;
 
         private int currentCombo = 0;
         private float stateTime = 0f;
+        private float rotationTimer = 5f;
 
         public BossPhase[] phases;
         public BossPhase currentPhase;
@@ -37,9 +48,36 @@ namespace Souls
         public Weapon[] hands;
 
         private bool canPlay = false;
-        public void Setup(float healthValue)
+
+        public float timeBetweenPhases = 5f;
+        private float phaseTimer;
+        private bool waitingBetweenPhases;
+
+        private BossState state;
+
+        private SoulsManager manager;
+
+        public float turnSpeed = 0.25f;
+
+        public float walkSpeed = 2f;
+        public float runSpeed = 5.5f;
+        public float speedChangeRate = 5.0f;
+        private float speed;
+
+        private void Awake()
         {
+            anim.GetBehaviour<IdleState>().boss = this;
+            var rotates = anim.GetBehaviours<RotateBoss>();
+            foreach (var rotate in rotates)
+                rotate.boss = this;
+        }
+
+        public void Setup(float healthValue, SoulsManager m)
+        {
+            manager = m;
             health = new SoulStat(maxHealth, 0f, healthValue);
+            anim.GetBehaviour<IdleState>().boss = this;
+            player = m.player.transform;
             PickNextPhase();
             canPlay = true;
         }
@@ -49,21 +87,52 @@ namespace Souls
             normal.y = 0f;
             transform.position += normal;
             health.RemoveStat(damage);
+            if (health.currentValue > 0)
+            {
+                anim.SetTrigger(Random.value > 0.5f ? animID_Hit1 : animID_Hit2);
+            }
+            else
+            {
+                canPlay = false;
+                anim.SetTrigger(animID_Dead);
+                StartCoroutine(WaitThenFinish());
+            }
         }
 
-        void Update()
+        IEnumerator WaitThenFinish()
+        {
+            yield return new WaitForSeconds(3f);
+            
+            manager.BossDied();
+        }
+
+        void FixedUpdate()
         {
             if (!canPlay) return;
-            ProgressPhase();
+            if (waitingBetweenPhases)
+            {
+                phaseTimer -= Time.fixedDeltaTime;
+                if (phaseTimer <= 0)
+                {
+                    waitingBetweenPhases = false;
+                    TriggerPhase();
+                }
+            }
+            else
+            {
+                ProgressPhase();
+            }
+            StateAdjustment();
         }
 
         void ProgressPhase()
         {
-            if (currentPhase.mechanics[phasePart].completed)
+            stateTime += Time.fixedDeltaTime;
+            if (currentPhase.mechanics[phasePart].length > 0)
             {
-                stateTime += Time.fixedDeltaTime;
                 if (stateTime > currentPhase.mechanics[phasePart].length)
                 {
+                    currentPhase.mechanics[phasePart].completed = true;
                     EndPhase();
                     phasePart++;
                     if (phasePart >= currentPhase.mechanics.Count)
@@ -76,52 +145,128 @@ namespace Souls
                     }
                 }
             }
+            else if (state == BossState.Idle)
+            {
+                currentPhase.mechanics[phasePart].completed = true;
+                EndPhase();
+                phasePart++;
+                if (phasePart >= currentPhase.mechanics.Count)
+                {
+                    PickNextPhase();
+                }
+                else
+                {
+                    TriggerPhase();
+                }
+            }
         }
 
-        void TriggerPhase()
+        void StateAdjustment()
         {
-            switch (currentPhase.mechanics[phasePart].state)
+            switch (state)
             {
                 case BossState.Idle:
-                    currentPhase.mechanics[phasePart].completed = true;
+                    RotateToPlayer();
+                    break;
+                case BossState.Walk:
+                    Move(walkSpeed);
+                    break;
+                case BossState.Run:
+                    Move(runSpeed);
+                    break;
+            }
+        }
+
+        void RotateToPlayer()
+        {
+            rotationTimer -= Time.fixedDeltaTime;
+            if (rotationTimer <= 0)
+            {
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 direction = player.transform.position - transform.position;
+                Vector3 rotateVector = Quaternion.LookRotation(direction).eulerAngles;
+                rotateVector.x = rotateVector.z = 0f;
+                Vector3 diff = rotateVector - transform.rotation.eulerAngles;
+                float dot = Vector3.Dot(transform.position, player.transform.position);
+               
+                if (dot > 0.25f)
+                {
+                    anim.applyRootMotion = true;
+                    phaseTimer += 2.5f;
+                    //Keep the value between -180 to 180
+                    if (diff.y > 180f)
+                        diff.y -= 360f;
+                    else if (diff.y < -180f)
+                        diff.y += 360f;
+                    
+                    anim.SetTrigger(diff.y > 0f ? animID_LargeRight : animID_LargeLeft);
+                }
+
+                rotationTimer = 5f;
+            }
+        }
+
+        void Move(float targetSpeed)
+        {
+            float currSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
+            if (currSpeed < targetSpeed - 0.1f || currSpeed > targetSpeed + 0.1f)
+            {
+                speed = Mathf.Lerp(currSpeed, targetSpeed * 1f, Time.deltaTime * speedChangeRate);
+                speed = Mathf.Round((speed * 1000f) / 1000f);
+            }
+            else
+            {
+                speed = targetSpeed;
+            }
+            Vector3 targetDirection = transform.forward;
+            controller.Move(targetDirection * (speed * Time.deltaTime));
+            anim.SetFloat(animID_MotionSpeed, speed);
+
+        }
+        #region State/phase change
+        void TriggerPhase()
+        {
+            ChangeState(currentPhase.mechanics[phasePart].state);
+        }
+
+        public void ChangeState(BossState newState)
+        {
+            state = newState;
+            switch (state)
+            {
+                case BossState.Idle:
+                    
                     break;
                 case BossState.Roar:
                     anim.SetTrigger(animID_Roar);
-                    currentPhase.mechanics[phasePart].completed = true;
                     break;
                 case BossState.Jump:
                     anim.SetTrigger(animID_Jump);
-                    currentPhase.mechanics[phasePart].completed = true;
                     break;
                 case BossState.JumpAttack:
                     anim.SetTrigger(animID_JumpAttack);
-                    currentPhase.mechanics[phasePart].completed = true;
                     break;
                 case BossState.SwipeLeft:
                     anim.SetTrigger(animID_HeavyAttack_Left);
-                    currentPhase.mechanics[phasePart].completed = true;
                     break;
                 case BossState.SwipeRight:
                     anim.SetTrigger(animID_HeavyAttack_Right);
-                    currentPhase.mechanics[phasePart].completed = true;
                     break;
                 case BossState.SwipeCombo:
+                    currentCombo = 0;
+                    anim.SetTrigger(Random.value > 0.5f ? animID_HeavyAttack_Right : animID_HeavyAttack_Left);
                     anim.SetBool(animID_Combo, true);
-                    currentPhase.mechanics[phasePart].completed = true;
                     break;
                 case BossState.Run:
                     anim.SetBool(animID_Run, true);
-                    currentPhase.mechanics[phasePart].completed = true;
                     break;
                 case BossState.Walk:
                     anim.SetBool(animID_Walk, true);
-                    currentPhase.mechanics[phasePart].completed = true;
                     break;
             }
-
             stateTime = 0;
         }
-
+        
         void EndPhase()
         {
             switch (currentPhase.mechanics[phasePart].state)
@@ -141,6 +286,9 @@ namespace Souls
 
         void PickNextPhase()
         {
+            phaseTimer = timeBetweenPhases;
+            waitingBetweenPhases = true;
+            
             currentPhase = phases[Random.Range(0, phases.Length)];
             if (currentPhase.healthTrigger > health.currentValue)
             {
@@ -150,11 +298,14 @@ namespace Souls
 
             phasePart = 0;
             stateTime = 0;
-            TriggerPhase();
         }
 
+        #endregion
+        
+        #region Animation events
         void AttackOn()
         {
+            currentCombo++;
             for (int i = 0; i < hands.Length; ++i)
             {
                 hands[i].AttackOn();
@@ -171,6 +322,26 @@ namespace Souls
                     hands[i].AttackOff();
                 }
             }
+        }
+
+        void SmashImpact()
+        {
+            smashAttackParticles.SetActive(true);
+            StartCoroutine(TurnOffObject(smashAttackParticles, 5f));
+        }
+
+        void JumpImpact()
+        {
+            jumpAttackParticles.SetActive(true);
+            StartCoroutine(TurnOffObject(jumpAttackParticles, 3.5f));
+        }
+
+        #endregion
+
+        IEnumerator TurnOffObject(GameObject go, float time)
+        {
+            yield return new WaitForSeconds(time);
+            go.SetActive(false);
         }
     }
 
