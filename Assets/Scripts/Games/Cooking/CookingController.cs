@@ -54,7 +54,7 @@ namespace Cooking
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = input.sprint ? sprintSpeed : moveSpeed;
+            float targetSpeed = input.sprint ? moveSpeed : sprintSpeed;
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -68,22 +68,7 @@ namespace Cooking
             float speedOffset = 0.1f;
             float inputMagnitude = input.move.magnitude;
 
-            // accelerate or decelerate to target speed
-            if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-                currentHorizontalSpeed > targetSpeed + speedOffset)
-            {
-                // creates curved result rather than a linear one giving a more organic speed change
-                // note T in Lerp is clamped, so we don't need to clamp our speed
-                speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                    Time.deltaTime * speedChangeRate);
-
-                // round speed to 3 decimal places
-                speed = Mathf.Round(speed * 1000f) / 1000f;
-            }
-            else
-            {
-                speed = targetSpeed;
-            }
+            speed = targetSpeed;
 
             animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * speedChangeRate);
             if (animationBlend < 0.01f) animationBlend = 0f;
