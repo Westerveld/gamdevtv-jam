@@ -35,7 +35,7 @@ namespace Souls
             if (col.gameObject.layer == LayerMask.NameToLayer(enemyLayer))
             {
                 IDamagable opp = col.gameObject.GetComponent<IDamagable>();
-                opp.TakeDamage(damage, Vector3.zero);
+                opp.TakeDamage(damage, Vector3.zero); 
             }
         }
     }

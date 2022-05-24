@@ -91,7 +91,7 @@ namespace Souls
             }
             anim.SetBool("Sprint", input.sprint);
             //Regen
-            health.RegenStat(Time.fixedDeltaTime);
+            //health.RegenStat(Time.fixedDeltaTime);
             stamina.RegenStat(Time.fixedDeltaTime);
         }
 
@@ -118,7 +118,7 @@ namespace Souls
             float inputMagnitude = input.move.magnitude;
 
             // accelerate or decelerate to target speed
-            if (currentHorizontalSpeed < targetSpeed - speedOffset ||
+            /*if (currentHorizontalSpeed < targetSpeed - speedOffset ||
                 currentHorizontalSpeed > targetSpeed + speedOffset)
             {
                 // creates curved result rather than a linear one giving a more organic speed change
@@ -132,7 +132,8 @@ namespace Souls
             else
             {
                 speed = targetSpeed;
-            }
+            }*/
+            speed = targetSpeed;
 
             animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * speedChangeRate);
             if (animationBlend < 0.01f) animationBlend = 0f;

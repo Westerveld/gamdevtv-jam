@@ -63,6 +63,7 @@ namespace Souls
         public float runSpeed = 5.5f;
         public float speedChangeRate = 5.0f;
         private float speed;
+        public int damage = 15;
 
         private void Awake()
         {
@@ -80,6 +81,10 @@ namespace Souls
             player = m.player.transform;
             PickNextPhase();
             canPlay = true;
+            for (int i = 0; i < hands.Length; ++i)
+            {
+                hands[i].Setup(damage);
+            }
         }
         
         public void TakeDamage(float damage, Vector3 normal)
@@ -187,12 +192,11 @@ namespace Souls
                 Vector3 rotateVector = Quaternion.LookRotation(direction).eulerAngles;
                 rotateVector.x = rotateVector.z = 0f;
                 Vector3 diff = rotateVector - transform.rotation.eulerAngles;
-                float dot = Vector3.Dot(transform.position, player.transform.position);
+                float dot = Vector3.Dot(direction, transform.forward);
                
-                if (dot > 0.25f)
+                if (dot < 0.25f)
                 {
                     anim.applyRootMotion = true;
-                    phaseTimer += 2.5f;
                     //Keep the value between -180 to 180
                     if (diff.y > 180f)
                         diff.y -= 360f;
