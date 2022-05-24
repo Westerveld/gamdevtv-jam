@@ -23,6 +23,8 @@ namespace Cooking
         private GameObject mixing;
         public Transform mixingLocation;
         public List<GameObject> activeIngredients = new List<GameObject>();
+
+        public UIMixerObjects m_UIMixerObject;
         public void Setup()
         {
             currentMix = new MixData();
@@ -37,6 +39,8 @@ namespace Cooking
                 currentMix = new MixData();
             }
             currentMix.ingredients.Add(type);
+
+            m_UIMixerObject.AddIngredient((int)type);
 
             if (currentMix.ingredients.Count > 1)
             {
@@ -63,6 +67,8 @@ namespace Cooking
             }
             activeIngredients.Clear();
             currentMix = new MixData();
+
+            m_UIMixerObject.TurnOffUI();
             return tmp;
         }
 
@@ -73,9 +79,11 @@ namespace Cooking
             if (currentMix.ingredients.Count > 0 && !currentMix.mixed)
             {
                 currentMix.mixTime += timerIncrement * Time.deltaTime;
+                m_UIMixerObject.SetTimer(currentMix.mixCompleteTime - currentMix.mixTime);
                 if (currentMix.mixTime >= currentMix.mixCompleteTime)
                 {
                     currentMix.mixed = true;
+                    m_UIMixerObject.MixerReady();
                 }
                 mixingLocation.Rotate(new Vector3( 1,1,0), mixSpeed);
             }
@@ -83,6 +91,7 @@ namespace Cooking
 
         public override bool PlaceItem(GameObject item)
         {
+            m_UIMixerObject.StartTimer();
             if (item.GetComponent<Ingredient>())
             {
                 AddIngredient(item.GetComponent<Ingredient>().type);
@@ -103,6 +112,8 @@ namespace Cooking
                 }
             }
 
+            m_UIMixerObject.TurnOffUI();
+
             return base.PlaceItem(item);
         }
 
@@ -116,6 +127,12 @@ namespace Cooking
             MixedIngredients mix = mixedIngredients.GetComponent<MixedIngredients>();
 
             currentMix = mix.mixData;
+
+            for(int i = 0; i < currentMix.ingredients.Count; i++)
+            {
+                m_UIMixerObject.AddIngredient((int)currentMix.ingredients[i]);
+            }
+
             mix.enabled = false;
             mixedIngredients.transform.parent = mixingLocation;
             mixedIngredients.transform.localPosition = Random.insideUnitSphere * 0.5f;

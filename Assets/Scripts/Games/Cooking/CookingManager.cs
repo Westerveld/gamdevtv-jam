@@ -28,7 +28,8 @@ namespace Cooking
         public int ordersFilled;
 
         public GameObject customerPrefab;
-        
+
+        public UICookingManager m_UICookingManager;
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
             ordersFilled = (int)value1;
@@ -50,6 +51,9 @@ namespace Cooking
                 ingredients[i].Setup(player);
             }
 
+            //hide UI on game start - CALLING ON START OF MANAGER INSTEAD DUE TO QUICK TUTORIAL SCREEN FOR EACH GAME, leaving here in case of need later on
+            /*m_UICookingManager.HideAllUIObjects();*/
+
             customerTimer = 5f;
             canPlay = true;
         }
@@ -57,7 +61,12 @@ namespace Cooking
         void FixedUpdate()
         {
             if (!canPlay) return;
-            customerTimer -= Time.fixedDeltaTime;
+
+            if (activeOrders.Count < 3)
+            {
+                customerTimer -= Time.fixedDeltaTime;
+            }
+
             if (customerTimer <= 0)
             {
                 SpawnCustomer();
@@ -66,6 +75,10 @@ namespace Cooking
             for (int i = 0; i < activeOrders.Count; ++i)
             {
                 activeOrders[i].timer += Time.fixedDeltaTime;
+
+                //set timer for customer
+                m_UICookingManager.SetUICustomerTimer(i, (activeOrders[i].timeAllowed - activeOrders[i].timer).ToString("0"));
+
                 if (activeOrders[i].timer > activeOrders[i].timeAllowed)
                 {
                     
@@ -82,11 +95,16 @@ namespace Cooking
             recipe.Copy(recipes[Random.Range(0, recipes.Length)]);
             customerArea.SetRecipe(recipe);
             customerTimer = timeBetweenCustomers;
+
+            //set up the UI for the chosen order
+            m_UICookingManager.SetNextOrder(recipe);
         }
 
         public void SuccessfulOrder(int id)
         {
             activeOrders.RemoveAt(id);
+
+            m_UICookingManager.CloseCustomerOrder(id);
             ordersFilled++;
             if (ordersFilled >= neededOrders)
             {

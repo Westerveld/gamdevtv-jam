@@ -27,4 +27,9 @@ public class UIOrderObject : MonoBehaviour
         }
         gameObject.SetActive(true);
     }
+
+    public void TurnOffUI()
+    {
+        gameObject.SetActive(false);
+    }
 }

@@ -16,6 +16,8 @@ namespace Cooking
 
         public GameObject cookedPrefab;
 
+        public UIOvenObject m_UIOvenObject;
+
         public override void Setup(CookingController p) 
         {
             base.Setup(p);
@@ -38,6 +40,7 @@ namespace Cooking
                 currentMix.Copy(mix.mixData);
                 Destroy(item);
                 allowPickup = false;
+                m_UIOvenObject.StartTimer();
                 return true;
 
             }
@@ -53,6 +56,7 @@ namespace Cooking
             food.Setup(player);
             food.data.Copy(currentMix);
             currentMix = new MixData();
+            m_UIOvenObject.TurnOffUI();
             return tmp;
         }
 
@@ -66,11 +70,12 @@ namespace Cooking
             if (!currentMix.cooked)
             {
                 currentMix.cookTime += Time.fixedDeltaTime;
-
+                m_UIOvenObject.SetTimer(currentMix.cookCompleteTime - currentMix.cookTime);
                 if (currentMix.cookTime >= currentMix.cookCompleteTime)
                 {
                     currentMix.cooked = true;
                     allowPickup = true;
+                    m_UIOvenObject.OvenReady();
                 }
 
                 transform.localScale = Vector3.Lerp(baseScale, animScale, Mathf.Sin(Time.time * lerpSpeed));

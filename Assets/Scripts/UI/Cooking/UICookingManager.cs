@@ -9,8 +9,9 @@ public class UICookingManager : MonoBehaviour
 
     //need to do timers for machines
     #region Machines
+
+    public UIOvenObject[] m_OvenObjects;
     public UIMixerObjects[] m_MixerObjects;
-    
 
     #endregion
 
@@ -33,6 +34,11 @@ public class UICookingManager : MonoBehaviour
 
     public UIOrderObject[] m_OrderObjects;
     #endregion
+
+    private void Start()
+    {
+        HideAllUIObjects();
+    }
 
     public void SetNextOrder(Cooking.Recipe recipe)
     {
@@ -59,7 +65,49 @@ public class UICookingManager : MonoBehaviour
         if(selectedOrderObj != null && selectedRecipe != null)
         {
             selectedOrderObj.SetImages(selectedRecipe);
-            selectedCustomerObj.SetCustomerAsk(selectedRecipe.m_RecipeProduct, 100.ToString());
+            selectedCustomerObj.SetCustomerAsk(selectedRecipe.m_RecipeProduct, recipe.timeAllowed.ToString());
         }
     }
+
+    public void HideAllUIObjects()
+    {
+        for(int i = 0; i < m_UICustomerObjects.Length; i++)
+        {
+            m_UICustomerObjects[i].TurnOffUI();
+        }
+        for (int i = 0; i < m_OrderObjects.Length; i++)
+        {
+            m_OrderObjects[i].TurnOffUI();
+        }
+        for (int i = 0; i < m_OvenObjects.Length; i++)
+        {
+            m_OvenObjects[i].TurnOffUI();
+        }
+        for (int i = 0; i < m_MixerObjects.Length; i++)
+        {
+            m_MixerObjects[i].TurnOffUI();
+        }
+    }
+
+    #region customer orders methods
+    public void SetUICustomerTimer(int index, string time)
+    {
+        if (index >= m_UICustomerObjects.Length) //null index check
+        {
+            Debug.LogError("TOO MANY CUSTOMERS FOR UI TO HANDLE (JC)");
+            return;
+        }
+        m_UICustomerObjects[index].SetTimer(time);
+    }
+
+    public void CloseCustomerOrder(int index)
+    {
+        m_UICustomerObjects[index].TurnOffUI();
+        m_OrderObjects[index].TurnOffUI();
+    }
+    #endregion
+
+    #region mixer methods
+    
+    #endregion
 }

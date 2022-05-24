@@ -17,6 +17,7 @@ public class UICustomerObject : MonoBehaviour
         m_ProductImage.sprite = product;
         m_ProductImage.transform.parent.gameObject.SetActive(true);
         m_TimerObject.SetActive(true);
+        TurnOnUI();
     }
 
     public void CompleteCustomerOrder()
@@ -28,5 +29,15 @@ public class UICustomerObject : MonoBehaviour
     public void SetTimer(string time)
     {
         m_TimerCount.text = time;
+    }
+
+    public void TurnOnUI()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void TurnOffUI()
+    {
+        gameObject.SetActive(false);
     }
 }
