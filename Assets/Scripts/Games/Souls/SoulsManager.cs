@@ -14,7 +14,7 @@ namespace Souls
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
             boss.Setup(value1, this);
-            player.SetupPlayer(100f,100f,0.5f,0.5f);
+            player.SetupPlayer(100f,100f,0.5f,2.5f);
         }
 
         // Update is called once per frame
