@@ -967,6 +967,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &800421622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7743065029069109494, guid: 867b9ccacbd329740a4f249e96f94472,
+    type: 3}
+  m_PrefabInstance: {fileID: 2460377664886409752}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &848879302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,6 +1709,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0.03, z: 0}
+--- !u!114 &1372309370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6794500852692233575, guid: 867b9ccacbd329740a4f249e96f94472,
+    type: 3}
+  m_PrefabInstance: {fileID: 2460377664886409752}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd73d54afe8fdd42b1c07dc8959d861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1625354722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,10 +1950,10 @@ GameObject:
   - component: {fileID: 2004701559}
   - component: {fileID: 2004701558}
   - component: {fileID: 2004701557}
-  - component: {fileID: 2004701556}
   - component: {fileID: 2004701555}
   - component: {fileID: 2004701554}
-  m_Layer: 0
+  - component: {fileID: 2004701556}
+  m_Layer: 7
   m_Name: TempEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1976,8 +2000,8 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &2004701556
-BoxCollider:
+--- !u!136 &2004701556
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1986,9 +2010,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.5
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!23 &2004701557
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2367,6 +2392,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6794500852692233575, guid: 867b9ccacbd329740a4f249e96f94472,
         type: 3}
+      propertyPath: m_AmmoImage
+      value: 
+      objectReference: {fileID: 800421622}
+    - target: {fileID: 6794500852692233575, guid: 867b9ccacbd329740a4f249e96f94472,
+        type: 3}
       propertyPath: m_DoorKillCount
       value: 
       objectReference: {fileID: 7703385920889291702}
@@ -2375,6 +2405,11 @@ PrefabInstance:
       propertyPath: m_EnemyHealthBarPool
       value: 
       objectReference: {fileID: 7703385920889291703}
+    - target: {fileID: 7743065029069109494, guid: 867b9ccacbd329740a4f249e96f94472,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 867b9ccacbd329740a4f249e96f94472, type: 3}
 --- !u!1001 &2578038015535797304
@@ -2391,6 +2426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2578038015689900167, guid: abdbdbfc619fb3f47a2a6ec42c261344,
         type: 3}
+      propertyPath: ui
+      value: 
+      objectReference: {fileID: 1372309370}
+    - target: {fileID: 2578038015689900167, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 613652541}
@@ -2399,6 +2439,86 @@ PrefabInstance:
       propertyPath: bulletPool
       value: 
       objectReference: {fileID: 2053893616}
+    - target: {fileID: 2578038015689900167, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: recoilAmount
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: fireAction.m_Id
+      value: 05453660-3947-4d20-83fe-81188cdbda88
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_Id
+      value: 07b39f8a-2bd9-4143-8a49-274f0ea54291
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: fireAction.m_Name
+      value: Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_Name
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: fireAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: fireAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 53b32e44-5a07-4907-8bee-8cfbb68dfca0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: de464a85-4ff4-4290-9b17-e1a236a3982a
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: ca98b0ae-b9ba-4edf-9059-9180ad68ad0d
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: fireAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/leftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/leftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/rightTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: fireAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578038015689900280, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
     - target: {fileID: 2578038015689900284, guid: abdbdbfc619fb3f47a2a6ec42c261344,
         type: 3}
       propertyPath: m_RootOrder
