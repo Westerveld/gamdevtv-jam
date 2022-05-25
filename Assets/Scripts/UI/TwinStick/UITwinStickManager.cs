@@ -20,6 +20,10 @@ public class UITwinStickManager : MonoBehaviour
     [Range(1,10)]
     public float m_FadeSpeed = 1.0f;
     #endregion
+    
+    #region Kills
+    public TMP_Text m_KillsNeeded;
+    #endregion
 
     #region WorldSpaceUI
     public GameObject m_EnemyHealthPrefab;
@@ -86,4 +90,5 @@ public class UITwinStickManager : MonoBehaviour
         GameObject go = GameObject.Instantiate(m_EnemyHealthPrefab, m_EnemyHealthBarPool);
         go.GetComponent<UIEnemyHealthBar>().SetMonsterTransform(Enemy);
     }
+    
 }

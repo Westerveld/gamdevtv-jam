@@ -10,8 +10,9 @@ namespace TwinStick
         public float damage;
         public float speed;
         public Vector3 normalisedDirection;
-
+        public string enemy = "Boss";
         private Rigidbody rigid;
+        public float bulletLifetime = 10f;
 
         void Awake()
         {
@@ -35,18 +36,21 @@ namespace TwinStick
 
         IEnumerator DisableAfterTime()
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(bulletLifetime);
             gameObject.SetActive(false);
         }
 
 
         void OnCollisionEnter(Collision col)
         {
-            if (col.gameObject.layer == LayerMask.NameToLayer("Boss"))
+            if (col.gameObject.layer == LayerMask.NameToLayer(enemy))
             {
                 IDamagable damagable = col.gameObject.GetComponent<IDamagable>();
-                damagable.TakeDamage(damage, (-col.contacts[0].normal * 0.05f));
-                gameObject.SetActive(false);
+                if (damagable != null)
+                {
+                    damagable.TakeDamage(damage, (-col.contacts[0].normal * 0.05f));
+                    gameObject.SetActive(false);
+                }
             }
         }
     }

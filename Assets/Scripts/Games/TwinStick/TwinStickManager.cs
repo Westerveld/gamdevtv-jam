@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,17 +9,71 @@ namespace TwinStick
     {
 
         public TwinStickController player;
+        public UITwinStickManager ui;
+        public TwinStickEnemySpawner enemySpawner;
+        public int killsReq = 50;
+        public float spawnInterval;
+        public float spawnTimer;
+        private bool canPlay = false;
 
         // Start is called before the first frame update
-        void Start()
+        public override void StartGame(float value1 = 0, float value2 = 0)
         {
-            player.SetupPlayer();
+            base.StartGame(value1, value2);
+            player.SetupPlayer(this);
+            enemySpawner.Setup(this, player);
+            ui.m_KillsNeeded.text = killsReq.ToString();
+            spawnTimer = spawnInterval;
+            canPlay = true;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void FixedUpdate()
         {
+            if (!canPlay) return;
+            
+            spawnTimer -= Time.fixedDeltaTime;
+            if (spawnTimer <= 0)
+            {
+                enemySpawner.SpawnEnemy();
+                spawnTimer = spawnInterval;
+            }
+            
+        }
 
+
+        public void KilledEnemy()
+        {
+            killsReq--;
+            killsReq = Mathf.Max(0, killsReq);
+            ui.m_KillsNeeded.text = killsReq.ToString();
+        }
+
+        [ContextMenu("Test")]
+        public void Test()
+        {
+            StartGame();
+        }
+
+        public void Died()
+        {
+            if (GameInstance.instance != null)
+            {
+                GameInstance.instance.SetPersistantData(gameType);
+                GameInstance.instance.GameEnd();
+            }
+        }
+
+        public void GotOut()
+        {
+            if (GameInstance.instance != null)
+            {
+                GameInstance.instance.SetGameComplete(gameType);
+            }
+        }
+
+        public bool NoEnemiesLeftToKill()
+        {
+            return killsReq > 0;
         }
     }
 }
