@@ -64,7 +64,7 @@ namespace TwinStick
                 {
                     enemyPool[i].transform.position = spawnPoints[spawnPoint].position;
                     TwinStickEnemy enemyScript = enemyPool[i].GetComponent<TwinStickEnemy>();
-                    ui.AssignEnemyHealthBar(enemyScript.transform);
+                    enemyScript.m_HealthBar = ui.AssignEnemyHealthBar(enemyScript.transform);
                     enemyScript.bulletDamage = bDamage;
                     enemyScript.bulletSpeed = bSpeed;
                     enemyScript.shootingRange = sRange;

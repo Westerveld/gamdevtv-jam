@@ -24,6 +24,8 @@ namespace TwinStick
         public float bulletDamage = 6f;
         public float shootingRange = 50f;
         public float bulletRange = 0f;
+
+        public UIEnemyHealthBar m_HealthBar;
         public void SetReferences(Transform p, EffectsPool hFX, EffectsPool dFX, TwinStickManager m,  TwinStickBulletPool b)
         {
             deathFX = dFX;
@@ -37,6 +39,7 @@ namespace TwinStick
         public void Setup(float maxHealth, float speed, float scale)
         {
             health = new Stat(maxHealth, 0f);
+            m_HealthBar.SetMonsterMaxHealth(maxHealth);
             canPlay = true;
             shotTimer = shotInterval;
             agent.speed = speed;
@@ -62,6 +65,7 @@ namespace TwinStick
         public void TakeDamage(float amount, Vector3 impactPoint)
         {
             health.RemoveStat(amount);
+            m_HealthBar.SetMonsterHealth(health.currentValue);
             hitFX.SpawnObject(transform.position - impactPoint, transform.rotation );
             transform.position += impactPoint;
             if (health.currentValue <= 0)
@@ -73,6 +77,7 @@ namespace TwinStick
         void Die(Vector3 impactPoint)
         {
             //ToDo: DeathAnimation
+            m_HealthBar.KillMonster();
             deathFX.SpawnObject(transform.position - impactPoint, transform.rotation);
             gameObject.SetActive(false);
             manager.KilledEnemy();
