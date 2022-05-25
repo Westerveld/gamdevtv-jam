@@ -1873,7 +1873,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2074158291}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1285047214
+--- !u!95 &1285047217
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -2798,6 +2798,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 613652541}
+    - target: {fileID: 2578038015689900167, guid: abdbdbfc619fb3f47a2a6ec42c261344,
+        type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 1285047217}
     - target: {fileID: 2578038015689900167, guid: abdbdbfc619fb3f47a2a6ec42c261344,
         type: 3}
       propertyPath: bulletPool
