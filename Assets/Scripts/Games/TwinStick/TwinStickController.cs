@@ -46,6 +46,9 @@ namespace TwinStick
 
         public TwinStickManager tManager;
 
+        public Animator gun;
+        private static readonly int pew = Animator.StringToHash("Pew");
+
         private void Start()
         {
             rigid = GetComponent<Rigidbody>();
@@ -124,6 +127,7 @@ namespace TwinStick
                     bulletPool.FireBullet(bulletSpawnPoint.transform.forward, bulletSpawnPoint.position,
                         bulletSpawnPoint.rotation, bulletSpeed, bulletDamage);
                     transform.position -= (bulletSpawnPoint.transform.forward * recoilAmount);
+                    gun.SetTrigger(pew);
                     ammo--;
                     ui.SetAmmoCount(ammo, maxAmmo);
                     if (ammo <= 0 )
