@@ -136,6 +136,18 @@ public class GameInstance : MonoBehaviour
                 break;
         }
     }
+
+    public int GetCompletedGames()
+    {
+        int completed = 0;
+        for (int i = 0; i < completedGames.Count; i++)
+        {
+            if (completedGames[i])
+                completed++;
+        }
+
+        return completed;
+    }
 }
 
 

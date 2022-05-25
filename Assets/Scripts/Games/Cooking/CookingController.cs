@@ -62,10 +62,7 @@ namespace Cooking
             // if there is no input, set the target speed to 0
             if (input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            // a reference to the players current horizontal velocity
-            float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
 
-            float speedOffset = 0.1f;
             float inputMagnitude = input.move.magnitude;
 
             speed = targetSpeed;
