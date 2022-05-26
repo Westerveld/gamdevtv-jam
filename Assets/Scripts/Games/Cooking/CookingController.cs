@@ -35,6 +35,8 @@ namespace Cooking
         public GameObject currentObject;
         public InteractArea currentArea;
         public Transform holdLocation;
+
+        private bool interacting = false;
         
         
         [ContextMenu("Test")]
@@ -47,8 +49,11 @@ namespace Cooking
         {
             if (!canPlay) return;
 
-            Move();
-            Interact();
+            if (!interacting)
+            {
+                Move();
+                Interact();
+            }
         }
         
         private void Move()
@@ -101,6 +106,7 @@ namespace Cooking
             if (input.interact)
             {
                 input.interact = false;
+                interacting = true;
                 if (canInteractWithArea && !hasObject)
                 {
                     if (!hasObject)
@@ -137,6 +143,7 @@ namespace Cooking
                     }
                 }
             }
+            interacting = false;
         }
 
         private void DisableLayer()
@@ -159,6 +166,7 @@ namespace Cooking
                     currentObject.transform.parent = null;
                 }
             }
+            interacting = false;
         }
 
         IEnumerator BlendLayer(bool on)
