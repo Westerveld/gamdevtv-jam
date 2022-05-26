@@ -22,9 +22,12 @@ namespace TwinStick
         public MinMax damage;
         public MinMax moveSpeed;
         public MinMax bulletSpeed;
+        public MinMax shootingSpeed;
         public MinMax health;
         public MinMax shootingRange;
         public MinMax bulletLifetime;
+        public MinMax distToPlayer;
+        public MinMax waitTimeBeforeMoving;
         void Start()
         {
             enemyPool = new List<GameObject>();
@@ -57,7 +60,11 @@ namespace TwinStick
             float s = Random.Range(moveSpeed.min, moveSpeed.max);
             float sRange = Random.Range(shootingRange.min, shootingRange.max);
             float bRange = Random.Range(bulletLifetime.min, bulletLifetime.max);
-            float scale = (bDamage + bSpeed + h + s + sRange + bRange) / (bulletLifetime.max + shootingRange.max + damage.max + bulletSpeed.max + health.max + moveSpeed.max); 
+            float dPlayer = Random.Range(distToPlayer.min, distToPlayer.max);
+            float mTime = Random.Range(waitTimeBeforeMoving.min, waitTimeBeforeMoving.max);
+            float sSpeed = Random.Range(shootingSpeed.min, shootingSpeed.max);
+            float scale = (sSpeed + bDamage + bSpeed + h + s + sRange + bRange + dPlayer + mTime) / (bulletLifetime.max + shootingRange.max + damage.max + bulletSpeed.max + health.max + moveSpeed.max + distToPlayer.max + waitTimeBeforeMoving.max + shootingSpeed.max); 
+            
             for (int i = 0; i < enemyPool.Count; ++i)
             {
                 if (!enemyPool[i].activeSelf)
@@ -69,6 +76,9 @@ namespace TwinStick
                     enemyScript.bulletSpeed = bSpeed;
                     enemyScript.shootingRange = sRange;
                     enemyScript.bulletRange = bRange;
+                    enemyScript.maxDistToPlayer = dPlayer;
+                    enemyScript.timeTilMoving = mTime;
+                    enemyScript.shotInterval = sSpeed;
                     enemyScript.Setup( h, s, scale);
                     enemyPool[i].SetActive(true);
                     break;

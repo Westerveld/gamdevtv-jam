@@ -25,7 +25,13 @@ namespace TwinStick
         public float shootingRange = 50f;
         public float bulletRange = 0f;
 
+        private float distToPlayer;
+        public float maxDistToPlayer = 5f;
+
         public UIEnemyHealthBar m_HealthBar;
+
+        public float timeTilMoving = 5f;
+        public float moveTimer = 0f;
         public void SetReferences(Transform p, EffectsPool hFX, EffectsPool dFX, TwinStickManager m,  TwinStickBulletPool b)
         {
             deathFX = dFX;
@@ -44,17 +50,37 @@ namespace TwinStick
             shotTimer = shotInterval;
             agent.speed = speed;
             Vector3 s = Vector3.one;
-            s *= 0.5f + scale;
+            s *= 1.5f - scale;
             transform.localScale = s;
 
         }
+        
         void FixedUpdate()
         {
             if (canPlay)
             {
-                agent.SetDestination(player.position);
+                distToPlayer = Vector3.Distance(transform.position, player.position);
+                if (distToPlayer > 5f)
+                {
+                    moveTimer -= Time.fixedDeltaTime;
+                    if (moveTimer <= 0)
+                    {
+                        agent.SetDestination(player.position);
+                        agent.isStopped = false;
+                    }
+                }
+                else
+                {
+                    agent.isStopped = true;
+                    transform.LookAt(player, Vector3.up);
+                    Vector3 rot = transform.rotation.eulerAngles;
+                    rot.x = rot.z = 0f;
+                    transform.rotation = Quaternion.Euler(rot);
+                    moveTimer = timeTilMoving;
+                }
+                
                 shotTimer -= Time.fixedDeltaTime;
-                if (shotTimer <= 0 && Vector3.Distance(transform.position, player.position) < shootingRange)
+                if (shotTimer <= 0 &&  distToPlayer < shootingRange)
                 {
                     bullets.FireBullet(transform.forward.normalized, transform.position + transform.forward.normalized, transform.rotation, bulletSpeed, bulletDamage, bulletRange);
                     shotTimer = shotInterval;

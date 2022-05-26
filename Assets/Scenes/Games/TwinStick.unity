@@ -1031,15 +1031,24 @@ MonoBehaviour:
   bulletSpeed:
     min: 300
     max: 500
+  shootingSpeed:
+    min: 0.25
+    max: 3
   health:
     min: 30
     max: 90
   shootingRange:
-    min: 0
+    min: 6.5
     max: 100
   bulletLifetime:
     min: 1.5
     max: 10
+  distToPlayer:
+    min: 4
+    max: 10
+  waitTimeBeforeMoving:
+    min: 1
+    max: 5
 --- !u!1 &736335636
 GameObject:
   m_ObjectHideFlags: 0
