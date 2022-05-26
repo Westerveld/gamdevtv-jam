@@ -2323,6 +2323,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 613652541}
+    - target: {fileID: 9064877274226982048, guid: 72865f3eeca27754ea2a741403d336ac,
+        type: 3}
+      propertyPath: staminaText
+      value: 
+      objectReference: {fileID: 1658971034}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72865f3eeca27754ea2a741403d336ac, type: 3}
 --- !u!114 &2109053123800160069 stripped
