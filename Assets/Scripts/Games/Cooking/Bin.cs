@@ -24,7 +24,7 @@ namespace Cooking
             return null;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (timer > 0f)
             {

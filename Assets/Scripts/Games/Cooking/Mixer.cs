@@ -72,7 +72,7 @@ namespace Cooking
             return tmp;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (!canPlay) return;
 
