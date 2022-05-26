@@ -68,6 +68,8 @@ namespace Souls
 
         public UISoulsManager m_UISoulsManager;
 
+        public Weapon jumpAttackWeapon;
+
         private void Awake()
         {
             anim.GetBehaviour<IdleState>().boss = this;
@@ -337,12 +339,16 @@ namespace Souls
         void SmashImpact()
         {
             smashAttackParticles.SetActive(true);
+            jumpAttackWeapon.AttackOn();
+            StartCoroutine(LerpScale(3f));
             StartCoroutine(TurnOffObject(smashAttackParticles, 5f));
         }
 
         void JumpImpact()
         {
             jumpAttackParticles.SetActive(true);
+            jumpAttackWeapon.AttackOn();
+            StartCoroutine(LerpScale(1.5f));
             StartCoroutine(TurnOffObject(jumpAttackParticles, 3.5f));
         }
 
@@ -352,6 +358,20 @@ namespace Souls
         {
             yield return new WaitForSeconds(time);
             go.SetActive(false);
+        }
+
+        IEnumerator LerpScale(float time)
+        {
+            float timer = time;
+            while (timer > 0)
+            {
+                timer -= Time.fixedDeltaTime;
+                jumpAttackWeapon.transform.localScale = jumpAttackWeapon.transform.localScale * 1.01f;
+                yield return null;
+            }
+
+            jumpAttackWeapon.transform.localScale = Vector3.one;
+            jumpAttackWeapon.AttackOff();
         }
     }
 
