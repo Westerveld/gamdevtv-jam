@@ -6,16 +6,11 @@ namespace TurnBased
 {
     public class TurnBasedManager : GameManager
     {
-        // Start is called before the first frame update
-        void Start()
+
+
+        public void PlayCard(int number)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            Debug.Log($"Playing card {number}");
         }
     }
 

@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Maze
@@ -20,6 +23,7 @@ namespace Maze
         public MazeInput input;
         private float speed;
         public float moveSpeed;
+        public float sprintSpeed = 10;
         private float animationBlend;
         [Range(0.0f, 0.3f)] public float rotationSmoothTime = 0.12f;
         public float speedChangeRate = 10.0f;
@@ -30,27 +34,44 @@ namespace Maze
         private int animID_MotionSpeed = Animator.StringToHash("MotionSpeed");
 
         private bool canPlay = false;
-        public void Setup()
+
+        public Stat sprintStamina;
+
+        public TMP_Text staminaText; 
+        public void Setup(float maxSprintStamina = 100f, float sprintRegenSpeed = 5f)
         {
             canPlay = true;
+            sprintStamina = new Stat(maxSprintStamina, sprintRegenSpeed);
         }
 
-        void Update()
+        private void Update()
+        {
+            if (!canPlay) return;
+            Rotate();
+        }
+
+        void FixedUpdate()
         {
             if (!canPlay) return;
             Move();
-            Rotate();
+            sprintStamina.RegenStat(Time.fixedDeltaTime);
+            staminaText.text = $"{sprintStamina.GetPercentage()}%";
         }
 
         void Move()
         {
 
             float targetSpeed = moveSpeed;
+            if (input.sprint && sprintStamina.currentValue > 0f)
+            {
+                targetSpeed = sprintSpeed;
+                sprintStamina.RemoveStat(1f, 0.5f);
+            }
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (input.move.y == 0) targetSpeed = 0.0f;
 
-            float inputMagnitude = input.move.magnitude;
+            float inputMagnitude = input.move.y;
 
             speed = targetSpeed * input.move.y;
 
