@@ -48,9 +48,9 @@ namespace Maze
             float targetSpeed = moveSpeed;
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (input.move.y == 0) targetSpeed = 0.0f;
 
-            float inputMagnitude = input.move.magnitude;
+            float inputMagnitude = input.move.y;
 
             speed = targetSpeed * input.move.y;
 
