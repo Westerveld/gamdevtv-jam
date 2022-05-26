@@ -55,6 +55,7 @@ namespace Souls
         public float attackStaminaUsage = 20f;
         public float attackDamage = 5f;
         public float dodgeStaminaUsage = 15f;
+        public float sprintStaminaDrain = 0.1f;
 
 
         public bool canPlay = false;
@@ -119,7 +120,13 @@ namespace Souls
         void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = input.sprint ? sprintSpeed : moveSpeed;
+            float targetSpeed = moveSpeed;
+            if (stamina.currentValue > 0 && input.sprint)
+            {
+                targetSpeed = sprintSpeed;
+                stamina.RemoveStat(sprintStaminaDrain);
+                m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
+            }
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -201,6 +208,7 @@ namespace Souls
                 if (!isDodging && stamina.currentValue > dodgeStaminaUsage)
                 {
                     stamina.RemoveStat(dodgeStaminaUsage);
+                    m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
                     isDodging = true;
                     if (input.move.y > deadzone)
                     {
@@ -232,6 +240,7 @@ namespace Souls
             isDodging = false;
             weapon.AttackOn();
             stamina.RemoveStat(attackStaminaUsage);
+            m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
         }
 
         void AttackOff()

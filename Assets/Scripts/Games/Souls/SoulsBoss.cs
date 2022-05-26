@@ -62,6 +62,7 @@ namespace Souls
 
         public float walkSpeed = 2f;
         public float runSpeed = 5.5f;
+        public float attackMoveDistance = 0.25f;
         public float speedChangeRate = 5.0f;
         private float speed;
         public int damage = 15;
@@ -69,6 +70,8 @@ namespace Souls
         public UISoulsManager m_UISoulsManager;
 
         public Weapon jumpAttackWeapon;
+
+        private Coroutine walk;
 
         private void Awake()
         {
@@ -179,15 +182,16 @@ namespace Souls
             switch (state)
             {
                 case BossState.Idle:
-                    RotateToPlayer();
                     break;
                 case BossState.Walk:
                     Move(walkSpeed);
                     break;
                 case BossState.Run:
-                    Move(runSpeed);
+                    if(anim.GetBool(animID_Run))
+                        Move(runSpeed);
                     break;
             }
+            RotateToPlayer();
         }
 
         void RotateToPlayer()
@@ -220,19 +224,15 @@ namespace Souls
 
         void Move(float targetSpeed)
         {
-            float currSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
-            if (currSpeed < targetSpeed - 0.1f || currSpeed > targetSpeed + 0.1f)
-            {
-                speed = Mathf.Lerp(currSpeed, targetSpeed * 1f, Time.deltaTime * speedChangeRate);
-                speed = Mathf.Round((speed * 1000f) / 1000f);
-            }
-            else
-            {
-                speed = targetSpeed;
-            }
+            speed = targetSpeed;
             Vector3 targetDirection = transform.forward;
             controller.Move(targetDirection * (speed * Time.deltaTime));
             anim.SetFloat(animID_MotionSpeed, speed);
+            if (Vector3.Distance(transform.position, player.position) < 2.0f)
+            {
+                currentPhase.mechanics[phasePart].completed = true;
+                stateTime += currentPhase.mechanics[phasePart].length;
+            }
 
         }
         #region State/phase change
@@ -318,6 +318,9 @@ namespace Souls
         void AttackOn()
         {
             currentCombo++;
+            if(walk != null)
+                StopCoroutine(walk);
+            walk = StartCoroutine(MoveForwards());
             for (int i = 0; i < hands.Length; ++i)
             {
                 hands[i].AttackOn();
@@ -327,6 +330,8 @@ namespace Souls
         void AttackOff()
         {
             anim.SetBool(animID_Combo, currentCombo < currentPhase.comboAmount);
+            StopCoroutine(walk);
+            walk = null;
             if (!anim.GetBool(animID_Combo))
             {
                 for (int i = 0; i < hands.Length; ++i)
@@ -339,14 +344,16 @@ namespace Souls
         void SmashImpact()
         {
             smashAttackParticles.SetActive(true);
+            jumpAttackWeapon.Setup(damage * 1.5f);
             jumpAttackWeapon.AttackOn();
-            StartCoroutine(LerpScale(3f));
+            StartCoroutine(LerpScale(2.5f));
             StartCoroutine(TurnOffObject(smashAttackParticles, 5f));
         }
 
         void JumpImpact()
         {
             jumpAttackParticles.SetActive(true);
+            jumpAttackWeapon.Setup(damage * 1.2f);
             jumpAttackWeapon.AttackOn();
             StartCoroutine(LerpScale(1.5f));
             StartCoroutine(TurnOffObject(jumpAttackParticles, 3.5f));
@@ -372,6 +379,16 @@ namespace Souls
 
             jumpAttackWeapon.transform.localScale = Vector3.one;
             jumpAttackWeapon.AttackOff();
+        }
+
+        IEnumerator MoveForwards()
+        {
+            while (true)
+            {
+                controller.Move(transform.forward.normalized * (attackMoveDistance * Time.fixedDeltaTime));
+                yield return null;
+                
+            }
         }
     }
 

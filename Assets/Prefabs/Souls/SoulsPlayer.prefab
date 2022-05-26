@@ -252,8 +252,10 @@ MonoBehaviour:
   attackStaminaUsage: 10
   attackDamage: 5
   dodgeStaminaUsage: 15
+  sprintStaminaDrain: 0.1
   canPlay: 0
   weapon: {fileID: 4681935703950194032}
+  m_UISoulsManager: {fileID: 0}
 --- !u!114 &990846358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,8 +300,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.3221911, y: 1.3828427, z: 0.15498}
-  m_Center: {x: -0.0000000017467949, y: 0.7265157, z: 0.0000026038174}
+  m_Size: {x: 0.49649757, y: 1.8219696, z: 0.38805628}
+  m_Center: {x: -0.0066613327, y: 0.94604784, z: 0.006476009}
 --- !u!114 &4681935703950194032
 MonoBehaviour:
   m_ObjectHideFlags: 0
