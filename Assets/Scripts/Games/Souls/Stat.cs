@@ -36,5 +36,10 @@ namespace Generic
             currentValue = Mathf.Max(currentValue - value, 0f);
             regenTimer = waitBeforeRegen;
         }
+
+        public int GetPercentage()
+        {
+            return (int)((currentValue / maxValue) * 100);
+        }
     }
 }
