@@ -66,6 +66,8 @@ namespace Souls
         private float speed;
         public int damage = 15;
 
+        public UISoulsManager m_UISoulsManager;
+
         private void Awake()
         {
             anim.GetBehaviour<IdleState>().boss = this;
@@ -78,6 +80,8 @@ namespace Souls
         {
             manager = m;
             health = new Stat(maxHealth, 0f, healthValue);
+            m_UISoulsManager.SetBossMaxHealth(maxHealth);
+            m_UISoulsManager.SetBossHealth(health.currentValue);
             anim.GetBehaviour<IdleState>().boss = this;
             player = m.player.transform;
             PickNextPhase();
@@ -93,6 +97,7 @@ namespace Souls
             normal.y = 0f;
             transform.position += normal;
             health.RemoveStat(damage);
+            m_UISoulsManager.SetBossHealth(health.currentValue);
             if (health.currentValue > 0)
             {
                 anim.SetTrigger(Random.value > 0.5f ? animID_Hit1 : animID_Hit2);

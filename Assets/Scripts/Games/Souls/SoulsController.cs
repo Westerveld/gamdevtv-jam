@@ -61,10 +61,15 @@ namespace Souls
 
         public Weapon weapon;
 
+        public UISoulsManager m_UISoulsManager;
+
         public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed)
         {
             health = new Stat(maxHealth, healthRegenSpeed);
             stamina = new Stat(maxStamina, staminaRegenSpeed);
+
+            m_UISoulsManager.SetPlayerMaxHealth(maxHealth);
+            m_UISoulsManager.SetPlayerMaxStamina(maxStamina);
 
             canPlay = true;
             weapon.Setup(attackDamage);
@@ -94,6 +99,7 @@ namespace Souls
             //Regen
             //health.RegenStat(Time.fixedDeltaTime);
             stamina.RegenStat(Time.fixedDeltaTime);
+            m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
         }
 
         private void LateUpdate()
@@ -261,6 +267,7 @@ namespace Souls
             
             anim.SetTrigger(Random.value > 0.5f ? animID_Hit1 : animID_Hit2);
             health.RemoveStat(damage, 0.5f);
+            m_UISoulsManager.SetPlayerHealth(health.currentValue);
             if (health.currentValue <= 0)
             {
                 soulsManager.PlayerDied();
