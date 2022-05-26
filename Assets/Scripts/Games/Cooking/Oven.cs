@@ -18,9 +18,13 @@ namespace Cooking
 
         public UIOvenObject m_UIOvenObject;
 
+        public AudioSource audio;
+        public AudioClip doorClip;
+
         public override void Setup(CookingController p) 
         {
             base.Setup(p);
+            audio = GetComponent<AudioSource>();
             currentMix = new MixData();
             canPlay = true;
             baseScale = animScale = transform.localScale;
@@ -31,6 +35,7 @@ namespace Cooking
         {
             if (item.GetComponent<MixedIngredients>())
             {
+                audio.PlayOneShot(doorClip);
                 MixedIngredients mix = item.GetComponent<MixedIngredients>();
                 if (!mix.mixData.mixed)
                 {
@@ -50,6 +55,7 @@ namespace Cooking
 
         public override GameObject GetItem(Transform parent)
         {
+            audio.PlayOneShot(doorClip);
             GameObject tmp = Instantiate(cookedPrefab, parent);
             tmp.transform.localPosition = Vector3.zero;
             CookedFood food = tmp.GetComponent<CookedFood>();

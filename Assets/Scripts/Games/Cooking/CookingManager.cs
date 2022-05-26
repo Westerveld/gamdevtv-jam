@@ -10,7 +10,7 @@ namespace Cooking
     {
         public Recipe[] recipes;
 
-        public List<Recipe> activeOrders;
+        public Recipe[] activeOrders;
 
         public Oven[] ovens;
         public Mixer[] mixers;
@@ -26,6 +26,7 @@ namespace Cooking
         public float customerTimer = 0f;
         public int neededOrders = 5;
         public int ordersFilled;
+        private int activeOrderCount = 0;
 
         public GameObject customerPrefab;
 
@@ -33,7 +34,7 @@ namespace Cooking
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
             ordersFilled = (int)value1;
-            activeOrders = new List<Recipe>();
+            activeOrders = new Recipe[3];
             player.Setup();
             customerArea.Setup(player, this);
             for (int i = 0; i < ovens.Length; ++i)
@@ -62,7 +63,7 @@ namespace Cooking
         {
             if (!canPlay) return;
 
-            if (activeOrders.Count < 3)
+            if (activeOrderCount < 3)
             {
                 customerTimer -= Time.fixedDeltaTime;
             }
@@ -71,9 +72,10 @@ namespace Cooking
             {
                 SpawnCustomer();
             }
-
-            for (int i = 0; i < activeOrders.Count; ++i)
+            
+            for (int i = 0; i < activeOrders.Length; ++i)
             {
+                if (activeOrders[i].name == null) continue;
                 activeOrders[i].timer += Time.fixedDeltaTime;
 
                 //set timer for customer
@@ -95,6 +97,8 @@ namespace Cooking
             recipe.Copy(recipes[Random.Range(0, recipes.Length)]);
             customerArea.SetRecipe(recipe);
             customerTimer = timeBetweenCustomers;
+            activeOrderCount++;
+            
 
             //set up the UI for the chosen order
             m_UICookingManager.SetNextOrder(recipe);
@@ -102,7 +106,14 @@ namespace Cooking
 
         public void SuccessfulOrder(int id)
         {
-            activeOrders.RemoveAt(id);
+            if (activeOrders.Length == 3)
+            {
+                //Reset the customer timer so we have a customer quicker
+                customerTimer = timeBetweenCustomers * 0.25f;
+            }
+            activeOrders[id] = null;
+            activeOrderCount--;
+            
 
             m_UICookingManager.CloseCustomerOrder(id);
             ordersFilled++;
