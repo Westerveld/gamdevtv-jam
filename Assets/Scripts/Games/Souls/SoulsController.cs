@@ -78,7 +78,11 @@ namespace Souls
         // Update is called once per frame
         void Update()
         {
-            if (!canPlay) return;
+            if (!canPlay)
+            {
+                ResetInput();
+                return;
+            }
             if(!isAttacking && !isDodging) 
                 Move();
             Jump();
@@ -86,6 +90,11 @@ namespace Souls
             Dodge();
         }
 
+        void ResetInput()
+        {
+            input.attack = input.sprint = input.dodge = input.jump = false;
+            input.move = Vector2.zero;
+        }
         private void FixedUpdate()
         {
             if (!canPlay) return;
@@ -158,7 +167,6 @@ namespace Souls
             {
                 if (stamina.currentValue >= attackStaminaUsage)
                 {
-                    stamina.RemoveStat(attackStaminaUsage);
                     anim.SetBool(animID_Attack, true);
                     isAttacking = true;
                     queuedAttack = false;
@@ -223,6 +231,7 @@ namespace Souls
             //ToDo: Turn on weapon collision
             isDodging = false;
             weapon.AttackOn();
+            stamina.RemoveStat(attackStaminaUsage);
         }
 
         void AttackOff()

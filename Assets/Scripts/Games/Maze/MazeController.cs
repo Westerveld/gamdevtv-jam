@@ -121,5 +121,10 @@ namespace Maze
         {
             Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
         }
+
+        void OnFootstep()
+        {
+            
+        }
     }
 }
