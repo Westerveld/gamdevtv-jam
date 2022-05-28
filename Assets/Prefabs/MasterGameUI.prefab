@@ -459,6 +459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6773281317557068543}
+  - component: {fileID: 4330156484513438084}
   m_Layer: 5
   m_Name: MasterGameUI
   m_TagString: Untagged
@@ -486,6 +487,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 499}
   m_SizeDelta: {x: 506.7477, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4330156484513438084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003189150964441951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49461562d70b8a488eb2ebbbd85c273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icons:
+  - {fileID: 4967055522124585805}
+  - {fileID: 6938632327302993072}
+  - {fileID: 677801810050650993}
+  - {fileID: 2966683421855879491}
+  - {fileID: 1140721866042626459}
+  - {fileID: 8561138897593940842}
+  - {fileID: 2494603681023643026}
 --- !u!1 &8126391142036656054
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace Souls
 
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
+            base.StartGame();
             boss.Setup(value1, this);
             player.SetupPlayer(100f,100f,0.5f,10.0f);
         }
