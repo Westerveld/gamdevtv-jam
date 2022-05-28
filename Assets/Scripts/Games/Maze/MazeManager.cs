@@ -1,19 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeManager : MonoBehaviour
+namespace Maze
 {
-    public GameObject[] doors;
-    // Start is called before the first frame update
-    void Start()
+    public class MazeManager : GameManager
     {
-        
-    }
+        public GameObject[] doors;
+        public MazeController player;
 
-    // Update is called once per frame
-    void Update()
-    {
+        public float timer;
+        public float allowedTime;
+        private bool canPlay;
         
+        public override void StartGame(float value1 = 0, float value2 = 0)
+        {
+            base.StartGame(value1, value2);
+            if (GameInstance.instance != null)
+            {
+                int completedGames = GameInstance.instance.GetCompletedGames();
+
+                for (int i = 0; i < completedGames; i++)
+                {
+                    doors[i].SetActive(false);
+                }
+            }
+            player.Setup();
+            timer = allowedTime;
+            canPlay = true;
+        }
+
+        private void FixedUpdate()
+        {
+            if (!canPlay) return;
+            timer -= Time.fixedDeltaTime;
+            if (timer <= 0)
+            {
+                if(GameInstance.instance !=null)
+                    GameInstance.instance.GameEnd();
+            }
+        }
+
+        public void Exit()
+        {
+            if (GameInstance.instance != null)
+            {
+                GameInstance.instance.SetGameComplete(gameType);
+            }
+        }
+
+        [ContextMenu("Test")]
+        public void Test()
+        {
+            StartGame();
+        }
     }
 }

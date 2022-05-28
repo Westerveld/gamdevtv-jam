@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +9,7 @@ using UnityEngine.InputSystem;
 namespace TwinStick
 {
     [RequireComponent(typeof(TwinStickInput))]
-    public class TwinStickController : MonoBehaviour
+    public class TwinStickController : MonoBehaviour, IDamagable
     {
         public TwinStickInput input;
         public PlayerInput playerInput;
@@ -38,14 +40,27 @@ namespace TwinStick
         public UITwinStickManager ui;
 
         public float reloadSpeed = 0.1f;
+        public float healthRegenSpeed = 0.1f;
+
+        public Stat health;
+
+        public TwinStickManager tManager;
+
+        public Animator gun;
+        private static readonly int pew = Animator.StringToHash("Pew");
 
         private void Start()
         {
             rigid = GetComponent<Rigidbody>();
         }
 
-        public void SetupPlayer(float damageModifier = 1f, float speedModifier = 1f, int ammoAmount = 50)
+        public void SetupPlayer(TwinStickManager t, float damageModifier = 1f, float speedModifier = 1f, int ammoAmount = 50, int maxHealth = 100)
         {
+            tManager = t;
+            //Are we having regen in twin stick?
+            health = new Stat(maxHealth, healthRegenSpeed);
+            ui.SetPlayerMaxHealth(maxHealth);
+            ui.SetPlayerHealth(maxHealth);
             bulletDamage = baseDamage * damageModifier;
             bulletSpeed = baseSpeed * speedModifier;
             canPlay = true;
@@ -59,6 +74,12 @@ namespace TwinStick
             Move();
             Rotate();
             Shoot();
+        }
+
+        private void FixedUpdate()
+        {
+            health.RegenStat(Time.fixedDeltaTime);
+            ui.SetPlayerHealth((int)health.currentValue);
         }
 
         void Move()
@@ -106,6 +127,7 @@ namespace TwinStick
                     bulletPool.FireBullet(bulletSpawnPoint.transform.forward, bulletSpawnPoint.position,
                         bulletSpawnPoint.rotation, bulletSpeed, bulletDamage);
                     transform.position -= (bulletSpawnPoint.transform.forward * recoilAmount);
+                    gun.SetTrigger(pew);
                     ammo--;
                     ui.SetAmmoCount(ammo, maxAmmo);
                     if (ammo <= 0 )
@@ -129,5 +151,14 @@ namespace TwinStick
             ui.SetAmmoCount(ammo, maxAmmo);
         }
 
+        public void TakeDamage(float damage, Vector3 impactPoint)
+        {
+            health.RemoveStat(damage);
+
+            if (health.currentValue <= 0)
+            {
+                tManager.Died();
+            }
+        }
     }
 }

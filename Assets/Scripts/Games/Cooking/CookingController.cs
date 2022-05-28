@@ -35,6 +35,8 @@ namespace Cooking
         public GameObject currentObject;
         public InteractArea currentArea;
         public Transform holdLocation;
+
+        private bool interacting = false;
         
         
         [ContextMenu("Test")]
@@ -47,8 +49,11 @@ namespace Cooking
         {
             if (!canPlay) return;
 
-            Move();
-            Interact();
+            if (!interacting)
+            {
+                Move();
+                Interact();
+            }
         }
         
         private void Move()
@@ -62,10 +67,7 @@ namespace Cooking
             // if there is no input, set the target speed to 0
             if (input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            // a reference to the players current horizontal velocity
-            float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
 
-            float speedOffset = 0.1f;
             float inputMagnitude = input.move.magnitude;
 
             speed = targetSpeed;
@@ -93,7 +95,7 @@ namespace Cooking
 
             // move the player
             controller.Move(targetDirection.normalized * (speed * Time.deltaTime));
-
+            transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
             anim.SetFloat(animID_Speed, animationBlend);
             anim.SetFloat(animID_MotionSpeed, inputMagnitude);
         }
@@ -106,6 +108,7 @@ namespace Cooking
                 input.interact = false;
                 if (canInteractWithArea && !hasObject)
                 {
+                    interacting = true;
                     if (!hasObject)
                     {
                         anim.SetTrigger(animID_PickUp);
@@ -117,6 +120,7 @@ namespace Cooking
                 }
                 else if (hasObject)
                 {
+                    interacting = true;
                     anim.SetTrigger(animID_Drop);
                 }
             }
@@ -140,13 +144,13 @@ namespace Cooking
                     }
                 }
             }
+            interacting = false;
         }
 
         private void DisableLayer()
         {
             if (currentObject == null)
                 return;
-            StartCoroutine(BlendLayer(false));
             if (currentArea != null)
             {
                 hasObject = !currentArea.PlaceItem(currentObject);
@@ -162,6 +166,9 @@ namespace Cooking
                     currentObject.transform.parent = null;
                 }
             }
+            if(!hasObject)
+                StartCoroutine(BlendLayer(false));
+            interacting = false;
         }
 
         IEnumerator BlendLayer(bool on)

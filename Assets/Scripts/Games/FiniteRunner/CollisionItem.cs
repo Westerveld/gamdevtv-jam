@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,12 @@ namespace Runner
     {
         public bool goal = false;
 
+        public float speed;
+
+        private void FixedUpdate()
+        {
+            transform.position += Vector3.left * speed;
+        }
 
         void OnCollisionEnter(Collision col)
         {

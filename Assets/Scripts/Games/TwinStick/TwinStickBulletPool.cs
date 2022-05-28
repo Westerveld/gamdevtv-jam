@@ -32,23 +32,23 @@ namespace TwinStick
             return tmpBullet;
         }
 
-        public void FireBullet(Vector3 direction, Vector3 pos, Quaternion rotation, float speed, float damage)
+        public void FireBullet(Vector3 direction, Vector3 pos, Quaternion rotation, float speed, float damage, float range = 5f)
         {
             for (int i = 0; i < bullets.Count; i++)
             {
                 if (!bullets[i].activeSelf)
                 {
-                    FireBullet(bullets[i], direction, pos, rotation, speed, damage);
+                    FireBullet(bullets[i], direction, pos, rotation, speed, damage, range);
                     return;
                 }
             }
 
             //No inactive bullets, make a new one
-            FireBullet(CreateBullet(), direction, pos, rotation, speed, damage);
+            FireBullet(CreateBullet(), direction, pos, rotation, speed, damage, range);
         }
 
         private void FireBullet(GameObject obj, Vector3 direction, Vector3 pos, Quaternion rotation, float speed,
-            float damage)
+            float damage, float range)
         {
             obj.transform.position = pos;
             obj.transform.rotation = rotation;
@@ -57,6 +57,7 @@ namespace TwinStick
             bScript.normalisedDirection = direction.normalized;
             bScript.damage = damage;
             bScript.speed = speed;
+            bScript.bulletLifetime = range;
             obj.SetActive(true);
 
 

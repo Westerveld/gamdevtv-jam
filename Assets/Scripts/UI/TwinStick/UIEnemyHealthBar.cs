@@ -10,8 +10,8 @@ public class UIEnemyHealthBar : MonoBehaviour
 
     public Transform m_MonsterTrans;
 
-    public int m_MonsterMaxHealth;
-    public int m_MonsterHealth;
+    public float m_MonsterMaxHealth;
+    public float m_MonsterHealth;
 
     public Image m_MonsterHealthImage;
 
@@ -23,18 +23,20 @@ public class UIEnemyHealthBar : MonoBehaviour
     {
         if (m_MonsterTrans)
         {
-            transform.position = new Vector3(m_MonsterTrans.position.x, Y_Offset, m_MonsterTrans.position.z + Z_Offset);
+            transform.localPosition = new Vector3(m_MonsterTrans.position.x*100, Y_Offset, (m_MonsterTrans.position.z*100) + Z_Offset);
         }
     }   
 
-    public void SetMonsterMaxHealth(int health)
+    public void SetMonsterMaxHealth(float health)
     {
         m_MonsterMaxHealth = health;
+        SetMonsterHealth(health);
     }
 
-    public void SetMonsterHealth(int health)
+    public void SetMonsterHealth(float health)
     {
         m_MonsterHealth = health;
+        SetMonsterHealthBar();
     }
 
     public void SetMonsterTransform(Transform trans)
@@ -44,17 +46,18 @@ public class UIEnemyHealthBar : MonoBehaviour
 
     private void SetMonsterHealthBar()
     {
-        m_MonsterHealthImage.fillAmount = (float)m_MonsterHealth / (float)m_MonsterMaxHealth;
-        if(m_MonsterHealth == 0)
-        {
-            StartCoroutine(DisableHealthBar());
-        }
+        m_MonsterHealthImage.fillAmount = m_MonsterHealth / m_MonsterMaxHealth;
+    }
+
+    public void KillMonster()
+    {
+        m_MonsterTrans = null;
+        StartCoroutine(DisableHealthBar());
     }
 
     private IEnumerator DisableHealthBar()
     {
         yield return new WaitForSeconds(m_LifeTime);
-        m_MonsterTrans = null;
         gameObject.SetActive(false);
     }
 }

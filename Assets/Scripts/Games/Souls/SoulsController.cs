@@ -55,16 +55,22 @@ namespace Souls
         public float attackStaminaUsage = 20f;
         public float attackDamage = 5f;
         public float dodgeStaminaUsage = 15f;
+        public float sprintStaminaDrain = 0.1f;
 
 
         public bool canPlay = false;
 
         public Weapon weapon;
 
+        public UISoulsManager m_UISoulsManager;
+
         public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed)
         {
             health = new Stat(maxHealth, healthRegenSpeed);
             stamina = new Stat(maxStamina, staminaRegenSpeed);
+
+            m_UISoulsManager.SetPlayerMaxHealth(maxHealth);
+            m_UISoulsManager.SetPlayerMaxStamina(maxStamina);
 
             canPlay = true;
             weapon.Setup(attackDamage);
@@ -73,7 +79,11 @@ namespace Souls
         // Update is called once per frame
         void Update()
         {
-            if (!canPlay) return;
+            if (!canPlay)
+            {
+                ResetInput();
+                return;
+            }
             if(!isAttacking && !isDodging) 
                 Move();
             Jump();
@@ -81,6 +91,11 @@ namespace Souls
             Dodge();
         }
 
+        void ResetInput()
+        {
+            input.attack = input.sprint = input.dodge = input.jump = false;
+            input.move = Vector2.zero;
+        }
         private void FixedUpdate()
         {
             if (!canPlay) return;
@@ -94,6 +109,7 @@ namespace Souls
             //Regen
             //health.RegenStat(Time.fixedDeltaTime);
             stamina.RegenStat(Time.fixedDeltaTime);
+            m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
         }
 
         private void LateUpdate()
@@ -104,7 +120,13 @@ namespace Souls
         void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = input.sprint ? sprintSpeed : moveSpeed;
+            float targetSpeed = moveSpeed;
+            if (stamina.currentValue > 0 && input.sprint)
+            {
+                targetSpeed = sprintSpeed;
+                stamina.RemoveStat(sprintStaminaDrain);
+                m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
+            }
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -115,25 +137,7 @@ namespace Souls
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
 
-            float speedOffset = 0.1f;
-            float inputMagnitude = input.move.magnitude;
 
-            // accelerate or decelerate to target speed
-            /*if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-                currentHorizontalSpeed > targetSpeed + speedOffset)
-            {
-                // creates curved result rather than a linear one giving a more organic speed change
-                // note T in Lerp is clamped, so we don't need to clamp our speed
-                speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                    Time.deltaTime * speedChangeRate);
-
-                // round speed to 3 decimal places
-                speed = Mathf.Round(speed * 1000f) / 1000f;
-            }
-            else
-            {
-                speed = targetSpeed;
-            }*/
             speed = targetSpeed;
 
             animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * speedChangeRate);
@@ -170,7 +174,6 @@ namespace Souls
             {
                 if (stamina.currentValue >= attackStaminaUsage)
                 {
-                    stamina.RemoveStat(attackStaminaUsage);
                     anim.SetBool(animID_Attack, true);
                     isAttacking = true;
                     queuedAttack = false;
@@ -205,6 +208,7 @@ namespace Souls
                 if (!isDodging && stamina.currentValue > dodgeStaminaUsage)
                 {
                     stamina.RemoveStat(dodgeStaminaUsage);
+                    m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
                     isDodging = true;
                     if (input.move.y > deadzone)
                     {
@@ -235,6 +239,8 @@ namespace Souls
             //ToDo: Turn on weapon collision
             isDodging = false;
             weapon.AttackOn();
+            stamina.RemoveStat(attackStaminaUsage);
+            m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
         }
 
         void AttackOff()
@@ -279,6 +285,7 @@ namespace Souls
             
             anim.SetTrigger(Random.value > 0.5f ? animID_Hit1 : animID_Hit2);
             health.RemoveStat(damage, 0.5f);
+            m_UISoulsManager.SetPlayerHealth(health.currentValue);
             if (health.currentValue <= 0)
             {
                 soulsManager.PlayerDied();

@@ -25,11 +25,13 @@ namespace Cooking
         public List<GameObject> activeIngredients = new List<GameObject>();
 
         public UIMixerObjects m_UIMixerObject;
+        public AudioSource audio;
         public void Setup()
         {
             currentMix = new MixData();
             currentMix.ingredients = new List<IngredientType>();
             canPlay = true;
+            audio = GetComponent<AudioSource>();
         }
         
         public void AddIngredient(IngredientType type)
@@ -72,7 +74,7 @@ namespace Cooking
             return tmp;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (!canPlay) return;
 
@@ -84,16 +86,20 @@ namespace Cooking
                 {
                     currentMix.mixed = true;
                     m_UIMixerObject.MixerReady();
+                    //audio.Stop();
                 }
+                
+                //if(!audio.isPlaying)
+                    //audio.Play();
                 mixingLocation.Rotate(new Vector3( 1,1,0), mixSpeed);
             }
         }
 
         public override bool PlaceItem(GameObject item)
         {
-            m_UIMixerObject.StartTimer();
             if (item.GetComponent<Ingredient>())
             {
+                m_UIMixerObject.StartTimer();
                 AddIngredient(item.GetComponent<Ingredient>().type);
                 player.currentObject = null;
                 item.transform.parent = mixingLocation;
@@ -105,6 +111,7 @@ namespace Cooking
             }
             if (item.GetComponent<MixedIngredients>())
             {
+                m_UIMixerObject.StartTimer();
                 if (!item.GetComponent<MixedIngredients>().mixData.mixed)
                 {
                     SetupIngredients(item);
@@ -119,6 +126,8 @@ namespace Cooking
 
         public override GameObject GetItem(Transform parent)
         {
+            if (currentMix.ingredients.Count == 0)
+                return null;
             return TakeFromMixer(parent);
         }
 

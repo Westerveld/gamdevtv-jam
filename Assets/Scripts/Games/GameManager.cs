@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public virtual void StartGame(float value1 = 0f, float value2 = 0f)
     {
-        
+        UIMasterGameManager.instance.SetIcon(gameType);
     }
     
 }
