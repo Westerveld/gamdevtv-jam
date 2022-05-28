@@ -15,6 +15,10 @@ namespace Runner
         private void FixedUpdate()
         {
             transform.position += Vector3.left * speed;
+            if (transform.position.x < -20f)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         void OnCollisionEnter(Collision col)
@@ -31,6 +35,11 @@ namespace Runner
                     //Game Over
                     RunnerManager.instance.LostGame();
                 }
+                gameObject.SetActive(false);
+            }
+
+            if (col.gameObject.layer == LayerMask.NameToLayer("Boss"))
+            {
                 gameObject.SetActive(false);
             }
         }

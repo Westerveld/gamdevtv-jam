@@ -328,7 +328,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613652539}
-  m_LocalRotation: {x: 0.16342328, y: 0.28491133, z: -0.04936355, w: 0.9432294}
+  m_LocalRotation: {x: 0.16342327, y: 0.28491127, z: -0.049363524, w: 0.9432294}
   m_LocalPosition: {x: -7.1, y: 2.71, z: -3.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -705,7 +705,7 @@ MonoBehaviour:
   gameType: 2
   player: {fileID: 825105492}
   belt: {fileID: 1919574178}
-  distanceToCompleteGame: 500
+  distanceToCompleteGame: 200
   speedIncrease: 0.1
   speedLimit:
     min: 0.2
@@ -933,7 +933,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973282758}
-  m_LocalRotation: {x: 0.16342328, y: 0.28491133, z: -0.04936355, w: 0.9432294}
+  m_LocalRotation: {x: 0.16342327, y: 0.28491127, z: -0.049363524, w: 0.9432294}
   m_LocalPosition: {x: -7.1, y: 2.71, z: -3.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

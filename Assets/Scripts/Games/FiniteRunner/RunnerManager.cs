@@ -69,7 +69,7 @@ namespace Runner
                         
                 }
             }
-            if (currentDistance % 15 == 0)
+            if (currentDistance % 5 == 0)
             {
                 currSpeed = Mathf.Min(currSpeed + speedIncrease, speedLimit.max);
             }
