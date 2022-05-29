@@ -53,7 +53,31 @@ public class GameInstance : MonoBehaviour
             volume.profile.TryGet(out lens);
             if (currentGame != null)
             {
-                currentGame.StartGame();
+                switch (currentGame.gameType)
+                {
+                    case GameType.Cooking:
+                        currentGame.StartGame(data.ordersFilled);
+                        break;
+                    case GameType.Dating:
+                        currentGame.StartGame(data.currentCharm);
+                        break;
+                    case GameType.Runner:
+                        currentGame.StartGame(data.distance);
+                        break;
+                    case GameType.Maze:
+                        currentGame.StartGame();
+                        break;
+                    case GameType.Souls:
+                        currentGame.StartGame(data.currentBossHealth);
+                        break;
+                    case GameType.TurnBased:
+                        currentGame.StartGame();
+                        break;
+                    case GameType.TwinStick:
+                        currentGame.StartGame(data.killedEnemies);
+                        break;
+                }
+
             }
         }
         else
@@ -120,6 +144,7 @@ public class GameInstance : MonoBehaviour
         switch (type)
         {
             case GameType.Cooking:
+                data.ordersFilled = (int)val1;
                 break;
             case GameType.Dating:
                 data.currentCharm = val1;
@@ -129,10 +154,12 @@ public class GameInstance : MonoBehaviour
             case GameType.Maze:
                 break;
             case GameType.Souls:
+                data.currentBossHealth = (int)val1;
                 break;
             case GameType.TurnBased:
                 break;
             case GameType.TwinStick:
+                data.killedEnemies = (int)val1;
                 break;
         }
     }
@@ -159,10 +186,12 @@ public class PersistantData
     //Souls
     public float currentBossHealth = 0f;
     
-    
     //TwinStick
     public int killedEnemies;
 
     //Cooking
     public int ordersFilled;
+    
+    //Runner
+    public int distance;
 }
