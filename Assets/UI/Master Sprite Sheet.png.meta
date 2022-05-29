@@ -236,6 +236,15 @@ TextureImporter:
   - first:
       213: -8226078695535663601
     second: Deck Builder - Defence Bar Shield
+  - first:
+      213: 7064102858669428094
+    second: Main Menu - Background
+  - first:
+      213: -4076589781351689724
+    second: Mainn Menu - Title Background
+  - first:
+      213: -5231725714261562572
+    second: Main Menu Button Background
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1824,7 +1833,7 @@ TextureImporter:
         width: 353
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1845,7 +1854,7 @@ TextureImporter:
         width: 349
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1866,7 +1875,7 @@ TextureImporter:
         width: 353
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1887,7 +1896,7 @@ TextureImporter:
         width: 349
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1908,7 +1917,7 @@ TextureImporter:
         width: 365
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1929,7 +1938,7 @@ TextureImporter:
         width: 349
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1950,7 +1959,7 @@ TextureImporter:
         width: 79
         height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1958,6 +1967,69 @@ TextureImporter:
       bones: []
       spriteID: f062032920917dd80800000000000000
       internalID: -8226078695535663601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Menu - Background
+      rect:
+        serializedVersion: 2
+        x: 2043
+        y: 1799
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7d00db6f1cb80260800000000000000
+      internalID: 7064102858669428094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mainn Menu - Title Background
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 2422
+        width: 566
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4029b8b413b0d67c0800000000000000
+      internalID: -4076589781351689724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Menu Button Background
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 2573
+        width: 332
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ba9278e2d2567b0800000000000000
+      internalID: -5231725714261562572
       vertices: []
       indices: 
       edges: []
