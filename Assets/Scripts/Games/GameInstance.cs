@@ -33,6 +33,8 @@ public class GameInstance : MonoBehaviour
     private List<string> nextScenes = new List<string>();
     Random rand = new Random();
 
+    public AudioClip gameSwap;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -111,6 +113,7 @@ public class GameInstance : MonoBehaviour
 
     public void GameEnd()
     {
+        AudioManager.instance?.PlaySFX(gameSwap);
         //ToDo: Choose new scene to load, ignoring all completed games
         StartCoroutine(EffectsThenLeave());
     }

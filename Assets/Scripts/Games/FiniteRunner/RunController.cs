@@ -19,6 +19,8 @@ namespace Runner
         private int animID_jump = Animator.StringToHash("Jump");
 
         private int animID_slide = Animator.StringToHash("Slide");
+
+        public AudioClip jumpSFX, slideSFX;
         
         // Start is called before the first frame update
         void Start()
@@ -45,6 +47,7 @@ namespace Runner
 
             if (input.jump)
             {
+                AudioManager.instance?.PlaySFX(jumpSFX);
                 input.jump = false;
                 anim.SetTrigger(animID_jump);
                 canDoAction = false;
@@ -56,6 +59,7 @@ namespace Runner
 
             if (input.slide)
             {
+                AudioManager.instance?.PlaySFX(slideSFX);
                 canDoAction = false;
                 input.slide = false;
                 anim.SetTrigger(animID_slide);

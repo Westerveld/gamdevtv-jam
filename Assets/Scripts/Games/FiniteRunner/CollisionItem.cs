@@ -11,6 +11,7 @@ namespace Runner
         public bool goal = false;
 
         public float speed;
+        public AudioClip hit;
 
         private void FixedUpdate()
         {
@@ -32,6 +33,7 @@ namespace Runner
                 }
                 else
                 {
+                    AudioManager.instance?.PlaySFX(hit);
                     //Game Over
                     RunnerManager.instance.LostGame();
                 }
