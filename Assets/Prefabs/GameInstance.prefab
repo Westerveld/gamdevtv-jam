@@ -104,8 +104,11 @@ MonoBehaviour:
   data:
     currentCharm: 0
     currentBossHealth: 0
+    currentMonsterHealth: 0
     killedEnemies: 0
     ordersFilled: 0
+    distance: 0
+  gameSwap: {fileID: 8300000, guid: f254db58bbc8f7c4ebfc73445b57adc0, type: 3}
 --- !u!114 &1079095808
 MonoBehaviour:
   m_ObjectHideFlags: 0

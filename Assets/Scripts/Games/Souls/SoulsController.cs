@@ -64,6 +64,9 @@ namespace Souls
 
         public UISoulsManager m_UISoulsManager;
 
+
+        public AudioClip[] attackSFX, damageSFX;
+        public AudioClip slideSFX;
         public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed)
         {
             health = new Stat(maxHealth, healthRegenSpeed);
@@ -207,6 +210,7 @@ namespace Souls
                 input.dodge = false;
                 if (!isDodging && stamina.currentValue > dodgeStaminaUsage)
                 {
+                    AudioManager.instance?.PlaySFX(slideSFX);
                     stamina.RemoveStat(dodgeStaminaUsage);
                     m_UISoulsManager.SetPlayerStamina(stamina.currentValue);
                     isDodging = true;
@@ -236,7 +240,7 @@ namespace Souls
 
         void AttackOn()
         {
-            //ToDo: Turn on weapon collision
+            AudioManager.instance.PlaySFX(attackSFX[Random.Range(0, attackSFX.Length)]);            
             isDodging = false;
             weapon.AttackOn();
             stamina.RemoveStat(attackStaminaUsage);
@@ -282,7 +286,7 @@ namespace Souls
                 //ToDo: vfx for dodging?
                 return;
             }
-            
+            AudioManager.instance?.PlaySFX(damageSFX[Random.Range(0, damageSFX.Length)]);
             anim.SetTrigger(Random.value > 0.5f ? animID_Hit1 : animID_Hit2);
             health.RemoveStat(damage, 0.5f);
             m_UISoulsManager.SetPlayerHealth(health.currentValue);

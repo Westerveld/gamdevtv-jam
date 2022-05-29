@@ -25,13 +25,12 @@ namespace Cooking
         public List<GameObject> activeIngredients = new List<GameObject>();
 
         public UIMixerObjects m_UIMixerObject;
-        public AudioSource audio;
+        public AudioClip place, complete;
         public void Setup()
         {
             currentMix = new MixData();
             currentMix.ingredients = new List<IngredientType>();
             canPlay = true;
-            audio = GetComponent<AudioSource>();
         }
         
         public void AddIngredient(IngredientType type)
@@ -86,12 +85,11 @@ namespace Cooking
                 {
                     currentMix.mixed = true;
                     m_UIMixerObject.MixerReady();
-                    //audio.Stop();
+                    AudioManager.instance?.PlaySFX(complete);
+                
                 }
                 
-                //if(!audio.isPlaying)
-                    //audio.Play();
-                mixingLocation.Rotate(new Vector3( 1,1,0), mixSpeed);
+                mixingLocation.Rotate(new Vector3( 0.1f,1,0), mixSpeed);
             }
         }
 
@@ -99,11 +97,12 @@ namespace Cooking
         {
             if (item.GetComponent<Ingredient>())
             {
+                AudioManager.instance?.PlaySFX(place);
                 m_UIMixerObject.StartTimer();
                 AddIngredient(item.GetComponent<Ingredient>().type);
                 player.currentObject = null;
                 item.transform.parent = mixingLocation;
-                item.transform.localPosition = Random.insideUnitSphere * 0.5f;
+                item.transform.localPosition = Random.insideUnitSphere * 0.1f;
                 item.GetComponent<Ingredient>().rigid.isKinematic = true;
                 item.GetComponent<Ingredient>().col.enabled = false;
                 activeIngredients.Add(item);
@@ -111,6 +110,7 @@ namespace Cooking
             }
             if (item.GetComponent<MixedIngredients>())
             {
+                AudioManager.instance?.PlaySFX(place);
                 m_UIMixerObject.StartTimer();
                 if (!item.GetComponent<MixedIngredients>().mixData.mixed)
                 {

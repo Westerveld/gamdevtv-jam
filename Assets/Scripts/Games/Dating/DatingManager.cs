@@ -7,7 +7,6 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Dating
-
 {
     public class DatingManager : GameManager
     {
@@ -32,6 +31,8 @@ namespace Dating
         private System.Random rand = new System.Random();
 
         public DatingController player;
+
+        public AudioClip gameWon;
 
         public override void StartGame(float value1 = 0f, float value2 = 0f)
         {
@@ -105,16 +106,19 @@ namespace Dating
 
             if (currentCharm >= 100)
             {
+                AudioManager.instance?.PlaySFX(gameWon);
                 GameInstance.instance.SetGameComplete(gameType);
             }
-
-            if (currentQ >= currentQuestions.Length)
+            else
             {
-                currentQuestions = questions.OrderBy(x => rand.Next()).ToArray();
-                currentQ = 0;
-            }
+                if (currentQ >= currentQuestions.Length)
+                {
+                    currentQuestions = questions.OrderBy(x => rand.Next()).ToArray();
+                    currentQ = 0;
+                }
 
-            StartTurn();
+                StartTurn();
+            }
         }
 
         IEnumerator ResultThenDeduction()

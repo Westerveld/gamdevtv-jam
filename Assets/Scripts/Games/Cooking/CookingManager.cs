@@ -33,6 +33,7 @@ namespace Cooking
         public UICookingManager m_UICookingManager;
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
+            base.StartGame(value1, value2);
             ordersFilled = (int)value1;
             activeOrders = new Recipe[3];
             player.Setup();
@@ -75,6 +76,7 @@ namespace Cooking
             
             for (int i = 0; i < activeOrders.Length; ++i)
             {
+                if (activeOrders[i] == null) continue;
                 if (activeOrders[i].name == null) continue;
                 activeOrders[i].timer += Time.fixedDeltaTime;
 
@@ -125,11 +127,6 @@ namespace Cooking
         }
 
         
-        [ContextMenu("Test")]
-        void Test()
-        {
-            StartGame();
-        }
     }
 
     [Serializable]

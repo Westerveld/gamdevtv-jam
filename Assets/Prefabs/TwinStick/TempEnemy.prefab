@@ -124,6 +124,21 @@ MonoBehaviour:
   health:
     currentValue: 110
     regenTimer: 0
+  hitFX: {fileID: 0}
+  deathFX: {fileID: 0}
+  bullets: {fileID: 0}
+  shotInterval: 4
+  bulletSpeed: 5
+  bulletDamage: 6
+  shootingRange: 50
+  bulletRange: 0
+  maxDistToPlayer: 5
+  m_HealthBar: {fileID: 0}
+  timeTilMoving: 5
+  moveTimer: 0
+  hitClip: {fileID: 8300000, guid: d98b24b416fcb374fb4ab1b87b6c026f, type: 3}
+  deathClip: {fileID: 8300000, guid: f5acab1dbefcb154b8b7418ec01dbadb, type: 3}
+  shootClip: {fileID: 8300000, guid: 5d5cec29102a2ed40ba2c23920f074a1, type: 3}
 --- !u!136 &4542429968243928939
 CapsuleCollider:
   m_ObjectHideFlags: 0
