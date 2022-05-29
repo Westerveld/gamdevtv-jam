@@ -2723,8 +2723,26 @@ MonoBehaviour:
     - Wedges
     - Chips
     - Jacket Potato
+  - questionText: What is the speed of sound?
+    correctAnswer: 1,200 km/h
+    fakeAnswers:
+    - 120 km/h
+    - 400 km/h
+    - 700 km/h
+  - questionText: How long did it take me to come up with these questions?
+    correctAnswer: 12 hours
+    fakeAnswers:
+    - 4 hours
+    - 40 minutes
+    - 80 minutes
+  - questionText: Two ducks walk into a bar, how many ducks are there?
+    correctAnswer: Two
+    fakeAnswers:
+    - 2wo
+    - TWo
+    - Tw0
   player: {fileID: 1489848581}
-  gameWon: {fileID: 0}
+  gameWon: {fileID: 8300000, guid: 831cb5a24e0537642ab8b9f4a68c8ba5, type: 3}
 --- !u!4 &1679718092
 Transform:
   m_ObjectHideFlags: 0
