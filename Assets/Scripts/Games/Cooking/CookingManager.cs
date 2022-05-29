@@ -125,11 +125,6 @@ namespace Cooking
         }
 
         
-        [ContextMenu("Test")]
-        void Test()
-        {
-            StartGame();
-        }
     }
 
     [Serializable]

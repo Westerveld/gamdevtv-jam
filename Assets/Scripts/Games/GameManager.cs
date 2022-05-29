@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
         AudioManager.instance?.StartGameAudio(gameType);
     }
     
+    [ContextMenu("Test")]
+    void Test()
+    {
+        StartGame();
+    }
 }
 
 public enum GameType
