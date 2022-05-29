@@ -15,7 +15,7 @@ namespace Souls
         {
             base.StartGame();
             boss.Setup(value1, this);
-            player.SetupPlayer(100f,100f,0.5f,10.0f);
+            player.SetupPlayer(100f,100f,0.5f,12.5f, this);
         }
 
         // Update is called once per frame

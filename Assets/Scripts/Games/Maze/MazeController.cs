@@ -37,8 +37,10 @@ namespace Maze
 
         public Stat sprintStamina;
 
-        public TMP_Text staminaText; 
-        public void Setup(float maxSprintStamina = 100f, float sprintRegenSpeed = 5f)
+        public TMP_Text staminaText;
+
+        private GameManager manager;
+        public void Setup(GameManager manager, float maxSprintStamina = 100f, float sprintRegenSpeed = 5f)
         {
             canPlay = true;
             sprintStamina = new Stat(maxSprintStamina, sprintRegenSpeed);
@@ -134,6 +136,14 @@ namespace Maze
         void OnFootstep()
         {
             
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Door"))
+            {
+                manager.EndGame();
+            }
         }
     }
 }

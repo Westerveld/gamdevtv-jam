@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     {
         StartGame();
     }
+
+    public virtual void EndGame()
+    {
+        
+    }
 }
 
 public enum GameType

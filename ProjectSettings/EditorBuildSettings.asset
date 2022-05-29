@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Failed.unity
     guid: bb1105db83e8e354fa976f693768426e
+  - enabled: 1
+    path: Assets/Scenes/Winner.unity
+    guid: bd6aeaacb1d95c045b5ba7161d4a061c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

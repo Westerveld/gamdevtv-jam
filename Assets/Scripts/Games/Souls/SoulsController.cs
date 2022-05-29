@@ -67,8 +67,9 @@ namespace Souls
 
         public AudioClip[] attackSFX, damageSFX;
         public AudioClip slideSFX;
-        public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed)
+        public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed, SoulsManager m)
         {
+            soulsManager = m;
             health = new Stat(maxHealth, healthRegenSpeed);
             stamina = new Stat(maxStamina, staminaRegenSpeed);
 

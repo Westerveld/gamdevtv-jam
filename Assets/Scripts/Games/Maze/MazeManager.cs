@@ -23,7 +23,7 @@ namespace Maze
                     doors[i].SetActive(false);
                 }
             }
-            player.Setup();
+            player.Setup(this);
             timer = allowedTime;
             canPlay = true;
         }

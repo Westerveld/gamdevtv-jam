@@ -24,7 +24,12 @@ namespace Cooking
         {
             for (int i = 0; i < cManager.activeOrders.Length; ++i)
             {
-                if (cManager.activeOrders[i].name == null || cManager.activeOrders[i].name == "")
+                if(cManager.activeOrders[i] == null)
+                {
+                    cManager.activeOrders[i] = newRecipe;
+                    return;
+                }
+                else if (string.IsNullOrEmpty(cManager.activeOrders[i].name))
                 {
                     cManager.activeOrders[i] = newRecipe;
                     return;
