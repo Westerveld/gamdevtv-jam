@@ -1712,7 +1712,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8348050283676613036}
-  m_LocalRotation: {x: -0, y: -0.6889235, z: -0, w: 0.7248342}
+  m_LocalRotation: {x: 0, y: -0.6889241, z: 0, w: 0.72483355}
   m_LocalPosition: {x: 2.4178467, y: 0, z: -6.1263175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1734,7 +1734,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 4aa543504cb0f44429e25897a1736058, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1752,6 +1752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55d78657b03b7d43afc24baf836691c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UITurnBasedManager: {fileID: 0}
   m_MaxHealth: 40
   m_Health: 0
   m_Armour: 0

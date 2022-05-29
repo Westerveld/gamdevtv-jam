@@ -42,6 +42,7 @@ public class TBPlayer : MonoBehaviour
         ShuffleDeck();
         m_MaxHealth = health;
         m_Health = m_MaxHealth;
+        m_UITurnBasedManager.SetPlayerHealthAmount(m_Health, m_MaxHealth);
         SetEnergy(energy);
         for(int i = 0; i < 5; i++)
         {
@@ -52,8 +53,17 @@ public class TBPlayer : MonoBehaviour
     public void TakeDamage(int damage)
     {
         anim.SetTrigger(animID_Hit);
+        if (m_Armour > 0)
+        {
+            int tmpDmg = damage;
+            damage -= m_Armour;
+            DecreaseArmour(tmpDmg);
+            if (damage <= 0)
+                return;
+        }
         m_Health -= damage;
-        if(m_Health <= 0 && !dying)
+        m_UITurnBasedManager.SetPlayerHealthAmount(m_Health, m_MaxHealth);
+        if (m_Health <= 0 && !dying)
         {
             dying = true;
             anim.SetTrigger(animID_Die);
@@ -103,7 +113,11 @@ public class TBPlayer : MonoBehaviour
             }
             else
             {
-                m_PlayerDeck = m_UsedCards;
+                for(int i = 0; i < m_UsedCards.Count; i++)
+                {
+                    m_PlayerDeck.Add(m_UsedCards[i]);
+
+                }
                 m_UsedCards.Clear();
                 ShuffleDeck();
                 m_PlayerHand.Add(m_PlayerDeck[0]);
@@ -111,6 +125,17 @@ public class TBPlayer : MonoBehaviour
                 m_PlayerDeck.RemoveAt(0);
             }
         }
+    }
+
+    public void NewTurn(int energyVal)
+    {
+        int len = 5 - m_PlayerHand.Count;
+        for(int i = 0; i < len; i++)
+        {
+            DrawCard();
+        }
+        IncreaseEnergy(energyVal);
+        ResetArmour();
     }
 
     public void UseCardFromHand(int CardUsed)
@@ -140,10 +165,23 @@ public class TBPlayer : MonoBehaviour
     public void ResetArmour()
     {
         m_Armour = 0;
+        m_UITurnBasedManager.RemovePlayerArmour();
     }
+
+    public void DecreaseArmour(int value)
+    {
+        m_Armour -= value;
+        m_UITurnBasedManager.SetPlayerArmour(m_Armour);
+        if (m_Armour <= 0)
+        {
+            ResetArmour();
+        }
+    }
+
     public void IncreaseArmour(int value)
     {
         m_Armour += value;
+        m_UITurnBasedManager.SetPlayerArmour(m_Armour);
     }
 
     public void UseCard(CardData card)

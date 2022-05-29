@@ -35,11 +35,13 @@ namespace TurnBased
 
             //need to use persistent data to set monster health
             m_Monster.SetUpMonster((int)value1);
+            m_Monster.GetMonsterDecision();
+            m_CurrentTurn = CurrentTurn.PlayerTurn;
         }
 
         public void UseCard(int CardIndex)
         {
-            if (m_Player.m_Energy >= m_Player.m_PlayerHand[CardIndex].m_EnergyCost)
+            if (m_Player.m_Energy >= m_Player.m_PlayerHand[CardIndex].m_EnergyCost && m_CurrentTurn == CurrentTurn.PlayerTurn)
             {
                 m_UITurnedBasedManager.UpdateOnRemovedCard(CardIndex);
                 m_Player.UseCardFromHand(CardIndex);
@@ -49,6 +51,30 @@ namespace TurnBased
         public void SavePersistentData()
         {
             GameInstance.instance.SetPersistantData(gameType, m_Monster.m_Health);
+        }
+
+        //called by unity event
+        public void EndTurn()
+        {
+            m_CurrentTurn = CurrentTurn.MonsterTurn;
+            RunEnemyTurn();
+        }
+
+        public void RunEnemyTurn()
+        {
+            m_Monster.ActTurn();
+        }
+
+        public void EndEnemyTurn()
+        {
+            m_Player.NewTurn(5);
+            m_CurrentTurn = CurrentTurn.PlayerTurn;
+            m_Monster.GetMonsterDecision();
+        }
+
+        public void CompleteGame()
+        {
+            GameInstance.instance.SetGameComplete(gameType);
         }
     }
 
