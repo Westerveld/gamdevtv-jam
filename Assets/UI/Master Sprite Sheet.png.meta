@@ -245,6 +245,21 @@ TextureImporter:
   - first:
       213: -5231725714261562572
     second: Main Menu Button Background
+  - first:
+      213: -3795373443175108889
+    second: Deck Builder - Deck Icon
+  - first:
+      213: -7584402104513714447
+    second: Deck Builder - Hand
+  - first:
+      213: -5973530486745770742
+    second: Deck Builder - Graveyard
+  - first:
+      213: 6561368219207158048
+    second: Deck Builder - End Turn
+  - first:
+      213: 8649334908611409354
+    second: Deck Builder - Opponent Turn
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1980,7 +1995,7 @@ TextureImporter:
         width: 1920
         height: 1080
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2001,7 +2016,7 @@ TextureImporter:
         width: 566
         height: 211
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2022,7 +2037,7 @@ TextureImporter:
         width: 332
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2030,6 +2045,111 @@ TextureImporter:
       bones: []
       spriteID: 43ba9278e2d2567b0800000000000000
       internalID: -5231725714261562572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deck Builder - Deck Icon
+      rect:
+        serializedVersion: 2
+        x: 3261
+        y: 3477
+        width: 84
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eea89156ff145bc0800000000000000
+      internalID: -3795373443175108889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deck Builder - Hand
+      rect:
+        serializedVersion: 2
+        x: 3389
+        y: 3476
+        width: 68
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f62cb6487aceb690800000000000000
+      internalID: -7584402104513714447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deck Builder - Graveyard
+      rect:
+        serializedVersion: 2
+        x: 3496
+        y: 3476
+        width: 81
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a055d82eba1c91da0800000000000000
+      internalID: -5973530486745770742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deck Builder - End Turn
+      rect:
+        serializedVersion: 2
+        x: 3644
+        y: 3476
+        width: 94
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 029416ab1a9ae0b50800000000000000
+      internalID: 6561368219207158048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deck Builder - Opponent Turn
+      rect:
+        serializedVersion: 2
+        x: 3782
+        y: 3477
+        width: 120
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac53b23f54c980870800000000000000
+      internalID: 8649334908611409354
       vertices: []
       indices: 
       edges: []
