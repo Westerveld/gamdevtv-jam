@@ -1115,7 +1115,7 @@ GameObject:
   - component: {fileID: 435665339}
   - component: {fileID: 435665338}
   m_Layer: 0
-  m_Name: Cube (5)
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2121,7 +2121,7 @@ GameObject:
   - component: {fileID: 1174230524}
   - component: {fileID: 1174230523}
   m_Layer: 0
-  m_Name: Cube (6)
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2575,6 +2575,49 @@ MonoBehaviour:
     max: -0.2
   distortion: {fileID: 0}
   bloom: {fileID: 0}
+  bloomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 25.06823
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.5
+      value: 28.954943
+      inSlope: -1.7491964
+      outSlope: -1.7491964
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.07862991
+    - serializedVersion: 3
+      time: 3.000442
+      value: 23.735775
+      inSlope: -2.645998
+      outSlope: -2.645998
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.061031032
+    - serializedVersion: 3
+      time: 25
+      value: 0
+      inSlope: 0.000012650315
+      outSlope: 0.000012650315
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11158273
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  door: {fileID: 435665341}
 --- !u!1 &1297386178
 GameObject:
   m_ObjectHideFlags: 0
