@@ -16,12 +16,21 @@ public class TBPlayer : MonoBehaviour
     public List<CardData> m_PlayerHand;
     public List<CardData> m_UsedCards;
 
+    public Animator anim;
+    private bool dying = false;
+    private static readonly int animID_Die = Animator.StringToHash("Die");
+    private static readonly int animID_Block = Animator.StringToHash("Block");
+    private static readonly int animID_Attack = Animator.StringToHash("Attack");
+    private static readonly int animID_Effect = Animator.StringToHash("Effect");
+    private static readonly int animID_Hit = Animator.StringToHash("Hit");
+
     // Start is called before the first frame update
     void Start()
     {
         m_PlayerDeck = new List<CardData>();
         m_PlayerHand = new List<CardData>();
         m_UsedCards = new List<CardData>();
+        anim = GetComponent<Animator>();
     }
 
     public void SetUpPlayer(List<Card> deck,int health, int energy)
@@ -42,15 +51,20 @@ public class TBPlayer : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        anim.SetTrigger(animID_Hit);
         m_Health -= damage;
-        if(m_Health <= 0)
+        if(m_Health <= 0 && !dying)
         {
-            Die();
+            dying = true;
+            anim.SetTrigger(animID_Die);
+            StartCoroutine(WaitAndDie());
         }
     }
 
-    public void Die()
+    IEnumerator WaitAndDie()
     {
+        //Wait for animation
+        yield return new WaitForSeconds(2f);
         //save monster persistent health
         m_TurnBasedManager.SavePersistentData();
         //move onto next game
@@ -137,12 +151,15 @@ public class TBPlayer : MonoBehaviour
         switch (card.m_CardType)
         {
             case CardType.Attack:
+                anim.SetTrigger(animID_Attack);
                 m_TurnBasedManager.m_Monster.TakeDamage(card.m_ValueCost);
                 break;
             case CardType.Defence:
+                anim.SetTrigger(animID_Block);
                 IncreaseArmour(card.m_ValueCost);
                 break;
             case CardType.EffectOnly:
+                anim.SetTrigger(animID_Effect);
                 break;
             default:
                 break;
