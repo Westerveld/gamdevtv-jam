@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 56238b9f0853cf340b4c52b3ce642c5e
+guid: e97474f8f1c76f64f984c3645ba245cd
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -45,7 +45,7 @@ ModelImporter:
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
