@@ -260,6 +260,9 @@ TextureImporter:
   - first:
       213: 8649334908611409354
     second: Deck Builder - Opponent Turn
+  - first:
+      213: -1699542142167183961
+    second: Top Down - Bullet
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2058,7 +2061,7 @@ TextureImporter:
         width: 84
         height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2079,7 +2082,7 @@ TextureImporter:
         width: 68
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2100,7 +2103,7 @@ TextureImporter:
         width: 81
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2121,7 +2124,7 @@ TextureImporter:
         width: 94
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2142,7 +2145,7 @@ TextureImporter:
         width: 120
         height: 94
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2150,6 +2153,27 @@ TextureImporter:
       bones: []
       spriteID: ac53b23f54c980870800000000000000
       internalID: 8649334908611409354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Top Down - Bullet
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 3388
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad815f1d630a68e0800000000000000
+      internalID: -1699542142167183961
       vertices: []
       indices: 
       edges: []
