@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DefenceDog
   m_EditorClassIdentifier: 
   m_CardType: 1
-  m_Title: DefenceDoggo
+  m_Title: Defence Raccoon
   m_Description: Doggo Attacks
   m_EnergyCost: 1
   m_Value: 3
-  m_Sprite: {fileID: 21300000, guid: 441246a3b7732514caedbbd04014cda3, type: 3}
+  m_Sprite: {fileID: 4343511086260048467, guid: 1a696c6ad7daee54d892cd1c687acd5e,
+    type: 3}

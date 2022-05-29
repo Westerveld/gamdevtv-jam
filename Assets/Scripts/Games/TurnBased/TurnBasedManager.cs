@@ -17,6 +17,9 @@ namespace TurnBased
         public TBMonster m_Monster;
         public CurrentTurn m_CurrentTurn;
 
+        public int m_PlayerMaxHealth;
+        public int m_PlayerEnergy;
+
         public List<Card> m_PlayerDeck;
 
         public void PlayCard(int number)
@@ -24,9 +27,28 @@ namespace TurnBased
             Debug.Log($"Playing card {number}");
         }
 
-        private void Start()
+        public override void StartGame(float value1 = 0, float value2 = 0)
         {
-            m_Player.SetUpPlayer(m_PlayerDeck, 10, 5);
+            base.StartGame(value1, value2);
+
+            m_Player.SetUpPlayer(m_PlayerDeck, m_PlayerMaxHealth, m_PlayerEnergy);
+
+            //need to use persistent data to set monster health
+            m_Monster.SetUpMonster((int)value1);
+        }
+
+        public void UseCard(int CardIndex)
+        {
+            if (m_Player.m_Energy >= m_Player.m_PlayerHand[CardIndex].m_EnergyCost)
+            {
+                m_UITurnedBasedManager.UpdateOnRemovedCard(CardIndex);
+                m_Player.UseCardFromHand(CardIndex);
+            }
+        }
+
+        public void SavePersistentData()
+        {
+            GameInstance.instance.SetPersistantData(gameType, m_Monster.m_Health);
         }
     }
 
@@ -54,12 +76,15 @@ namespace TurnBased
         public int m_EnergyCost;
         public int m_ValueCost;
 
-        public void SetupCard(string title, string description, CardType type, int energy, int value = -1)
+        public Sprite m_Sprite;
+
+        public void SetupCard(string title, string description, CardType type, int energy, Sprite sprite, int value = -1)
         {
             m_Title = title;
             m_Description = description;
             m_CardType = type;
             m_EnergyCost = energy;
+            m_Sprite = sprite;
             m_ValueCost = value;
         }
     }

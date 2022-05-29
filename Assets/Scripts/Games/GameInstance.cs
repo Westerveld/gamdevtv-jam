@@ -157,6 +157,7 @@ public class GameInstance : MonoBehaviour
                 data.currentBossHealth = (int)val1;
                 break;
             case GameType.TurnBased:
+                data.currentMonsterHealth = (int)val1;
                 break;
             case GameType.TwinStick:
                 data.killedEnemies = (int)val1;
@@ -185,7 +186,10 @@ public class PersistantData
     public float currentCharm = 0f;
     //Souls
     public float currentBossHealth = 0f;
-    
+
+    //turn based
+    public int currentMonsterHealth = 0;
+
     //TwinStick
     public int killedEnemies;
 
