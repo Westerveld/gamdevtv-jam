@@ -24,6 +24,8 @@ public class TBPlayer : MonoBehaviour
     private static readonly int animID_Effect = Animator.StringToHash("Effect");
     private static readonly int animID_Hit = Animator.StringToHash("Hit");
 
+    public AudioClip hitSFX, armorHitSFX, drawCard, useCard, attackNoise;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,14 +54,19 @@ public class TBPlayer : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        anim.SetTrigger(animID_Hit);
+        if(!anim.GetBool(animID_Hit))
+            anim.SetTrigger(animID_Hit);
+        
         if (m_Armour > 0)
         {
             int tmpDmg = damage;
             damage -= m_Armour;
             DecreaseArmour(tmpDmg);
             if (damage <= 0)
+            {
+                AudioManager.instance?.PlaySFX(armorHitSFX);
                 return;
+            }
         }
         m_Health -= damage;
         m_UITurnBasedManager.SetPlayerHealthAmount(m_Health, m_MaxHealth);
@@ -68,7 +75,10 @@ public class TBPlayer : MonoBehaviour
             dying = true;
             anim.SetTrigger(animID_Die);
             StartCoroutine(WaitAndDie());
+            //AudioManager.instance?.PlaySFX();
+            return;
         }
+        AudioManager.instance?.PlaySFX(hitSFX);
     }
 
     IEnumerator WaitAndDie()
@@ -104,6 +114,7 @@ public class TBPlayer : MonoBehaviour
     {
         if (energyCost <= m_Energy && m_PlayerHand.Count < 5)
         {
+            AudioManager.instance?.PlaySFX(drawCard);
             RemoveEnergy(energyCost);
             if (m_PlayerDeck.Count > 0)
             {
@@ -140,6 +151,7 @@ public class TBPlayer : MonoBehaviour
 
     public void UseCardFromHand(int CardUsed)
     {
+        AudioManager.instance?.PlaySFX(useCard);
         RemoveEnergy(m_PlayerHand[CardUsed].m_EnergyCost);
         UseCard(m_PlayerHand[CardUsed]);
         m_UsedCards.Add(m_PlayerHand[CardUsed]);
@@ -189,11 +201,14 @@ public class TBPlayer : MonoBehaviour
         switch (card.m_CardType)
         {
             case CardType.Attack:
-                anim.SetTrigger(animID_Attack);
+                if(!anim.GetBool(animID_Attack))
+                    anim.SetTrigger(animID_Attack);
+                AudioManager.instance?.PlaySFX(attackNoise);
                 m_TurnBasedManager.m_Monster.TakeDamage(card.m_ValueCost);
                 break;
             case CardType.Defence:
-                anim.SetTrigger(animID_Block);
+                if(!anim.GetBool(animID_Block))
+                    anim.SetTrigger(animID_Block);
                 IncreaseArmour(card.m_ValueCost);
                 break;
             case CardType.EffectOnly:

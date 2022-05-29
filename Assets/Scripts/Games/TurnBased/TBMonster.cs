@@ -23,6 +23,8 @@ public class TBMonster : MonoBehaviour
     private static readonly int hit = Animator.StringToHash("Hit");
     private static readonly int die = Animator.StringToHash("Die");
 
+    public AudioClip hitSFX, dieSFX, armorHitSFX, attackSFX;
+
     [System.Serializable]
     public class MonsterDecision
     {
@@ -73,6 +75,7 @@ public class TBMonster : MonoBehaviour
         {
             case MonsterDecision.TurnDecision.Attack:
                 anim.SetTrigger(attack);
+                AudioManager.instance?.PlaySFX(attackSFX);
                 m_TurnBasedManager.m_Player.TakeDamage(m_Decision.m_BaseValue + m_Decision.m_BuffAmount);
                 break;
             case MonsterDecision.TurnDecision.Defend:
@@ -105,7 +108,10 @@ public class TBMonster : MonoBehaviour
             damage -= m_Armour;
             DecreaseArmour(tmpDmg);
             if (damage <= 0)
+            {
+                AudioManager.instance?.PlaySFX(armorHitSFX);
                 return;
+            }
         }
         m_Health -= damage;
         m_UITurnBasedManager.SetMonsterHealthAmount(m_Health, m_MaxHealth);
@@ -113,8 +119,11 @@ public class TBMonster : MonoBehaviour
         {
             dying = true;
             anim.SetTrigger(die);
-            StartCoroutine(WaitThenDie());    
+            AudioManager.instance?.PlaySFX(dieSFX);
+            StartCoroutine(WaitThenDie());
+            return;
         }
+        AudioManager.instance?.PlaySFX(hitSFX);
     }
 
     private void IncreaseMonsterBuff()
