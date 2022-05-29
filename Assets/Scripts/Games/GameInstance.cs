@@ -98,10 +98,15 @@ public class GameInstance : MonoBehaviour
                 //Randomise Order 
                 nextScenes = availableScenes.OrderBy(x => rand.Next()).ToList();
                 GameEnd();
+                return;
             }
         }
         
         //Load final scene if we completed all games
+        if (availableScenes.Count == 0)
+        {
+            StartCoroutine(LoadEndScene());
+        }
     }
 
     public void GameEnd()
@@ -136,9 +141,47 @@ public class GameInstance : MonoBehaviour
         //yield return new WaitForSeconds(1f);
         
         currentGame = FindObjectOfType<GameManager>();
-        currentGame.StartGame();
+        
+        switch (currentGame.gameType)
+        {
+            case GameType.Cooking:
+                currentGame.StartGame(data.ordersFilled);
+                break;
+            case GameType.Dating:
+                currentGame.StartGame(data.currentCharm);
+                break;
+            case GameType.Runner:
+                currentGame.StartGame(data.distance);
+                break;
+            case GameType.Maze:
+                currentGame.StartGame();
+                break;
+            case GameType.Souls:
+                currentGame.StartGame(data.currentBossHealth);
+                break;
+            case GameType.TurnBased:
+                currentGame.StartGame();
+                break;
+            case GameType.TwinStick:
+                currentGame.StartGame(data.killedEnemies);
+                break;
+        }
     }
 
+    IEnumerator LoadEndScene()
+    {
+        while (lens.intensity.value < 1)
+        {
+            lens.intensity.value += Time.fixedDeltaTime * effectSpeed;
+            ca.intensity.value += Time.fixedDeltaTime * effectSpeed;
+            yield return null;
+        }
+
+        SceneManager.LoadScene("Final");
+        volume.enabled = false;
+        currentGame = FindObjectOfType<GameManager>();
+        currentGame.StartGame();
+    }
     public void SetPersistantData(GameType type, float val1 = 0f, float val2 = 0f)
     {
         switch (type)
