@@ -14,6 +14,15 @@ public class TBMonster : MonoBehaviour
 
     public MonsterDecision m_Decision;
 
+    public Animator anim;
+
+    private bool dying = false;
+    private static readonly int attack = Animator.StringToHash("Attack");
+    private static readonly int block = Animator.StringToHash("Block");
+    private static readonly int effect = Animator.StringToHash("Effect");
+    private static readonly int hit = Animator.StringToHash("Hit");
+    private static readonly int die = Animator.StringToHash("Die");
+
     [System.Serializable]
     public class MonsterDecision
     {
@@ -52,6 +61,7 @@ public class TBMonster : MonoBehaviour
     public void SetUpMonster(int health)
     {
         m_Health = (health != 0) ? health : m_MaxHealth;
+        anim = GetComponent<Animator>();
         m_UITurnBasedManager.SetMonsterHealthAmount(m_Health, m_MaxHealth);
     }
 
@@ -62,12 +72,15 @@ public class TBMonster : MonoBehaviour
         switch (m_Decision.m_TurnDecision)
         {
             case MonsterDecision.TurnDecision.Attack:
+                anim.SetTrigger(attack);
                 m_TurnBasedManager.m_Player.TakeDamage(m_Decision.m_BaseValue + m_Decision.m_BuffAmount);
                 break;
             case MonsterDecision.TurnDecision.Defend:
+                anim.SetTrigger(block);
                 IncreaseArmour(m_Decision.m_BaseValue + m_Decision.m_BuffAmount);
                 break;
             case MonsterDecision.TurnDecision.Buff:
+                anim.SetTrigger(effect);
                 IncreaseMonsterBuff();
                 break;
             default:
@@ -78,13 +91,14 @@ public class TBMonster : MonoBehaviour
         EndMonsterTurn();
     }
 
-    public void EndMonsterTurn()
+    private void EndMonsterTurn()
     {
         m_TurnBasedManager.EndEnemyTurn();
     }
 
     public void TakeDamage(int damage)
     {
+        anim.SetTrigger(hit);
         if(m_Armour > 0)
         {
             int tmpDmg = damage;
@@ -95,25 +109,27 @@ public class TBMonster : MonoBehaviour
         }
         m_Health -= damage;
         m_UITurnBasedManager.SetMonsterHealthAmount(m_Health, m_MaxHealth);
-        if (m_Health <= 0)
+        if (m_Health <= 0 && !dying)
         {
-            Die();    
+            dying = true;
+            anim.SetTrigger(die);
+            StartCoroutine(WaitThenDie());    
         }
     }
 
-    public void IncreaseMonsterBuff()
+    private void IncreaseMonsterBuff()
     {
         m_Decision.m_BuffAmount++;
         m_UITurnBasedManager.SetMonsterBuff(m_Decision.m_BuffAmount);
     }
 
-    public void ResetArmour()
+    private void ResetArmour()
     {
         m_Armour = 0;
         m_UITurnBasedManager.RemoveMonsterArmour();
     }
 
-    public void DecreaseArmour(int value)
+    private void DecreaseArmour(int value)
     {
         m_Armour -= value;
         m_UITurnBasedManager.SetMonsterArmour(m_Armour);
@@ -123,7 +139,7 @@ public class TBMonster : MonoBehaviour
         }
     }
 
-    public void IncreaseArmour(int value)
+    private void IncreaseArmour(int value)
     {
         m_Armour += value;
         m_UITurnBasedManager.SetMonsterArmour(m_Armour);
@@ -135,10 +151,16 @@ public class TBMonster : MonoBehaviour
         m_UITurnBasedManager.ShowMonsterDecision((int)m_Decision.m_TurnDecision, m_Decision.m_BaseValue + m_Decision.m_BuffAmount);
     }
 
-    public void Die()
+    private IEnumerator WaitThenDie()
     {
+        yield return new WaitForSeconds(2.2f);
         //put die animation here
         //put end game here
         m_TurnBasedManager.CompleteGame();
+    }
+
+    private void SmashImpact()
+    {
+        
     }
 }

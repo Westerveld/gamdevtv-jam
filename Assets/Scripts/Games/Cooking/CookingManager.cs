@@ -33,6 +33,7 @@ namespace Cooking
         public UICookingManager m_UICookingManager;
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
+            base.StartGame(value1, value2);
             ordersFilled = (int)value1;
             activeOrders = new Recipe[3];
             player.Setup();
