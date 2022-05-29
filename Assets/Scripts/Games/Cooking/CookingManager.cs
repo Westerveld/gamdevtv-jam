@@ -75,6 +75,7 @@ namespace Cooking
             
             for (int i = 0; i < activeOrders.Length; ++i)
             {
+                if (activeOrders[i] == null) continue;
                 if (activeOrders[i].name == null) continue;
                 activeOrders[i].timer += Time.fixedDeltaTime;
 
