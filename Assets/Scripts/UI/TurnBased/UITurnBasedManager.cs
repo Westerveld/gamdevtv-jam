@@ -6,10 +6,6 @@ using TurnBased;
 
 public class UITurnBasedManager : MonoBehaviour
 {
-    public GameObject m_AttackCardPrefab;
-    public GameObject m_DefenceCardPrefab;
-    public GameObject m_EventCardPrefab;
-
     public Transform[] m_CardPositions;
     public UICardObject[] m_CurrentCards;
 
@@ -58,4 +54,6 @@ public class UITurnBasedManager : MonoBehaviour
             }
         }
     }
+
+
 }
