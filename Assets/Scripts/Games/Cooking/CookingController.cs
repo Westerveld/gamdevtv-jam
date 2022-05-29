@@ -37,8 +37,10 @@ namespace Cooking
         public Transform holdLocation;
 
         private bool interacting = false;
-        
-        
+
+        public AudioClip pickUp;
+
+
         [ContextMenu("Test")]
         public void Setup()
         {
@@ -111,6 +113,7 @@ namespace Cooking
                     interacting = true;
                     if (!hasObject)
                     {
+                        AudioManager.instance?.PlaySFX(pickUp);
                         anim.SetTrigger(animID_PickUp);
                     }
                     else if (hasObject)

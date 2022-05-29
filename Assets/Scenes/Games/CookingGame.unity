@@ -2404,6 +2404,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
         type: 3}
+      propertyPath: place
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f7ad47c4e8fb674b80537f472a7ef9b, type: 3}
+    - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
+        type: 3}
+      propertyPath: complete
+      value: 
+      objectReference: {fileID: 8300000, guid: e107deb801ba1c147b15d769d9592845, type: 3}
+    - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
+        type: 3}
       propertyPath: lerpSpeed
       value: 200
       objectReference: {fileID: 0}
@@ -2771,7 +2781,8 @@ MonoBehaviour:
   mixingLocation: {fileID: 918306989}
   activeIngredients: []
   m_UIMixerObject: {fileID: 2051752648}
-  audio: {fileID: 0}
+  place: {fileID: 8300000, guid: 7f7ad47c4e8fb674b80537f472a7ef9b, type: 3}
+  complete: {fileID: 8300000, guid: e107deb801ba1c147b15d769d9592845, type: 3}
 --- !u!65 &1249932435
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3219,7 +3230,8 @@ MonoBehaviour:
   mixingLocation: {fileID: 422284691}
   activeIngredients: []
   m_UIMixerObject: {fileID: 416776435}
-  audio: {fileID: 0}
+  place: {fileID: 8300000, guid: 7f7ad47c4e8fb674b80537f472a7ef9b, type: 3}
+  complete: {fileID: 8300000, guid: e107deb801ba1c147b15d769d9592845, type: 3}
 --- !u!65 &1561955874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3632,6 +3644,7 @@ MonoBehaviour:
   allowPickup: 0
   foodPosition: {x: 0, y: 0, z: 0}
   launchSpeed: 15
+  complete: {fileID: 8300000, guid: cf08da980d6663d40aaa25ed45adc5c1, type: 3}
 --- !u!65 &1777263131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4355,6 +4368,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 613652541}
+    - target: {fileID: 7180510385320271407, guid: ca2a5e14cba750548a69285af82d85ca,
+        type: 3}
+      propertyPath: pickUp
+      value: 
+      objectReference: {fileID: 8300000, guid: da0fcbfe2cde35043a4d9c4fcf1f0c08, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca2a5e14cba750548a69285af82d85ca, type: 3}
 --- !u!1001 &7320144023293182947
@@ -5063,6 +5081,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
+        type: 3}
+      propertyPath: place
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f7ad47c4e8fb674b80537f472a7ef9b, type: 3}
+    - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
+        type: 3}
+      propertyPath: complete
+      value: 
+      objectReference: {fileID: 8300000, guid: e107deb801ba1c147b15d769d9592845, type: 3}
     - target: {fileID: 8898002165311622705, guid: e7aa24b0f8c79874faecc50b229e9f4f,
         type: 3}
       propertyPath: lerpSpeed
