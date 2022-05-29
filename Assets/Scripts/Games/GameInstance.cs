@@ -127,47 +127,56 @@ public class GameInstance : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(nextScenes[0]);
-        nextScenes.RemoveAt(0);
+        if (availableScenes.Count > 0)
+        {
 
-        if (nextScenes.Count == 0)
-        {
-            nextScenes = availableScenes.OrderBy(x => rand.Next()).ToList();
+            SceneManager.LoadScene(nextScenes[0]);
+            nextScenes.RemoveAt(0);
+
+            if (nextScenes.Count == 0)
+            {
+                nextScenes = availableScenes.OrderBy(x => rand.Next()).ToList();
+            }
+
+            while (lens.intensity.value > 0)
+            {
+                lens.intensity.value -= Time.fixedDeltaTime * effectSpeed;
+                ca.intensity.value -= Time.fixedDeltaTime * effectSpeed;
+                yield return null;
+            }
+            //yield return new WaitForSeconds(1f);
+
+            currentGame = FindObjectOfType<GameManager>();
+
+            switch (currentGame.gameType)
+            {
+                case GameType.Cooking:
+                    currentGame.StartGame(data.ordersFilled);
+                    break;
+                case GameType.Dating:
+                    currentGame.StartGame(data.currentCharm);
+                    break;
+                case GameType.Runner:
+                    currentGame.StartGame(data.distance);
+                    break;
+                case GameType.Maze:
+                    currentGame.StartGame();
+                    break;
+                case GameType.Souls:
+                    currentGame.StartGame(data.currentBossHealth);
+                    break;
+                case GameType.TurnBased:
+                    currentGame.StartGame();
+                    break;
+                case GameType.TwinStick:
+                    currentGame.StartGame(data.killedEnemies);
+                    break;
+            }
         }
-        
-        while (lens.intensity.value > 0)
+        else
         {
-            lens.intensity.value -= Time.fixedDeltaTime * effectSpeed;
-            ca.intensity.value -= Time.fixedDeltaTime * effectSpeed;
-            yield return null;
-        }
-        //yield return new WaitForSeconds(1f);
-        
-        currentGame = FindObjectOfType<GameManager>();
-        
-        switch (currentGame.gameType)
-        {
-            case GameType.Cooking:
-                currentGame.StartGame(data.ordersFilled);
-                break;
-            case GameType.Dating:
-                currentGame.StartGame(data.currentCharm);
-                break;
-            case GameType.Runner:
-                currentGame.StartGame(data.distance);
-                break;
-            case GameType.Maze:
-                currentGame.StartGame();
-                break;
-            case GameType.Souls:
-                currentGame.StartGame(data.currentBossHealth);
-                break;
-            case GameType.TurnBased:
-                currentGame.StartGame();
-                break;
-            case GameType.TwinStick:
-                currentGame.StartGame(data.killedEnemies);
-                break;
+            //Lost game on the final game
+            SceneManager.LoadScene("Failed");
         }
     }
 
