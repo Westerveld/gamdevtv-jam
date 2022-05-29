@@ -141,6 +141,17 @@ MonoBehaviour:
   playerSpeed: 300
   rotationSpeed: 200
   bulletSpawnPoint: {fileID: 2578038017087004151}
+  recoilAmount: 0.25
+  ui: {fileID: 0}
+  reloadSpeed: 0.1
+  healthRegenSpeed: 0.1
+  health:
+    currentValue: 0
+    regenTimer: 0
+  tManager: {fileID: 0}
+  gun: {fileID: 0}
+  shoot: {fileID: 8300000, guid: acf56a5c0a6732d4294d350e57ebd7b4, type: 3}
+  reload: {fileID: 8300000, guid: 716cb8583aac7e048aceecb3ce201039, type: 3}
 --- !u!114 &2578038015689900166
 MonoBehaviour:
   m_ObjectHideFlags: 0

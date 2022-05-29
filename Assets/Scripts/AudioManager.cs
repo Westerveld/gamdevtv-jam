@@ -107,7 +107,7 @@ public class AudioManager : MonoBehaviour
         lastUsedMusicSource1 = !lastUsedMusicSource1;
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(AudioClip clip, float pitch = 1f)
     {
         sfxSource.PlayOneShot(clip);
     }

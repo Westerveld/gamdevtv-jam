@@ -49,6 +49,9 @@ namespace TwinStick
         public Animator gun;
         private static readonly int pew = Animator.StringToHash("Pew");
 
+
+        public AudioClip shoot;
+        public AudioClip reload;
         private void Start()
         {
             rigid = GetComponent<Rigidbody>();
@@ -123,6 +126,7 @@ namespace TwinStick
                  //input.shoot = false;
                 if (shotTimer <= 0 && ammo > 0)
                 {
+                    AudioManager.instance?.PlaySFX(shoot);
                     shotTimer = shotInterval;
                     bulletPool.FireBullet(bulletSpawnPoint.transform.forward, bulletSpawnPoint.position,
                         bulletSpawnPoint.rotation, bulletSpeed, bulletDamage);
@@ -132,6 +136,7 @@ namespace TwinStick
                     ui.SetAmmoCount(ammo, maxAmmo);
                     if (ammo <= 0 )
                     {
+                        AudioManager.instance?.PlaySFX(reload);
                         StartCoroutine(Reloading());
                     }
                 }

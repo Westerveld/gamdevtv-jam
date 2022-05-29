@@ -32,6 +32,10 @@ namespace TwinStick
 
         public float timeTilMoving = 5f;
         public float moveTimer = 0f;
+
+        public AudioClip hitClip, deathClip;
+        public AudioClip shootClip;
+        
         public void SetReferences(Transform p, EffectsPool hFX, EffectsPool dFX, TwinStickManager m,  TwinStickBulletPool b)
         {
             deathFX = dFX;
@@ -82,6 +86,7 @@ namespace TwinStick
                 shotTimer -= Time.fixedDeltaTime;
                 if (shotTimer <= 0 &&  distToPlayer < shootingRange)
                 {
+                    AudioManager.instance?.PlaySFX(shootClip, Random.Range(0.95f, 1.05f));
                     bullets.FireBullet(transform.forward.normalized, transform.position + transform.forward.normalized, transform.rotation, bulletSpeed, bulletDamage, bulletRange);
                     shotTimer = shotInterval;
                 }
@@ -90,6 +95,7 @@ namespace TwinStick
 
         public void TakeDamage(float amount, Vector3 impactPoint)
         {
+            AudioManager.instance?.PlaySFX(hitClip, Random.Range(0.97f, 1.03f));
             health.RemoveStat(amount);
             m_HealthBar.SetMonsterHealth(health.currentValue);
             hitFX.SpawnObject(transform.position - impactPoint, transform.rotation );
@@ -103,6 +109,7 @@ namespace TwinStick
         void Die(Vector3 impactPoint)
         {
             //ToDo: DeathAnimation
+            AudioManager.instance?.PlaySFX(deathClip); 
             m_HealthBar.KillMonster();
             deathFX.SpawnObject(transform.position - impactPoint, transform.rotation);
             gameObject.SetActive(false);

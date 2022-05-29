@@ -73,6 +73,8 @@ namespace Souls
 
         private Coroutine walk;
 
+        public AudioClip[] attackSFX, damageSFX;
+
         private void Awake()
         {
             anim.GetBehaviour<IdleState>().boss = this;
@@ -99,6 +101,7 @@ namespace Souls
         
         public void TakeDamage(float damage, Vector3 normal)
         {
+            AudioManager.instance?.PlaySFX(damageSFX[Random.Range(0,damageSFX.Length)]);
             normal.y = 0f;
             transform.position += normal;
             health.RemoveStat(damage);
@@ -318,6 +321,7 @@ namespace Souls
         void AttackOn()
         {
             currentCombo++;
+            AudioManager.instance?.PlaySFX(attackSFX[Random.Range(0,attackSFX.Length)]);
             if(walk != null)
                 StopCoroutine(walk);
             walk = StartCoroutine(MoveForwards());
@@ -343,6 +347,7 @@ namespace Souls
 
         void SmashImpact()
         {
+            //ToDo: Impact sound
             smashAttackParticles.SetActive(true);
             jumpAttackWeapon.Setup(damage * 1.5f);
             jumpAttackWeapon.AttackOn();
@@ -352,6 +357,7 @@ namespace Souls
 
         void JumpImpact()
         {
+            //ToDo: light impact sound
             jumpAttackParticles.SetActive(true);
             jumpAttackWeapon.Setup(damage * 1.2f);
             jumpAttackWeapon.AttackOn();

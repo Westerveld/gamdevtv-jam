@@ -10457,6 +10457,12 @@ MonoBehaviour:
   damage: 15
   m_UISoulsManager: {fileID: 0}
   jumpAttackWeapon: {fileID: 238196966}
+  attackSFX:
+  - {fileID: 8300000, guid: c894b6fb93e46e046960f062cf04a238, type: 3}
+  - {fileID: 8300000, guid: 959d82ca0bb92ae4197a0669bf5ce1d0, type: 3}
+  damageSFX:
+  - {fileID: 8300000, guid: a2e0d48864194d747accada89d56fe06, type: 3}
+  - {fileID: 8300000, guid: 4f1c5681db1bc4e4287ae66b8dc5fab8, type: 3}
 --- !u!1 &1260218522813970107
 GameObject:
   m_ObjectHideFlags: 0
