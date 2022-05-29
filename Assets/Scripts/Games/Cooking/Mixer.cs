@@ -91,7 +91,7 @@ namespace Cooking
                 
                 //if(!audio.isPlaying)
                     //audio.Play();
-                mixingLocation.Rotate(new Vector3( 1,1,0), mixSpeed);
+                mixingLocation.Rotate(new Vector3( 0.1f,1,0), mixSpeed);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Cooking
                 AddIngredient(item.GetComponent<Ingredient>().type);
                 player.currentObject = null;
                 item.transform.parent = mixingLocation;
-                item.transform.localPosition = Random.insideUnitSphere * 0.5f;
+                item.transform.localPosition = Random.insideUnitSphere * 0.1f;
                 item.GetComponent<Ingredient>().rigid.isKinematic = true;
                 item.GetComponent<Ingredient>().col.enabled = false;
                 activeIngredients.Add(item);

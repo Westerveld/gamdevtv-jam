@@ -55,7 +55,8 @@ namespace Maze
             if (!canPlay) return;
             Move();
             sprintStamina.RegenStat(Time.fixedDeltaTime);
-            staminaText.text = $"{sprintStamina.GetPercentage()}%";
+            if(staminaText != null)
+                staminaText.text = $"{sprintStamina.GetPercentage()}%";
         }
 
         void Move()
@@ -65,24 +66,32 @@ namespace Maze
             if (input.sprint && sprintStamina.currentValue > 0f)
             {
                 targetSpeed = sprintSpeed;
+                anim.SetBool("Sprint", true);
                 sprintStamina.RemoveStat(1f, 0.5f);
+            }
+            else
+            {
+                anim.SetBool("Sprint", false);
             }
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (input.move.y == 0) targetSpeed = 0.0f;
+            if (input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            float inputMagnitude = input.move.y;
+            float inputMagnitude = input.move.magnitude;
 
-            speed = targetSpeed * input.move.y;
+            speed = targetSpeed * inputMagnitude;
 
+            // normalise input direction
+            Vector3 inputDirection = new Vector3(input.move.x, 0.0f, input.move.y).normalized;
             animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * speedChangeRate);
             if (animationBlend < 0.01f) animationBlend = 0f;
-
+            Vector3 targetDirection = (inputDirection.x * transform.right) + (inputDirection.z * transform.forward);
+            targetDirection *= (speed * Time.fixedDeltaTime);
             // move the player
-            controller.Move(transform.forward.normalized * (speed * Time.deltaTime));
+            controller.Move(targetDirection);
 
-            anim.SetFloat(animID_Speed, animationBlend);
-            anim.SetFloat(animID_MotionSpeed, inputMagnitude);
+            anim.SetFloat("Horizontal", input.move.x);
+            anim.SetFloat("Vertical", input.move.y);
         }
 
         void Rotate()
