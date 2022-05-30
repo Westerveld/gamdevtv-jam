@@ -27,6 +27,7 @@ public class UISoulsManager : MonoBehaviour
 
     public Image m_PlayerStaminaImage;
     public Image m_PlayerMovingStaminaImage;
+
     #endregion
 
 

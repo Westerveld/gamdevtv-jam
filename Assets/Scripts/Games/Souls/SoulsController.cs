@@ -67,7 +67,7 @@ namespace Souls
 
         public AudioClip[] attackSFX, damageSFX;
         public AudioClip slideSFX;
-        public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed, SoulsManager m)
+        public void SetupPlayer(float maxStamina, float maxHealth, float healthRegenSpeed, float staminaRegenSpeed, SoulsManager m, float buffDamage)
         {
             soulsManager = m;
             health = new Stat(maxHealth, healthRegenSpeed);
@@ -75,6 +75,8 @@ namespace Souls
 
             m_UISoulsManager.SetPlayerMaxHealth(maxHealth);
             m_UISoulsManager.SetPlayerMaxStamina(maxStamina);
+
+            attackDamage += buffDamage;
 
             canPlay = true;
             weapon.Setup(attackDamage);

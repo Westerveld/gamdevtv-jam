@@ -1059,6 +1059,8 @@ MonoBehaviour:
   killsReq: 50
   spawnInterval: 5
   spawnTimer: 0
+  m_DamageBuff: 6
+  m_BuffAmount: 0
 --- !u!4 &1188929686
 Transform:
   m_ObjectHideFlags: 0
