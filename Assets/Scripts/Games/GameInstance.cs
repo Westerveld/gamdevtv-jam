@@ -113,6 +113,19 @@ public class GameInstance : MonoBehaviour
         }
     }
 
+    public int GetNumberOfCompletedGames()
+    {
+        int won = 0;
+        for(int i = 0; i < completedGames.Count; i++)
+        {
+            if(completedGames[i])
+            {
+                won++;
+            }
+        }
+        return won;
+    }
+
     public void GameEnd()
     {
         AudioManager.instance?.PlaySFX(gameSwap);

@@ -26,11 +26,13 @@ namespace Cooking
             {
                 if(cManager.activeOrders[i] == null)
                 {
+                    newRecipe.timeAllowed += (cManager.m_BuffAmount * cManager.m_TimerBuff);
                     cManager.activeOrders[i] = newRecipe;
                     return;
                 }
                 else if (string.IsNullOrEmpty(cManager.activeOrders[i].name))
                 {
+                    newRecipe.timeAllowed += (cManager.m_BuffAmount * cManager.m_TimerBuff);
                     cManager.activeOrders[i] = newRecipe;
                     return;
                 }

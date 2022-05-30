@@ -30,6 +30,9 @@ namespace Cooking
 
         public GameObject customerPrefab;
 
+        public int m_BuffAmount;
+        public float m_TimerBuff = 10;
+
 
         public UICookingManager m_UICookingManager;
         public override void StartGame(float value1 = 0, float value2 = 0)
@@ -37,6 +40,8 @@ namespace Cooking
             base.StartGame(value1, value2);
             ordersFilled = (int)value1;
             m_UICookingManager.SetCustomersServed(ordersFilled, neededOrders);
+            if(GameInstance.instance != null)
+                m_BuffAmount = GameInstance.instance.GetCompletedGames();
             activeOrders = new Recipe[3];
             player.Setup();
             customerArea.Setup(player, this);

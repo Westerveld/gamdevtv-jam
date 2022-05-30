@@ -10,6 +10,10 @@ namespace Maze
 
         public float timer;
         public float allowedTime;
+
+        public int m_BuffAmount;
+        public float m_TimerBuff = 15;
+
         private bool canPlay;
 
         public TMP_Text m_TimerText;
@@ -25,6 +29,8 @@ namespace Maze
                 {
                     doors[i].SetActive(false);
                 }
+                m_BuffAmount = GameInstance.instance.GetCompletedGames();
+                allowedTime += (m_TimerBuff * m_BuffAmount);
             }
             player.Setup(this);
             timer = allowedTime;

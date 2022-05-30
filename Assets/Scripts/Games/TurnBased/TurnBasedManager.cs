@@ -22,6 +22,9 @@ namespace TurnBased
 
         public List<Card> m_PlayerDeck;
 
+        public int m_CardBuff = 1;
+        public int m_BuffAmount = 0;
+
         public void PlayCard(int number)
         {
             Debug.Log($"Playing card {number}");
@@ -31,7 +34,12 @@ namespace TurnBased
         {
             base.StartGame(value1, value2);
 
-            m_Player.SetUpPlayer(m_PlayerDeck, m_PlayerMaxHealth, m_PlayerEnergy);
+            if(GameInstance.instance != null)
+            {
+                m_BuffAmount = GameInstance.instance.GetCompletedGames();
+            }
+
+            m_Player.SetUpPlayer(m_PlayerDeck, m_PlayerMaxHealth, m_PlayerEnergy,m_BuffAmount*m_CardBuff);
 
             //need to use persistent data to set monster health
             m_Monster.SetUpMonster((int)value1);
@@ -104,14 +112,21 @@ namespace TurnBased
 
         public Sprite m_Sprite;
 
-        public void SetupCard(string title, string description, CardType type, int energy, Sprite sprite, int value = -1)
+        public void SetupCard(string title, string description, CardType type, int energy, Sprite sprite, int value = -1, int buffAmount = 0)
         {
             m_Title = title;
+            if(buffAmount != 0)
+            {
+                if (description.Contains(value.ToString()))
+                {
+                    description = description.Replace(value.ToString(), (value + buffAmount).ToString());
+                }
+            }
             m_Description = description;
             m_CardType = type;
             m_EnergyCost = energy;
             m_Sprite = sprite;
-            m_ValueCost = value;
+            m_ValueCost = value + buffAmount;
         }
     }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CardType: 0
   m_Title: Hungry Hamster
-  m_Description: Hamster Bites for 7 Damage
+  m_Description: Hamster Bites for 5 Damage
   m_EnergyCost: 7
   m_Value: 5
   m_Sprite: {fileID: -4232025985384513203, guid: 1a696c6ad7daee54d892cd1c687acd5e,

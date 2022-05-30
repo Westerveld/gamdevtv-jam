@@ -35,11 +35,11 @@ public class TBPlayer : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void SetUpPlayer(List<Card> deck,int health, int energy)
+    public void SetUpPlayer(List<Card> deck,int health, int energy, int buffAmount)
     {
         for(int i = 0; i < deck.Count; i++)
         {
-            AddCardToDeck(deck[i]);
+            AddCardToDeck(deck[i], buffAmount);
         }
         ShuffleDeck();
         m_MaxHealth = health;
@@ -91,7 +91,7 @@ public class TBPlayer : MonoBehaviour
         //put die animation here
     }
 
-    public void AddCardToDeck(Card card)
+    public void AddCardToDeck(Card card, int buffAmount)
     {
         CardData newCard = new CardData();
         if (card.m_Value == -1)
@@ -100,7 +100,7 @@ public class TBPlayer : MonoBehaviour
         }
         else
         {
-            newCard.SetupCard(card.m_Title, card.m_Description, card.m_CardType, card.m_EnergyCost, card.m_Sprite, card.m_Value);
+            newCard.SetupCard(card.m_Title, card.m_Description, card.m_CardType, card.m_EnergyCost, card.m_Sprite, card.m_Value, buffAmount);
         }
         m_PlayerDeck.Add(newCard);
     }
