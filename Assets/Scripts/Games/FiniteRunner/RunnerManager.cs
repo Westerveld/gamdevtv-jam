@@ -22,6 +22,8 @@ namespace Runner
         public float spawnInterval = 2.5f;
         private bool finishedGame;
 
+        public int m_BuffAmount;
+
         public UIRunnerManager ui;
         void Awake()
         {
@@ -32,6 +34,13 @@ namespace Runner
         {
             base.StartGame();
             currentDistance = value1;
+            if(GameInstance.instance)
+            {
+                //m_BuffAmount = GameInstance.instance.GetCompletedGames();
+            }
+
+            ui.SetUpShield(m_BuffAmount);
+
             ui.SetMaxDistance(distanceToCompleteGame);
             if (value2 != 0)
             {
@@ -83,6 +92,12 @@ namespace Runner
 
         public void LostGame()
         {
+            if(m_BuffAmount > 0)
+            {
+                m_BuffAmount--;
+                ui.SetShieldAmount(m_BuffAmount);
+                return;
+            }
             GameInstance.instance.SetPersistantData(gameType, currentDistance, currSpeed);
             GameInstance.instance.GameEnd();
         }
