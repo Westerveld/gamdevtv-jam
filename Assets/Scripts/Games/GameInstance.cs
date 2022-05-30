@@ -112,6 +112,8 @@ public class GameInstance : MonoBehaviour
 
     IEnumerator EffectsThenLeave()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         while (lens.intensity.value < 1)
         {
             lens.intensity.value += Time.fixedDeltaTime * effectSpeed;

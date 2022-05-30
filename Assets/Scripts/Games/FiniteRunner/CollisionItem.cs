@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -28,11 +29,13 @@ namespace Runner
             {
                 if (goal)
                 {
+                    col.gameObject.GetComponent<Collider>().enabled = false;
                     //Tell the instance
                     RunnerManager.instance.WonGame();
                 }
                 else
                 {
+                    col.gameObject.GetComponent<Collider>().enabled = false;
                     AudioManager.instance?.PlaySFX(hit);
                     //Game Over
                     RunnerManager.instance.LostGame();
