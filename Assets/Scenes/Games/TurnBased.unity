@@ -325,7 +325,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2518ef52b62a3d4caa420b53909e5c6, type: 2}
   - {fileID: 11400000, guid: 47b46d84ec7acae4780c0836b7b7b445, type: 2}
   m_CardBuff: 1
-  m_BuffAmount: 11
+  m_BuffAmount: 0
 --- !u!4 &531569558
 Transform:
   m_ObjectHideFlags: 0
