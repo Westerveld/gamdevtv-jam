@@ -1,6 +1,1 @@
-# Externally sourced assets
-
-# SFX:
-
-
-# Music:
+Made for gamedev.tv jam
