@@ -9,17 +9,12 @@ namespace TwinStick
 	public class TwinStickDoor : MonoBehaviour
 	{
 		public TwinStickManager manager;
-		private void OnTriggerEnter(Collider other)
+
+		private void FixedUpdate()
 		{
-			if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+			if (Vector3.Distance(transform.position, manager.player.transform.position) < 1f)
 			{
-				if (other.GetComponent<TwinStickController>())
-				{
-					if (manager.NoEnemiesLeftToKill())
-					{
-						manager.GotOut();
-					}
-				}
+				manager.GotOut();
 			}
 		}
 	}
