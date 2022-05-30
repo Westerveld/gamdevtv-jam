@@ -25,7 +25,7 @@ public class GameInstance : MonoBehaviour
 
     private string[] scenes = new string[]
     {
-        "CookingGame", "DatingGame", "FiniteRunner", "Maze", "Souls", "TurnBased", "TwinStick"
+        "Cooking", "Dating", "Runner", "Maze", "Souls", "TurnBased", "TwinStick"
     };
 
     private List<string> availableScenes;
@@ -69,7 +69,7 @@ public class GameInstance : MonoBehaviour
     public void SetGameComplete(GameType gameType)
     {
         completedGames[(int)gameType] = true;
-        availableScenes.RemoveAt((int)gameType);
+        availableScenes.Remove(gameType.ToString());
         UIMasterGameManager.instance.SetIconComplete(gameType);
         //AudioManager.instance?.PlaySFX(gameWinSFX);
         foreach (bool game in completedGames)

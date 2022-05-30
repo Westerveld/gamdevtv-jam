@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: a6ccd323eeb030a4abb9864a7f3f8f50
   - enabled: 1
-    path: Assets/Scenes/Games/CookingGame.unity
+    path: Assets/Scenes/Games/Cooking.unity
     guid: 8bbea09c135a35e41927097c226b2fb3
   - enabled: 1
-    path: Assets/Scenes/Games/DatingGame.unity
+    path: Assets/Scenes/Games/Dating.unity
     guid: 07579ba9fe0052140bc24b1ad6fcb625
   - enabled: 1
-    path: Assets/Scenes/Games/FiniteRunner.unity
+    path: Assets/Scenes/Games/Runner.unity
     guid: 355cabb7d857ec642bd537735a370779
   - enabled: 1
     path: Assets/Scenes/Games/Maze.unity
