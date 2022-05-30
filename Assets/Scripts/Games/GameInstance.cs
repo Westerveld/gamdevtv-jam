@@ -56,31 +56,7 @@ public class GameInstance : MonoBehaviour
             volume.profile.TryGet(out lens);
             if (currentGame != null)
             {
-                switch (currentGame.gameType)
-                {
-                    case GameType.Cooking:
-                        currentGame.StartGame(data.ordersFilled);
-                        break;
-                    case GameType.Dating:
-                        currentGame.StartGame(data.currentCharm);
-                        break;
-                    case GameType.Runner:
-                        currentGame.StartGame(data.distance);
-                        break;
-                    case GameType.Maze:
-                        currentGame.StartGame();
-                        break;
-                    case GameType.Souls:
-                        currentGame.StartGame(data.currentBossHealth);
-                        break;
-                    case GameType.TurnBased:
-                        currentGame.StartGame();
-                        break;
-                    case GameType.TwinStick:
-                        currentGame.StartGame(data.killedEnemies);
-                        break;
-                }
-
+                StartGame();
             }
         }
         else
@@ -163,30 +139,7 @@ public class GameInstance : MonoBehaviour
 
             currentGame = FindObjectOfType<GameManager>();
 
-            switch (currentGame.gameType)
-            {
-                case GameType.Cooking:
-                    currentGame.StartGame(data.ordersFilled);
-                    break;
-                case GameType.Dating:
-                    currentGame.StartGame(data.currentCharm);
-                    break;
-                case GameType.Runner:
-                    currentGame.StartGame(data.distance);
-                    break;
-                case GameType.Maze:
-                    currentGame.StartGame();
-                    break;
-                case GameType.Souls:
-                    currentGame.StartGame(data.currentBossHealth);
-                    break;
-                case GameType.TurnBased:
-                    currentGame.StartGame();
-                    break;
-                case GameType.TwinStick:
-                    currentGame.StartGame(data.killedEnemies);
-                    break;
-            }
+            StartGame();
         }
         else
         {
@@ -209,6 +162,7 @@ public class GameInstance : MonoBehaviour
         currentGame = FindObjectOfType<GameManager>();
         currentGame.StartGame();
     }
+   
     public void SetPersistantData(GameType type, float val1 = 0f, float val2 = 0f)
     {
         switch (type)
@@ -246,6 +200,76 @@ public class GameInstance : MonoBehaviour
 
         return completed;
     }
+
+    private void StartGame()
+    {
+        switch (currentGame.gameType)
+        {
+            case GameType.Cooking:
+                if(data.didCookingTutorial)
+                    currentGame.StartGame();
+                else
+                {
+                    data.didCookingTutorial = true;
+                    currentGame.ShowTutorial();
+                }
+                break;
+            case GameType.Dating:
+                if(data.didDatingTutorial)
+                    currentGame.StartGame();
+                else
+                {
+                    data.didDatingTutorial = true;
+                    currentGame.ShowTutorial();
+                }
+                break;
+            case GameType.Runner:
+                if(data.didRunnerTutorial)
+                    currentGame.StartGame(data.distance);
+                else
+                {
+                    data.didRunnerTutorial = true;
+                    currentGame.ShowTutorial();
+                }
+                break;
+            case GameType.Maze:
+                if (data.didMazeTutorial)
+                    currentGame.StartGame();
+                else
+                {
+                    data.didMazeTutorial = true;
+                    currentGame.ShowTutorial();
+                }
+                break;
+            case GameType.Souls:
+                if(data.didSoulsTutorial)
+                    currentGame.StartGame(data.currentBossHealth);
+                else
+                {
+                    data.didSoulsTutorial = true;
+                    currentGame.ShowTutorial();
+                }
+                break;
+            case GameType.TurnBased:
+                if(data.didTurnBasedTutorial)
+                    currentGame.StartGame();
+                else
+                {
+                    data.didTurnBasedTutorial = true;
+                    currentGame.ShowTutorial();
+                }
+                break;
+            case GameType.TwinStick:
+                if(data.didTwinStickTutorial)
+                    currentGame.StartGame(data.killedEnemies);
+                else
+                {
+                    data.didTwinStickTutorial = true;
+                    currentGame.ShowTutorial();
+                }
+                break;
+        }
+    }
 }
 
 
@@ -254,18 +278,27 @@ public class PersistantData
 {
     //Dating
     public float currentCharm = 0f;
+
+    public bool didDatingTutorial;
     //Souls
     public float currentBossHealth = 0f;
+    public bool didSoulsTutorial;
 
     //turn based
     public int currentMonsterHealth = 0;
+    public bool didTurnBasedTutorial;
 
     //TwinStick
     public int killedEnemies;
+    public bool didTwinStickTutorial;
 
     //Cooking
     public int ordersFilled;
+    public bool didCookingTutorial;
     
     //Runner
     public int distance;
+    public bool didRunnerTutorial;
+
+    public bool didMazeTutorial;
 }
