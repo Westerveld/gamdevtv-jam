@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIRunnerManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class UIRunnerManager : MonoBehaviour
     public float X_MaxValue = 820.0f;
 
     public float m_MaxDistance;
+
+    public GameObject m_ShieldImage;
+    public TMP_Text m_ShieldText;
 
     //TEST CODE 
     /*public float distance = 0;
@@ -30,6 +34,33 @@ public class UIRunnerManager : MonoBehaviour
             SetPlayerProgress(distance);
         }
     }*/
+
+    public void HideShield()
+    {
+        m_ShieldImage.SetActive(false);
+    }
+
+    public void SetShieldAmount(int amount)
+    {
+        if(amount == 0)
+        {
+            HideShield();
+        }
+        m_ShieldText.text = amount.ToString();
+    }
+
+    public void SetUpShield(int amount)
+    {
+        if (amount > 0)
+        {
+            m_ShieldImage.SetActive(true);
+            SetShieldAmount(amount);
+        }
+        else
+        {
+            HideShield();
+        }
+    }
 
     public void SetMaxDistance(float maxDistance)
     {
