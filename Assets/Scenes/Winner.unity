@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quit Game
+  m_text: 'Main Menu
 
 '
   m_isRightToLeft: 0
