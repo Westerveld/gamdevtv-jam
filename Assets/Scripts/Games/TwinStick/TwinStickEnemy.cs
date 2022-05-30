@@ -36,6 +36,14 @@ namespace TwinStick
         public AudioClip hitClip, deathClip;
         public AudioClip shootClip;
         
+        public Animator anim;
+        private static readonly int die = Animator.StringToHash("Die");
+        private static readonly int hit = Animator.StringToHash("Hit1");
+        private static readonly int hit2 = Animator.StringToHash("Hit2");
+        private static readonly int walk = Animator.StringToHash("Walk");
+        private static readonly int shoot = Animator.StringToHash("Shoot1");
+        private static readonly int shoot2 = Animator.StringToHash("Shoot2");
+
         public void SetReferences(Transform p, EffectsPool hFX, EffectsPool dFX, TwinStickManager m,  TwinStickBulletPool b)
         {
             deathFX = dFX;
@@ -86,16 +94,22 @@ namespace TwinStick
                 shotTimer -= Time.fixedDeltaTime;
                 if (shotTimer <= 0 &&  distToPlayer < shootingRange)
                 {
-                    AudioManager.instance?.PlaySFX(shootClip, Random.Range(0.95f, 1.05f));
+                    AudioManager.instance?.PlaySFX(shootClip, Random.Range(0.95f, 1.05f), 0.75f);
+                    anim.SetTrigger(Random.value > 0.5f ? shoot : shoot2);
                     bullets.FireBullet(transform.forward.normalized, transform.position + transform.forward.normalized, transform.rotation, bulletSpeed, bulletDamage, bulletRange);
                     shotTimer = shotInterval;
                 }
+
+                anim.SetBool(walk, !agent.isStopped);
+
             }
+            
         }
 
         public void TakeDamage(float amount, Vector3 impactPoint)
         {
-            AudioManager.instance?.PlaySFX(hitClip, Random.Range(0.97f, 1.03f));
+            anim.SetTrigger(Random.value > 0.5f? hit : hit2);
+            AudioManager.instance?.PlaySFX(hitClip, Random.Range(0.97f, 1.03f), 0.75f);
             health.RemoveStat(amount);
             m_HealthBar.SetMonsterHealth(health.currentValue);
             hitFX.SpawnObject(transform.position - impactPoint, transform.rotation );
@@ -109,18 +123,21 @@ namespace TwinStick
         void Die(Vector3 impactPoint)
         {
             //ToDo: DeathAnimation
-            AudioManager.instance?.PlaySFX(deathClip); 
+            AudioManager.instance?.PlaySFX(deathClip, 1f, 0.75f); 
+            anim.SetTrigger(die);
             m_HealthBar.KillMonster();
             deathFX.SpawnObject(transform.position - impactPoint, transform.rotation);
-            gameObject.SetActive(false);
             manager.KilledEnemy();
-            //StartCoroutine(WaitThenDisable());
+            StartCoroutine(WaitThenDisable());
         }
 
         IEnumerator WaitThenDisable()
         {
             yield return new WaitForSecondsRealtime(0.5f);
             gameObject.SetActive(false);
+            anim.Rebind();
+            anim.Update(0f);
         }
+
     }
 }

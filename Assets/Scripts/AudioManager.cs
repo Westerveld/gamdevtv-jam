@@ -124,9 +124,10 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void PlaySFX(AudioClip clip, float pitch = 1f)
+    public void PlaySFX(AudioClip clip, float pitch = 1f, float volume = 1f)
     {
-        sfxSource.PlayOneShot(clip);
+        sfxSource.pitch = pitch;
+        sfxSource.PlayOneShot(clip, volume);
     }
 
     IEnumerator LerpOnMusic(AudioSource source)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -52,6 +53,10 @@ namespace TwinStick
 
         public AudioClip shoot;
         public AudioClip reload;
+        public AudioClip hit;
+
+        public CinemachineImpulseSource impulse;
+        private float timeTilAudio = 0f;
         private void Start()
         {
             rigid = GetComponent<Rigidbody>();
@@ -73,7 +78,6 @@ namespace TwinStick
         void Update()
         {
             if (!canPlay) return;
-            shotTimer -= Time.fixedDeltaTime;
             Move();
             Rotate();
             Shoot();
@@ -83,6 +87,8 @@ namespace TwinStick
         {
             health.RegenStat(Time.fixedDeltaTime);
             ui.SetPlayerHealth((int)health.currentValue);
+            timeTilAudio -= Time.fixedDeltaTime;
+            shotTimer -= Time.fixedDeltaTime;
         }
 
         void Move()
@@ -126,7 +132,11 @@ namespace TwinStick
                  //input.shoot = false;
                 if (shotTimer <= 0 && ammo > 0)
                 {
-                    AudioManager.instance?.PlaySFX(shoot);
+                    if (timeTilAudio < 0)
+                    {
+                        AudioManager.instance?.PlaySFX(shoot, 0.75f);
+                        timeTilAudio = 0.25f;
+                    }
                     shotTimer = shotInterval;
                     bulletPool.FireBullet(bulletSpawnPoint.transform.forward, bulletSpawnPoint.position,
                         bulletSpawnPoint.rotation, bulletSpeed, bulletDamage);
@@ -158,7 +168,9 @@ namespace TwinStick
 
         public void TakeDamage(float damage, Vector3 impactPoint)
         {
+            AudioManager.instance?.PlaySFX(hit);
             health.RemoveStat(damage);
+            impulse.GenerateImpulse(damage);
 
             if (health.currentValue <= 0)
             {
