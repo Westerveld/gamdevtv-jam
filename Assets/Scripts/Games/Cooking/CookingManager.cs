@@ -30,11 +30,13 @@ namespace Cooking
 
         public GameObject customerPrefab;
 
+
         public UICookingManager m_UICookingManager;
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
             base.StartGame(value1, value2);
             ordersFilled = (int)value1;
+            m_UICookingManager.SetCustomersServed(ordersFilled, neededOrders);
             activeOrders = new Recipe[3];
             player.Setup();
             customerArea.Setup(player, this);
@@ -119,14 +121,13 @@ namespace Cooking
 
             m_UICookingManager.CloseCustomerOrder(id);
             ordersFilled++;
+            m_UICookingManager.SetCustomersServed(ordersFilled, neededOrders);
             if (ordersFilled >= neededOrders)
             {
                 GameInstance.instance.SetPersistantData(gameType, ordersFilled);
                 GameInstance.instance.SetGameComplete(gameType);
             }
         }
-
-        
     }
 
     [Serializable]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cooking;
+using TMPro;
 
 public class UICookingManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class UICookingManager : MonoBehaviour
 
     #endregion
 
+    public TMP_Text m_CustomersServedText;
 
     //need to do customer orders + timers
     #region Customer Orders + Timers
@@ -108,6 +110,11 @@ public class UICookingManager : MonoBehaviour
     #endregion
 
     #region mixer methods
-    
+
     #endregion
+
+    public void SetCustomersServed(int filled, int required)
+    {
+        m_CustomersServedText.text = filled.ToString() + "/" + required.ToString();
+    }
 }
