@@ -19,6 +19,8 @@ namespace Runner
 
         private GameObject tmp;
 
+        public bool assignPool;
+
         private void SetupObjectPools()
         {
             for (int i = 0; i < poolCount; ++i)
