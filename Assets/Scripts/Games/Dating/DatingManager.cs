@@ -41,6 +41,7 @@ namespace Dating
 
         public override void StartGame(float value1 = 0f, float value2 = 0f)
         {
+            base.StartGame(value1, value2);
             currentCharm = value1;
             if(GameInstance.instance)
             {
