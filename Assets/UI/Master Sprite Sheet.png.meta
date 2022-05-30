@@ -263,6 +263,27 @@ TextureImporter:
   - first:
       213: -1699542142167183961
     second: Top Down - Bullet
+  - first:
+      213: -5333870203462217457
+    second: Tutorial - Okay Button
+  - first:
+      213: 7579517646733592264
+    second: Tutorial - Okay Button Pressed
+  - first:
+      213: -828745680189877330
+    second: Tutorial - Cooking 1
+  - first:
+      213: -5223069537961035056
+    second: Tutorial - Cooking 2
+  - first:
+      213: 1358515508208430560
+    second: Tutorial - Cooking 3
+  - first:
+      213: -549572855277744374
+    second: Tutorial - Cooking 4
+  - first:
+      213: 535615139771060439
+    second: Tutorial - Cooking 5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2166,7 +2187,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2174,6 +2195,153 @@ TextureImporter:
       bones: []
       spriteID: 7ad815f1d630a68e0800000000000000
       internalID: -1699542142167183961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial - Okay Button
+      rect:
+        serializedVersion: 2
+        x: 2041
+        y: 1587
+        width: 422
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f01189c5f494af5b0800000000000000
+      internalID: -5333870203462217457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial - Okay Button Pressed
+      rect:
+        serializedVersion: 2
+        x: 2041
+        y: 1462
+        width: 422
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c64c56442bdf2960800000000000000
+      internalID: 7579517646733592264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial - Cooking 1
+      rect:
+        serializedVersion: 2
+        x: 2047
+        y: 1095
+        width: 320
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea3942bd134bf74f0800000000000000
+      internalID: -828745680189877330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial - Cooking 2
+      rect:
+        serializedVersion: 2
+        x: 2406
+        y: 1240
+        width: 135
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da3ba0adede387b0800000000000000
+      internalID: -5223069537961035056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial - Cooking 3
+      rect:
+        serializedVersion: 2
+        x: 2406
+        y: 1043
+        width: 201
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ed6f9038aa6ad210800000000000000
+      internalID: 1358515508208430560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial - Cooking 4
+      rect:
+        serializedVersion: 2
+        x: 2578
+        y: 1247
+        width: 172
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0f09fe56668f58f0800000000000000
+      internalID: -549572855277744374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial - Cooking 5
+      rect:
+        serializedVersion: 2
+        x: 2790
+        y: 1113
+        width: 542
+        height: 276
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d0106eb123ee6700800000000000000
+      internalID: 535615139771060439
       vertices: []
       indices: 
       edges: []
