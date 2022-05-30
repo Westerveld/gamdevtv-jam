@@ -1697,6 +1697,8 @@ MonoBehaviour:
   gameType: 4
   player: {fileID: 990846357}
   boss: {fileID: 1883621866}
+  m_BuffAmount: 3
+  m_DamageBuff: 10
 --- !u!4 &1879777323
 Transform:
   m_ObjectHideFlags: 0

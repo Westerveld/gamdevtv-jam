@@ -16,11 +16,18 @@ namespace TwinStick
         public float spawnTimer;
         private bool canPlay = false;
 
+        public float m_DamageBuff = 6f;
+        public int m_BuffAmount = 0;
+
         // Start is called before the first frame update
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
             base.StartGame(value1, value2);
-            player.SetupPlayer(this);
+            if(GameInstance.instance)
+            {
+                m_BuffAmount = GameInstance.instance.GetCompletedGames();
+            }
+            player.SetupPlayer(this,m_DamageBuff*m_BuffAmount);
             enemySpawner.Setup(this, player);
             ui.m_KillsNeeded.text = killsReq.ToString();
             spawnTimer = spawnInterval;

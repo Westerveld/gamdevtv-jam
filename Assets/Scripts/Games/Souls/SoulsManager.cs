@@ -10,12 +10,19 @@ namespace Souls
         public SoulsController player;
         public SoulsBoss boss;
 
+        public int m_BuffAmount;
+        public float m_DamageBuff = 10f;
+
 
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
             base.StartGame();
+            if(GameInstance.instance)
+            {
+               m_BuffAmount = GameInstance.instance.GetCompletedGames();
+            }
             boss.Setup(value1, this);
-            player.SetupPlayer(100f,100f,0.5f,12.5f, this);
+            player.SetupPlayer(100f,100f,0.5f,12.5f, this, m_BuffAmount*m_DamageBuff);
         }
 
         // Update is called once per frame

@@ -69,7 +69,7 @@ namespace TwinStick
             health = new Stat(maxHealth, healthRegenSpeed);
             ui.SetPlayerMaxHealth(maxHealth);
             ui.SetPlayerHealth(maxHealth);
-            bulletDamage = baseDamage * damageModifier;
+            bulletDamage = baseDamage + damageModifier;
             bulletSpeed = baseSpeed * speedModifier;
             canPlay = true;
             ammo = maxAmmo = ammoAmount;
