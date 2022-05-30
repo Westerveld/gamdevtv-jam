@@ -31,7 +31,10 @@ namespace Maze
 
                 for (int i = 0; i < completedGames; i++)
                 {
-                    doors[i].SetActive(false);
+                    if (doors[i] != null)
+                    {
+                        doors[i].SetActive(false);
+                    }
                 }
                 m_BuffAmount = GameInstance.instance.GetCompletedGames();
                 allowedTime += (m_TimerBuff * m_BuffAmount);
