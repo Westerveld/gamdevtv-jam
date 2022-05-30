@@ -70,6 +70,7 @@ public class GameInstance : MonoBehaviour
     {
         completedGames[(int)gameType] = true;
         availableScenes.RemoveAt((int)gameType);
+        UIMasterGameManager.instance.SetIconComplete(gameType);
         //AudioManager.instance?.PlaySFX(gameWinSFX);
         foreach (bool game in completedGames)
         {
