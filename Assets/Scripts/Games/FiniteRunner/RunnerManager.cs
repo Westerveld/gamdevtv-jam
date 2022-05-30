@@ -14,8 +14,8 @@ namespace Runner
         public static RunnerManager instance;
         public float distanceToCompleteGame;
         private float currentDistance;
-        private bool canPlay;
-        private float currSpeed = 1f;
+        public bool canPlay;
+        public float currSpeed = 1f;
         public float speedIncrease = 0.1f;
         public MinMax speedLimit;
         private float objectTimer = 5f;
