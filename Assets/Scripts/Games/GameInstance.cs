@@ -21,7 +21,7 @@ public class GameInstance : MonoBehaviour
 
     public PersistantData data;
 
-    private List<bool> completedGames = new List<bool>();
+    public List<bool> completedGames = new List<bool>();
 
     private string[] scenes = new string[]
     {
@@ -68,9 +68,9 @@ public class GameInstance : MonoBehaviour
 
     public void SetGameComplete(GameType gameType)
     {
+        UIMasterGameManager.instance.SetIconComplete(gameType);
         completedGames[(int)gameType] = true;
         availableScenes.Remove(gameType.ToString());
-        UIMasterGameManager.instance.SetIconComplete(gameType);
         //AudioManager.instance?.PlaySFX(gameWinSFX);
         foreach (bool game in completedGames)
         {

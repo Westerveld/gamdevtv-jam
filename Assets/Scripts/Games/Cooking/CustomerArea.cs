@@ -46,7 +46,6 @@ namespace Cooking
             if (item.GetComponent<CookedFood>() != null)
             {
                 CookedFood food = item.GetComponent<CookedFood>();
-                
                 for (int i = 0; i < cManager.activeOrders.Length; ++i)
                 {
                     bool completedRecipe = true;
@@ -57,7 +56,6 @@ namespace Cooking
                         else
                         {
                             completedRecipe = false;
-                            break;
                         }
                     }
 

@@ -24,8 +24,12 @@ public class UIMasterGameManager : MonoBehaviour
         if (instance == null) instance = this;
         for (int i = 0; i < icons.Count; ++i)
         {
-            if(icons[i].color != completeColor)
+            if(!GameInstance.instance.completedGames[i])
                 icons[i].color = offColor;
+            else
+            {
+                icons[(int)type].color = completeColor;
+            }
         }
         icons[(int)type].color = Color.white;
         
