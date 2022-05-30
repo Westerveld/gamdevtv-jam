@@ -34,18 +34,27 @@ namespace Dating
 
         public AudioClip gameWon;
 
+        public UIDatingManager m_UIDatingManager;
+
+        public float m_CharmBuff = 5f;
+        public int m_BuffAmount = 0;
+
         public override void StartGame(float value1 = 0f, float value2 = 0f)
         {
             currentCharm = value1;
-
+            if(GameInstance.instance)
+            {
+                m_BuffAmount = GameInstance.instance.GetCompletedGames();
+            }
             currentQuestions = questions.OrderBy(x => rand.Next()).ToArray();
+            m_UIDatingManager.SetUpUI(value1/100f);
             StartTurn();
         }
 
         void StartTurn()
         {
             selectedQuestion = currentQuestions[currentQ];
-            correctOption = Random.Range(1, displayedOptions);
+            correctOption = Random.Range(0, displayedOptions);
             questionText.text = selectedQuestion.questionText;
             answerText[correctOption].text = selectedQuestion.correctAnswer;
             int fakeText = 0;
@@ -99,8 +108,8 @@ namespace Dating
         IEnumerator ResultThenNextScreen()
         {
             player.Success();
-            currentCharm += charmAddition;
-
+            currentCharm += charmAddition + (m_BuffAmount*m_CharmBuff);
+            m_UIDatingManager.StartFillAmount(currentCharm / 100f);
             currentQ++;
             yield return new WaitForSeconds(6f);
 
