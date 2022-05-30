@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 171450af13b619844b9162ec68b43258, type: 3}
-  m_Name: AttackDoggo 1
+  m_Name: Monke Defence
   m_EditorClassIdentifier: 
-  m_CardType: 0
-  m_Title: AttackDoggo
-  m_Description: Doggo Attacks for 2 Damage
-  m_EnergyCost: 2
-  m_Value: 2
-  m_Sprite: {fileID: -4993407360382013491, guid: 1a696c6ad7daee54d892cd1c687acd5e,
+  m_CardType: 1
+  m_Title: Monke Defence
+  m_Description: Monke Defends for 3 Amour
+  m_EnergyCost: 3
+  m_Value: 3
+  m_Sprite: {fileID: 2576883882380313007, guid: 1a696c6ad7daee54d892cd1c687acd5e,
     type: 3}

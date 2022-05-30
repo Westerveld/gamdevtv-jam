@@ -26,6 +26,7 @@ public class Final : GameManager
 		finalVolume.profile.TryGet<LensDistortion>(out distortion);
 		finalVolume.profile.TryGet(out bloom);
 		StartCoroutine(AdjustPostProcessing());
+		AudioManager.instance?.PlayFinal();
 	}
 
 	private void FixedUpdate()

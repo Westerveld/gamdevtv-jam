@@ -109,6 +109,7 @@ MonoBehaviour:
     ordersFilled: 0
     distance: 0
   gameSwap: {fileID: 8300000, guid: f254db58bbc8f7c4ebfc73445b57adc0, type: 3}
+  gameWinSFX: {fileID: 8300000, guid: 4d38fccbc9581444ea656d142c06bd4b, type: 3}
 --- !u!114 &1079095808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +132,7 @@ MonoBehaviour:
   soulsMusic: {fileID: 8300000, guid: 4c977d00630751f4b807f8ac38ca2495, type: 3}
   turnBasedMusic: {fileID: 8300000, guid: a7f5669e6a55efd4a9ab20af2645d660, type: 3}
   twinStickMusic: {fileID: 8300000, guid: 191b98592b6e18546874a48bdc7602c1, type: 3}
+  finalStartMusic: {fileID: 8300000, guid: e38ec2405e9d7534ebaa7d34b57521f3, type: 3}
   lerpSpeed: 0.25
 --- !u!82 &1079095807
 AudioSource:

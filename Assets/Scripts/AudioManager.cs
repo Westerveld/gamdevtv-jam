@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip cookingMusic, datingMusic, runnerMusic, mazeMusic, soulsMusic, turnBasedMusic, twinStickMusic;
 
+    public AudioClip finalStartMusic;
+
     public float lerpSpeed = 0.25f;
     void Awake()
     {
@@ -106,6 +108,21 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(LerpOnMusic(lastUsedMusicSource1 ?  musicSource2 : musicSource1));
         lastUsedMusicSource1 = !lastUsedMusicSource1;
     }
+
+    public void PlayFinal()
+    {
+        StartCoroutine(LerpOffMusic(lastUsedMusicSource1 ? musicSource1 : musicSource2));
+        if (lastUsedMusicSource1)
+        {
+            musicSource2.clip = finalStartMusic;
+        }
+        else
+        {
+            musicSource1.clip = finalStartMusic;
+        }
+        StartCoroutine(LerpOnMusic(lastUsedMusicSource1 ? musicSource2 : musicSource1));
+    }
+
 
     public void PlaySFX(AudioClip clip, float pitch = 1f)
     {

@@ -1752,6 +1752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55d78657b03b7d43afc24baf836691c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_TurnBasedManager: {fileID: 0}
   m_UITurnBasedManager: {fileID: 0}
   m_MaxHealth: 40
   m_Health: 0
@@ -1760,6 +1761,13 @@ MonoBehaviour:
     m_TurnDecision: 0
     m_BuffAmount: 0
     m_BaseValue: 0
+  anim: {fileID: 3346675869608917356}
+  hitSFX: {fileID: 8300000, guid: a2e0d48864194d747accada89d56fe06, type: 3}
+  dieSFX: {fileID: 8300000, guid: 9b062b20ee6a76c44ac6ba86012a416b, type: 3}
+  armorHitSFX: {fileID: 8300000, guid: e912c0cc7bc75c344b8a74bf0126428f, type: 3}
+  attackSFX: {fileID: 8300000, guid: a2e0d48864194d747accada89d56fe06, type: 3}
+  armourGainSFX: {fileID: 8300000, guid: 1c0ce6359b82d1545a7ce9ac18b6c1f2, type: 3}
+  buffSFX: {fileID: 8300000, guid: a5f822d8fec7cf24e8b87541ab5d43ee, type: 3}
 --- !u!1 &8392517264931497374
 GameObject:
   m_ObjectHideFlags: 0

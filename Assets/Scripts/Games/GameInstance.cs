@@ -34,6 +34,7 @@ public class GameInstance : MonoBehaviour
     Random rand = new Random();
 
     public AudioClip gameSwap;
+    public AudioClip gameWinSFX;
 
     // Start is called before the first frame update
     void Awake()
@@ -93,6 +94,7 @@ public class GameInstance : MonoBehaviour
     {
         completedGames[(int)gameType] = true;
         availableScenes.RemoveAt((int)gameType);
+        //AudioManager.instance?.PlaySFX(gameWinSFX);
         foreach (bool game in completedGames)
         {
             if (!game)

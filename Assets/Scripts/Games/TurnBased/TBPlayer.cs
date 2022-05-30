@@ -24,7 +24,7 @@ public class TBPlayer : MonoBehaviour
     private static readonly int animID_Effect = Animator.StringToHash("Effect");
     private static readonly int animID_Hit = Animator.StringToHash("Hit");
 
-    public AudioClip hitSFX, armorHitSFX, drawCard, useCard, attackNoise;
+    public AudioClip hitSFX, armorHitSFX, drawCard, useCard, attackNoise, armourGainSFX, dieSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +75,7 @@ public class TBPlayer : MonoBehaviour
             dying = true;
             anim.SetTrigger(animID_Die);
             StartCoroutine(WaitAndDie());
-            //AudioManager.instance?.PlaySFX();
+            AudioManager.instance?.PlaySFX(dieSFX);
             return;
         }
         AudioManager.instance?.PlaySFX(hitSFX);
@@ -184,6 +184,7 @@ public class TBPlayer : MonoBehaviour
     {
         m_Armour -= value;
         m_UITurnBasedManager.SetPlayerArmour(m_Armour);
+        AudioManager.instance?.PlaySFX(armourGainSFX);
         if (m_Armour <= 0)
         {
             ResetArmour();

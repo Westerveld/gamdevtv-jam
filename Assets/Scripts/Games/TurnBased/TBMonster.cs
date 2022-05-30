@@ -23,7 +23,7 @@ public class TBMonster : MonoBehaviour
     private static readonly int hit = Animator.StringToHash("Hit");
     private static readonly int die = Animator.StringToHash("Die");
 
-    public AudioClip hitSFX, dieSFX, armorHitSFX, attackSFX;
+    public AudioClip hitSFX, dieSFX, armorHitSFX, attackSFX, armourGainSFX, buffSFX;
 
     [System.Serializable]
     public class MonsterDecision
@@ -130,6 +130,7 @@ public class TBMonster : MonoBehaviour
     {
         m_Decision.m_BuffAmount++;
         m_UITurnBasedManager.SetMonsterBuff(m_Decision.m_BuffAmount);
+        AudioManager.instance?.PlaySFX(buffSFX);
     }
 
     private void ResetArmour()
@@ -152,6 +153,7 @@ public class TBMonster : MonoBehaviour
     {
         m_Armour += value;
         m_UITurnBasedManager.SetMonsterArmour(m_Armour);
+        AudioManager.instance?.PlaySFX(armourGainSFX);
     }
 
     public void GetMonsterDecision()
