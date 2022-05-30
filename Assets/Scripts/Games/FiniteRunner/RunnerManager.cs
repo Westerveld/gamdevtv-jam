@@ -25,6 +25,7 @@ namespace Runner
         public int m_BuffAmount;
 
         public UIRunnerManager ui;
+        private bool ending = false;
         void Awake()
         {
             instance = this;
@@ -87,6 +88,8 @@ namespace Runner
 
         public void WonGame()
         {
+            if (ending) return;
+            ending = true;
             GameInstance.instance.SetGameComplete(gameType);
         }
 
@@ -98,6 +101,8 @@ namespace Runner
                 ui.SetShieldAmount(m_BuffAmount);
                 return;
             }
+            if (ending) return;
+            ending = true;
             GameInstance.instance.SetPersistantData(gameType, currentDistance, currSpeed);
             GameInstance.instance.GameEnd();
         }

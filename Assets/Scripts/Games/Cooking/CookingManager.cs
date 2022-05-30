@@ -33,6 +33,7 @@ namespace Cooking
         public int m_BuffAmount;
         public float m_TimerBuff = 10;
 
+        private bool ending = false;
 
         public UICookingManager m_UICookingManager;
         public override void StartGame(float value1 = 0, float value2 = 0)
@@ -92,7 +93,8 @@ namespace Cooking
 
                 if (activeOrders[i].timer > activeOrders[i].timeAllowed)
                 {
-                    
+                    if (ending) return;
+                    ending = true;
                     GameInstance.instance?.SetPersistantData(gameType, ordersFilled);
                     GameInstance.instance?.GameEnd();
                 }

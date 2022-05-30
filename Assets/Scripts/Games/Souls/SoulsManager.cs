@@ -13,6 +13,7 @@ namespace Souls
         public int m_BuffAmount;
         public float m_DamageBuff = 10f;
 
+        private bool ending = false;
 
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
@@ -33,6 +34,8 @@ namespace Souls
 
         public void PlayerDied()
         {
+            if (ending) return;
+            ending = true;
             if (GameInstance.instance == null)
                 return;
             GameInstance.instance.SetPersistantData(gameType, boss.health.currentValue);
@@ -41,6 +44,8 @@ namespace Souls
 
         public void BossDied()
         {
+            if (ending) return;
+            ending = true;
             if(GameInstance.instance != null)
                 GameInstance.instance.SetGameComplete(gameType);
         }

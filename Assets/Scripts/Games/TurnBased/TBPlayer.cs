@@ -86,7 +86,7 @@ public class TBPlayer : MonoBehaviour
         //Wait for animation
         yield return new WaitForSeconds(2f);
         //save monster persistent health
-        m_TurnBasedManager.SavePersistentData();
+        m_TurnBasedManager.Died();
         //move onto next game
         //put die animation here
     }

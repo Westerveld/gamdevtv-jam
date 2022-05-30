@@ -22,6 +22,8 @@ namespace Maze
         private float dist;
         private float distReq = 1f;
 
+        private bool ending = false;
+
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
             base.StartGame(value1, value2);
@@ -50,8 +52,9 @@ namespace Maze
             if (!canPlay) return;
             timer -= Time.fixedDeltaTime;
             SetTimerText(timer);
-            if (timer <= 0)
+            if (timer <= 0&& !ending)
             {
+                ending = true;
                 if(GameInstance.instance !=null)
                     GameInstance.instance.GameEnd();
             }
@@ -65,6 +68,8 @@ namespace Maze
 
         public void Exit()
         {
+            if (ending) return;
+            ending = true;
             if (GameInstance.instance != null)
             {
                 GameInstance.instance.SetGameComplete(gameType);

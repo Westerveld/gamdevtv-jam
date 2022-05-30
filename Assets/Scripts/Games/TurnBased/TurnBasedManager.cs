@@ -25,6 +25,8 @@ namespace TurnBased
         public int m_CardBuff = 1;
         public int m_BuffAmount = 0;
 
+        private bool ending = false;
+
         public void PlayCard(int number)
         {
             Debug.Log($"Playing card {number}");
@@ -56,9 +58,13 @@ namespace TurnBased
             }
         }
 
-        public void SavePersistentData()
+        public void Died()
         {
+            
+            if (ending) return;
+            ending = true;
             GameInstance.instance.SetPersistantData(gameType, m_Monster.m_Health);
+            GameInstance.instance.GameEnd();
         }
 
         //called by unity event
@@ -82,6 +88,8 @@ namespace TurnBased
 
         public void CompleteGame()
         {
+            if (ending) return;
+            ending = true;
             GameInstance.instance.SetGameComplete(gameType);
         }
     }

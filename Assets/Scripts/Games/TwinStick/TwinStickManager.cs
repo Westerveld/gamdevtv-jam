@@ -19,6 +19,8 @@ namespace TwinStick
         public float m_DamageBuff = 6f;
         public int m_BuffAmount = 0;
 
+        private bool ending = false;
+
         // Start is called before the first frame update
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
@@ -63,6 +65,8 @@ namespace TwinStick
 
         public void Died()
         {
+            if (ending) return;
+            ending = true;
             if (GameInstance.instance != null)
             {
                 GameInstance.instance.SetPersistantData(gameType);
@@ -72,6 +76,8 @@ namespace TwinStick
 
         public void GotOut()
         {
+            if (ending) return;
+            ending = true;
             if (GameInstance.instance != null)
             {
                 GameInstance.instance.SetGameComplete(gameType);

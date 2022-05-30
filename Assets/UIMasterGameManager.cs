@@ -28,7 +28,7 @@ public class UIMasterGameManager : MonoBehaviour
                 icons[i].color = offColor;
             else
             {
-                icons[(int)type].color = completeColor;
+                icons[i].color = completeColor;
             }
         }
         icons[(int)type].color = Color.white;

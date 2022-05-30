@@ -39,6 +39,7 @@ namespace Dating
         public float m_CharmBuff = 5f;
         public int m_BuffAmount = 0;
 
+        private bool ending = false;
         public override void StartGame(float value1 = 0f, float value2 = 0f)
         {
             base.StartGame(value1, value2);
@@ -102,6 +103,8 @@ namespace Dating
             }
             else
             {
+                if (ending) return;
+                ending = true;
                 StartCoroutine(ResultThenDeduction());
             }
         }
