@@ -18,6 +18,10 @@ namespace Maze
 
         public TMP_Text m_TimerText;
 
+        public Transform endDoor;
+        private float dist;
+        private float distReq = 1f;
+
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
             base.StartGame(value1, value2);
@@ -47,6 +51,12 @@ namespace Maze
             {
                 if(GameInstance.instance !=null)
                     GameInstance.instance.GameEnd();
+            }
+
+            dist = Vector3.Distance(endDoor.position, player.transform.position);
+            if (dist < distReq)
+            {
+                Exit();
             }
         }
 
