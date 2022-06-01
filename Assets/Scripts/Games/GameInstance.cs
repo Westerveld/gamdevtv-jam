@@ -177,6 +177,8 @@ public class GameInstance : MonoBehaviour
                 data.currentCharm = val1;
                 break;
             case GameType.Runner:
+                data.distance = (int)val1;
+                data.speed = val2;
                 break;
             case GameType.Maze:
                 break;
@@ -210,7 +212,7 @@ public class GameInstance : MonoBehaviour
         {
             case GameType.Cooking:
                 if(data.didCookingTutorial)
-                    currentGame.StartGame();
+                    currentGame.StartGame(data.ordersFilled);
                 else
                 {
                     data.didCookingTutorial = true;
@@ -219,7 +221,7 @@ public class GameInstance : MonoBehaviour
                 break;
             case GameType.Dating:
                 if(data.didDatingTutorial)
-                    currentGame.StartGame();
+                    currentGame.StartGame(data.currentCharm);
                 else
                 {
                     data.didDatingTutorial = true;
@@ -228,7 +230,7 @@ public class GameInstance : MonoBehaviour
                 break;
             case GameType.Runner:
                 if(data.didRunnerTutorial)
-                    currentGame.StartGame(data.distance);
+                    currentGame.StartGame(data.distance, data.speed);
                 else
                 {
                     data.didRunnerTutorial = true;
@@ -255,7 +257,7 @@ public class GameInstance : MonoBehaviour
                 break;
             case GameType.TurnBased:
                 if(data.didTurnBasedTutorial)
-                    currentGame.StartGame();
+                    currentGame.StartGame(data.currentMonsterHealth);
                 else
                 {
                     data.didTurnBasedTutorial = true;
@@ -281,8 +283,8 @@ public class PersistantData
 {
     //Dating
     public float currentCharm = 0f;
-
     public bool didDatingTutorial;
+    
     //Souls
     public float currentBossHealth = 0f;
     public bool didSoulsTutorial;
@@ -301,6 +303,7 @@ public class PersistantData
     
     //Runner
     public int distance;
+    public float speed;
     public bool didRunnerTutorial;
 
     public bool didMazeTutorial;

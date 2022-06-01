@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     {
         UIMasterGameManager.instance.SetIcon(gameType);
         AudioManager.instance?.StartGameAudio(gameType);
+        tutorial.SetActive(false);
     }
     
     [ContextMenu("Test")]

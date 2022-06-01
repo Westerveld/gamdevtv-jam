@@ -31,6 +31,8 @@ namespace TwinStick
             }
             player.SetupPlayer(this,m_DamageBuff*m_BuffAmount);
             enemySpawner.Setup(this, player);
+            if ((int)value1 != 0)
+                killsReq = (int)value1;
             ui.m_KillsNeeded.text = killsReq.ToString();
             spawnTimer = spawnInterval;
             canPlay = true;

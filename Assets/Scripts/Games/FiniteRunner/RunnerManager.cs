@@ -33,8 +33,9 @@ namespace Runner
         // Start is called before the first frame update
         public override void StartGame(float value1 = 0, float value2 = 0)
         {
-            base.StartGame();
+            base.StartGame(value1, value2);
             currentDistance = value1;
+            currSpeed = value2;
             if(GameInstance.instance)
             {
                 //m_BuffAmount = GameInstance.instance.GetCompletedGames();
