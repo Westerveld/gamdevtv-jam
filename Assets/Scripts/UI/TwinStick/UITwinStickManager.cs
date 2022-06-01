@@ -15,6 +15,7 @@ public class UITwinStickManager : MonoBehaviour
 
     #region Ammo
     public TMP_Text m_AmmoCount;
+    public TMP_Text m_AmmoAmount;
     public Image m_AmmoImage;
     public Image m_ReloadImage;
     [Range(1,10)]
@@ -27,7 +28,6 @@ public class UITwinStickManager : MonoBehaviour
 
     #region WorldSpaceUI
     public GameObject m_EnemyHealthPrefab;
-    public TMP_Text m_DoorKillCount;
     public Transform m_EnemyHealthBarPool;
 
     #endregion
@@ -46,6 +46,7 @@ public class UITwinStickManager : MonoBehaviour
     public void SetAmmoCount(int amount, int max = 50)
     {
         m_AmmoCount.text = amount.ToString();
+        m_AmmoAmount.text = "/" + max.ToString();
         m_AmmoImage.fillAmount = amount > 0 ? (float)amount / max : 0f;
     }
 

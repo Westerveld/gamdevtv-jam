@@ -38,7 +38,7 @@ namespace Runner
             currSpeed = value2;
             if(GameInstance.instance)
             {
-                //m_BuffAmount = GameInstance.instance.GetCompletedGames();
+                m_BuffAmount = GameInstance.instance.GetCompletedGames();
             }
 
             ui.SetUpShield(m_BuffAmount);

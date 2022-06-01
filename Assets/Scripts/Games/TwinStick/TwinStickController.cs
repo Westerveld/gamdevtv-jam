@@ -62,7 +62,7 @@ namespace TwinStick
             rigid = GetComponent<Rigidbody>();
         }
 
-        public void SetupPlayer(TwinStickManager t, float damageModifier = 1f, float speedModifier = 1f, int ammoAmount = 50, int maxHealth = 100)
+        public void SetupPlayer(TwinStickManager t, float damageModifier = 1f, float speedModifier = 1f, int ammoAmount = 50, int maxHealth = 100, float reloadSpeedModifier = 1f)
         {
             tManager = t;
             //Are we having regen in twin stick?
@@ -71,8 +71,10 @@ namespace TwinStick
             ui.SetPlayerHealth(maxHealth);
             bulletDamage = baseDamage + damageModifier;
             bulletSpeed = baseSpeed * speedModifier;
+            reloadSpeed = reloadSpeed * reloadSpeedModifier;
             canPlay = true;
             ammo = maxAmmo = ammoAmount;
+            ui.SetAmmoCount(ammo, maxAmmo);
         }
 
         void Update()

@@ -19,7 +19,15 @@ namespace TwinStick
         public float m_DamageBuff = 6f;
         public int m_BuffAmount = 0;
 
+        public float m_SpeedBuff = 0.5f;
+        public float m_ReloadSpeedBuff = 0.5f;
+        public int m_AmmoBuff = 10;
+        
+
         private bool ending = false;
+
+        public TwinStickDoor[] m_Doors;
+        public bool m_CanSpawn;
 
         // Start is called before the first frame update
         public override void StartGame(float value1 = 0, float value2 = 0)
@@ -29,13 +37,18 @@ namespace TwinStick
             {
                 m_BuffAmount = GameInstance.instance.GetCompletedGames();
             }
-            player.SetupPlayer(this,m_DamageBuff*m_BuffAmount);
+            float speed = 1 + (m_SpeedBuff * m_BuffAmount);
+            float reloadSpeed = 1 + (m_ReloadSpeedBuff * m_BuffAmount);
+            int ammoCount = 50 + (m_AmmoBuff * m_BuffAmount);
+            int maxHealth = 100 + (m_AmmoBuff * m_BuffAmount);
+            player.SetupPlayer(this,m_DamageBuff*m_BuffAmount,speed, ammoCount, maxHealth, reloadSpeed);
             enemySpawner.Setup(this, player);
             if ((int)value1 != 0)
                 killsReq = (int)value1;
             ui.m_KillsNeeded.text = killsReq.ToString();
             spawnTimer = spawnInterval;
             canPlay = true;
+            m_CanSpawn = true;
         }
 
         private void FixedUpdate()
@@ -43,7 +56,7 @@ namespace TwinStick
             if (!canPlay) return;
             
             spawnTimer -= Time.fixedDeltaTime;
-            if (spawnTimer <= 0)
+            if (spawnTimer <= 0 && m_CanSpawn)
             {
                 enemySpawner.SpawnEnemy();
                 spawnTimer = spawnInterval;
@@ -57,6 +70,11 @@ namespace TwinStick
             killsReq--;
             killsReq = Mathf.Max(0, killsReq);
             ui.m_KillsNeeded.text = killsReq.ToString();
+            if(killsReq == 0)
+            {
+                m_CanSpawn = false;
+                OpenDoors();
+            }
         }
 
         [ContextMenu("Test")]
@@ -71,11 +89,19 @@ namespace TwinStick
             ending = true;
             if (GameInstance.instance != null)
             {
-                GameInstance.instance.SetPersistantData(gameType);
+                GameInstance.instance.SetPersistantData(gameType,killsReq);
                 GameInstance.instance.GameEnd();
             }
         }
 
+        public void OpenDoors()
+        {
+            for(int i = 0; i < m_Doors.Length; i++)
+            {
+                m_Doors[i].OpenDoors();
+            }
+        }
+        
         public void GotOut()
         {
             if (ending) return;

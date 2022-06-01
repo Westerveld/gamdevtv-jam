@@ -1834,6 +1834,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RunnerTutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 6041320073943272846, guid: 3f6dd6f48c9ac90459d3eba9bce09641,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8536031375616704192, guid: 3f6dd6f48c9ac90459d3eba9bce09641,
         type: 3}
       propertyPath: m_IsActive

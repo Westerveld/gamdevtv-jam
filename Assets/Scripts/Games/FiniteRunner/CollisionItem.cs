@@ -35,7 +35,10 @@ namespace Runner
                 }
                 else
                 {
-                    col.gameObject.GetComponent<Collider>().enabled = false;
+                    if (RunnerManager.instance.m_BuffAmount < 1)
+                    {
+                        col.gameObject.GetComponent<Collider>().enabled = false;
+                    }
                     AudioManager.instance?.PlaySFX(hit);
                     //Game Over
                     RunnerManager.instance.LostGame();

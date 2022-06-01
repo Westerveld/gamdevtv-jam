@@ -55,6 +55,7 @@ namespace Runner
                         lowObstacles[i].transform.position = lowSpawnPoint.position;
                         lowObstacles[i].speed = speed;
                         lowObstacles[i].gameObject.SetActive(true);
+                        lowObstacles[i].transform.GetChild(0).gameObject.SetActive(true);
                         break;
                     }
                 }
@@ -68,6 +69,7 @@ namespace Runner
                         highObstacles[i].transform.position = highSpawnPoint.position;
                         highObstacles[i].speed = speed;
                         highObstacles[i].gameObject.SetActive(true);
+                        highObstacles[i].transform.GetChild(0).gameObject.SetActive(true);
                         break;
                     }
                 }

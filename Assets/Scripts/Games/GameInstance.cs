@@ -202,7 +202,6 @@ public class GameInstance : MonoBehaviour
             if (completedGames[i])
                 completed++;
         }
-
         return completed;
     }
 
